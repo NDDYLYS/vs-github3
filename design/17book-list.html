@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div class = "container w-600">
+    <div class = "cell mb-30 center">
+        <h1>도서 목록</h1>
+    </div>
+
+    <div class = "cell left">
+        <form autocomplete="off">
+            <select name = "column" class = "field">
+                <option value="book_title" ${param.column == "book_title" ? "selected" : ""}>책 제목</option>
+                <option value="book_author" ${param.column == "book_author" ? "selected" : ""}>저자</option>
+                <option value="book_publisher" ${param.column == "book_publisher" ? "selected" : ""}>출판사</option>
+            </select>
+            <input type ="search" name="keyword" value = "${param.keyword}" class = "field" required>
+            <Button type = "submit" class = "btn btn-positive">검색</Button>
+        </form>
+    </div>
+
+    <div class = "cell right">
+        <a href = "save" class = "btn me-10  btn-neutral">신규등록</a>
+    </div>
+
+    <div class = "cell">
+        <table class = "table table-border table-hover table-sprited w-100 center">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>표지</th>
+                    <th>이름</th>
+                    <th>저자</th>
+                    <th>출판사</th>
+                    <th>장르</th>
+                    <th>출간일</th>
+                    <th>가격</th>
+                    <th>페이지 수</th>
+                </tr>
+            </thead>
+
+            <tbody align = "center">
+				<c:forEach var = "bookDto" items = "${ bookList }">
+					<tr>
+                        <td>${ bookDto.getBookId() }</td>
+                        <td><img src = "/book/image?bookId=${bookDto.getBookId()}" width="32" height = "32"></td>
+                        <td><a href="detail?bookId=${bookDto.getBookId()}">${ bookDto.getBookTitle() }</a></td>
+                        <td>${ bookDto.getBookAuthor() }</td>
+                        <td>${ bookDto.getBookPublisher() }</td>
+                        <td>${ bookDto.getBookGenre() }</td>
+                        <td>${ bookDto.getBookPublicationDate() }</td>
+                        <td align = "right"><fmt:formatNumber value="${bookDto.getBookPrice()}" pattern="#,##0"/></td>
+                        <td align = "right">${ bookDto.getBookPageCount() }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+            	<tfoot>
+                    <tr>
+                        <td colspan="7">
+                            검색결과 : 
+                            ${pageVO.begin} - ${pageVO.end}
+                            /
+                            ${pageVO.dataCount}개
+                        </td>
+                    </tr>
+                </tfoot>
+        </table>
+    </div>
+</div>
+    
+</body>
+</html>

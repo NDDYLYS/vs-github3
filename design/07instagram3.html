@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        div{
+            box-shadow: 0 0 1px 0 gray;
+        }
+        .container{
+            box-shadow: 0 0 1px 0 blue;
+            width: 350px;
+            margin: 0 auto;
+        }
+        .cell{
+            box-shadow: 0 0 1px 0 red;
+            margin: 10px 0;
+        }
+        .field{
+            width: 100%;
+            font-size: 16px;
+            padding: 0.5em;
+        }
+        .btn{
+             width: 100%; 
+             font-size: 16px;
+             padding: 0.5em;
+        }
+        .link{
+
+        }
+        /* 정렬용 클래스 */
+        .left{
+            text-align: left;
+        }
+        .center{
+            text-align: center;
+        }
+        .right{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <div class = "cell center">
+            <img src = "images/img.png" width = "50%">
+        </div>
+        <div class = "cell">
+            <input type = "text" name = "" class = "field">
+        </div>
+        <div class = "cell">
+            <input type = "password" name = "" class = "field"></div>
+        <div class = "cell">
+            <button class = "btn">로그인</button>
+        </div>
+        <div class = "cell">
+            <hr class = "divider">
+        </div>
+        <div class = "cell center">
+            <a href = "#" class = "link">비밀번호 깜빡?</a>
+        </div>
+    </div>
+</body>
+</html>

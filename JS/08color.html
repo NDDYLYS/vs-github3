@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08color</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <script>
+        function labelTextToRed()
+        {
+            var target = document.querySelector("[name=selectorLabel]");
+            target.style.color = "red";
+        }
+
+        function labelTextToGreen()
+        {
+            var target = document.querySelector("[name=selectorLabel]");
+            target.style.color = "green";
+        }
+
+        function labelTextToBlue()
+        {
+            var target = document.querySelector("[name=selectorLabel]");
+            target.style.color = "blue";
+        }
+    </script>
+</head>
+<body>
+    
+
+    <div class = "container w-500">
+        <div class = "cell">
+            <button type = "submit" 
+            onclick="labelTextToRed();">Red</button>
+            <button type = "submit" 
+            onclick="labelTextToGreen();">Green</button>
+            <button type = "submit" 
+            onclick="labelTextToBlue();">Blue</button>
+        </div>
+        <hr>
+        <div class = "cell">
+            <label name = "selectorLabel" style="font-size: 12px;">Hello Javascript!</label>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book-Insert</title> 
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class = "container w-400">
+        <form action="save" method="post" enctype="multipart/form-data">
+            <div class = "cell mb-30 center">
+                <h1>도서 등록</h1>
+            </div>
+            <div class = "cell mt-30">
+                <label>도서 제목</label>
+                <input type= "text" name = "bookTitle"
+                 class = "field w-100" placeholder="(ex)어린왕자" required>
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 저자</label>
+                <input type= "text" name = "bookAuthor"
+                 class = "field w-100" placeholder="(ex)홍길동">
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 출판사</label>
+                <input type= "text" name = "bookPublisher"
+                 class = "field w-100" placeholder="(ex)출판사">
+            </div>
+            <div class = "cell mt-10">
+                <label>출간일</label>
+                <input type= "date" name = "bookPublicationDate"
+                 class = "field w-100" placeholder="(ex)출간일">
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 가격</label>
+                <input type= "number" name = "bookPrice"
+                 class = "field w-100" placeholder="(ex)도서 가격"
+                 inputmode="numeric">
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 페이지 수</label>
+                <input type= "number" name = "bookPageCount"
+                 class = "field w-100" placeholder="(ex)페이지 수"
+                 inputmode = "numeric">
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 장르</label>
+                <input type= "text" name = "bookGenre"
+                 class = "field w-100" placeholder="(ex)장르">
+            </div>
+                <label>도서 표지</label>
+                <div class = "cell">
+                <input type = "file"
+                name = "attach" accept = ".png,.jpg" class = "field w-100">
+            </div>
+            <div class = "cell">
+                <button class = "btn btn-positive w-100">등록하기</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student-Insert</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class = "container w-400">
+        <form action="add" method="post" enctype="multipart/form-data">
+            <div class = "cell mb-30 center">
+                <h1>학생 등록</h1>
+            </div>
+            <div class = "cell mt-30">
+                <label>학생 이름</label>
+                <input type= "text" name = "studentName"
+                 class = "field w-100" placeholder="(ex)홍길동">
+            </div>
+            <div class = "cell mt-10">
+                <label>국어점수</label>
+                <input type= "number" name = "studentKor"
+                 class = "field w-100" placeholder="0~100" 
+                 inputmode = "numeric">
+            </div>
+            <div class = "cell mt-10">
+                <label>영어점수</label>
+                <input type= "number" name = "studentEng"
+                 class = "field w-100" placeholder="0~100" 
+                 inputmode = "numeric">
+            </div>
+            <div class = "cell mt-10">
+                <label>수학점수</label>
+                <input type= "number" name = "studentMat"
+                 class = "field w-100" placeholder="0~100" 
+                 inputmode = "numeric">
+            </div>
+                <div class = "cell">
+                <input type = "file"
+                name = "attach" accept = ".png,.jpg">
+            </div>
+            <div class = "cell">
+                <button class = "btn btn-positive w-100">등록하기</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

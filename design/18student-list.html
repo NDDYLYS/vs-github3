@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student-List</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <div class = "container w-600">
+        <div class = "cell mb-30 center">
+            <h1>학생 목록</h1>
+        </div>
+
+        <div class = "cell left">
+            <form autocomplete="off">
+                <select name = "column" class = "field">
+                    <option value="student_name" ${param.column == "student_name" ? "selected" : ""}>이름</option>
+                    <option value="student_kor" ${param.column == "student_kor" ? "selected" : ""}>국어점수</option>
+                    <option value="student_eng" ${param.column == "student_eng" ? "selected" : ""}>영어점수</option>
+                    <option value="student_mat" ${param.column == "student_mat" ? "selected" : ""}>수학점수</option>
+                </select>
+                <input type ="search" name="keyword" value = "${param.keyword}" class = "field" required>
+                <Button type = "submit" class = "btn btn-positive">검색</Button>
+            </form>
+        </div>
+
+        <div class = "cell right">
+            <a href = "add" class = "btn me-10 btn-neutral">신규등록</a>
+        </div>
+
+        <div class = "cell">
+            <table class = "table table-border table-hover table-sprited w-100 center">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>사진</th>
+                        <th>이름</th>
+                        <th>국어점수</th>
+                        <th>영어점수</th>
+                        <th>수학점수</th>
+                        <th>평균</th>
+                        <th>등록일</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>None</td>
+                        <td>이가람</td>
+                        <td>25</td>
+                        <td>45</td>
+                        <td>65</td>
+                        <td>??</td>
+                        <td>2000년 7월 19일</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>None</td>
+                        <td>잭스패로우</td>
+                        <td>99</td>
+                        <td>100</td>
+                        <td>98</td>
+                        <td>??</td>
+                        <td>1833년 9월 01일</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>None</td>
+                        <td>존톨킨</td>
+                        <td>11</td>
+                        <td>33</td>
+                        <td>99</td>
+                        <td>??</td>
+                        <td>10년 3월 27일</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>None</td>
+                        <td>이가람</td>
+                        <td>77</td>
+                        <td>88</td>
+                        <td>3</td>
+                        <td>??</td>
+                        <td>2025년 9월 19일</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>

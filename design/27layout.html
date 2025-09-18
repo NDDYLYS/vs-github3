@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+      .image-profile 
+      {
+        border-radius: 50%;
+        box-shadow: 0 0 3px 1px #636e72;
+        opacity: 0.95;
+        /* transition: opacity 0.1s ease-out; */
+        transition-property: opacity;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-out;
+      }
+      .image-profile:hover
+      {
+        opacity: 1;
+      }
+    </style>
+</head>
+<body>
+
+
+    <div class = "container w-1100 flex-box flex-vertical">
+        
+        <!-- header -->
+        <div class = "flex-box">
+            <div class = "w-25 flex-box flex-center">
+                <img src= "./images/logo.svg" class = "w-75">
+            </div>
+            <div class = "w-50">
+                <h1>KH 정보 교육원 스프링 개발자 수업자료</h1>
+            </div>
+            <div class = "w-25">
+                <h2 class = "mb-0">24시간 상담</h2>
+                <p class = "mt-0">1588-0000</p>
+            </div>
+        </div>
+        <div>
+            <div class = "menu">
+                <a href = "#"><i class="fa-solid fa-house"></i>
+                <span>홈</span>
+                </a>
+                <a href = "#"><i class="fa-solid fa-spaghetti-monster-flying"></i>
+                <span>포켓몬</span>
+                </a>
+                <a href = "#"><i class="fa-solid fa-school"></i>
+                <span>학생</span>
+                </a>
+                <a href = "#"><i class="fa-solid fa-book"></i>
+                <span>도서</span>
+                </a>
+                <a href = "#"><i class="fa-solid fa-clapperboard"></i>
+                <span>게시판</span>
+                </a>
+
+                <div class = "divider"></div>
+
+                <a href = "#"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <span>로그인</span>
+                </a>
+                <a href = "#"><i class="fa-solid fa-user-plus"></i>
+                <span>회원가입</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 컨텐츠 -->
+        <div class = "flex-box" style="min-height:400px;">
+            <!-- 사이드바(생략 가능) -->
+            <div class = "w-200">
+                <!-- 로그인 안 했을 때 -->
+                 <div class="cell center">
+                    <h3>비회원 상태</h3>
+                </div>
+                <div class="cell center">
+                    <a href = "#"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span>로그인</span></a>
+                </div>
+               
+                <!-- 로그인 -->
+                <div class="cell center">
+                    <img src = "https://dummyimage.com/150x150" width = "150px" heghit = "150px"
+                    class = "image-profile">
+                </div>
+                <div class="cell center">아이디(등급)</div>
+                <div class="cell center">보유포인트 : 000 point</div>
+                <div class="cell center">
+                    <a href = "#">
+                        <i class="fa-solid fa-user"></i>
+                        <span>내 정보 보기</span>
+                    </a>
+                </div>
+            </div>
+            <div class = "flex-fill">
+                섹션
+            </div>
+        </div>
+
+            <hr>
+
+            <!-- <div class = "cell"> -->
+                <div class = "flex-box">
+                    <div class = "w-50">
+                        <div class = "cell">
+                            <h3>KH정보교육원</h3>
+                        </div>
+                        <div class = "cell">
+                            <span>○○시 ○○구 ○○동 ○○○-○○○번지</span>
+                        </div>
+                        <div class = "cell">대표자 - 피카츄</div>
+                        <div class = "cell">고객센터 - (00)000-0000</div>
+                    </div>
+                    <div class = "w-25">
+                        <div class = "cell">
+                            <span>강남지점
+                                <a href ="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            </span>
+                        </div>                        
+                        <div class = "cell">
+                            <span>종로지점
+                                <a href ="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            </span>
+                        </div>                        
+                        <div class = "cell">
+                            <span>당산지점
+                                <a href ="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            </span>
+                        </div>                        
+                        <div class = "cell">
+                            <span>부산지점
+                                <a href ="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class = "w-25">
+                        <div class = "cell">
+                            <h3>운영방침</h3>
+                        </div>
+                        <div class = "cell">
+                            <a href = "#">홈페이지 이용약관</a>
+                        </div>
+                        <div class = "cell">
+                            <a href = "#">개인정보 처리방침</a>
+                        </div>
+                        <div class = "cell">
+                            <h3>파트너쉽</h3>
+                        </div>
+                        <div class = "cell flex-box">
+                            <a href = "www.google.com"><i class="fa-brands fa-google"></i></a>
+                            <a href = "www.kakao.com"><i class="fa-brands fa-kakao-talk"></i></a>
+                            <a href = "www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+                            <a href = "www.insta.com"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>            
+            <!-- </div> -->
+        </div>
+    </div>
+
+
+
+    
+</body>
+</html>

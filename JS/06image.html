@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06image</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+
+    <script>
+        function imageToSmall()
+        {
+            var target = document.querySelector("[name=selectorImage]");
+            target.width = 150;
+            target.height = 150;
+        }
+
+        function imageToMideum()
+        {
+            var target = document.querySelector("[name=selectorImage]");
+            target.width = 300;
+            target.height = 300;
+        }
+
+        function imageToLarge()
+        {
+            var target = document.querySelector("[name=selectorImage]");
+            target.width = 450;
+            target.height = 450;
+        }
+
+
+    </script>
+
+</head>
+<body>
+    
+
+
+    <div class = "container w-500">
+        <div class = "cell">
+            <button type = "submit" onclick="imageToSmall();">작게</button>
+            <button type = "submit" onclick="imageToMideum();">보통</button>
+            <button type = "submit" onclick="imageToLarge();">크게</button>
+        </div>
+
+        <div class = "cell">
+            <hr>
+        </div>
+
+        <div class = "cell">
+            <img src = "./images/food.jpg" name = "selectorImage" width = 150 height = 150>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+
+    <script>
+        // input type = "password"로 바꾸는 함수
+        function changeToShow()
+        {
+            var target = document.querySelector("[name=memberPw]")
+            target.type = "text";
+        }
+
+        function changeToHide()
+        {
+            var target = document.querySelector("[name=memberPw]");
+            target.type = "password";
+        }
+    </script>
+</head>
+
+
+<div class = "container w-600">
+    <div class = "cell center">
+        <h1>이벤트 다루기</h1>
+    </div>
+
+    <div class = "cell">
+        <input type = "password" name="memberPw" class = "field w-100"
+    </div>
+
+    <div class = "cell">
+        <button type = "button" class = "btn btn-positive" 
+        onclick="changeToShow();">비밀번호 표시</button>
+        <button type = "button" class = "btn btn-negative"
+        onclick="changeToHide();">비밀번호 숨김</button>
+    </div>
+</div>
+
+
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+   
+    <style>
+        .btn-dropdown + div
+        {
+            display: none;
+        }
+
+        .btn-dropdown:hover + div
+        {
+            display: block;
+        }
+
+.dropdown
+{
+    position: relative;    
+}
+.dropdown > .collapse 
+{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left:0;
+    background-color: white;
+}
+
+.dropdown > .collapse > div
+{
+    padding: 0.5em 1em;
+}
+
+.dropdown:hover > .collapse
+{
+    display: block;
+}
+    </style>
+</head>
+<body>
+    
+
+
+    <div class = "container w-800">
+        <button type = "button" class = "btn btn-positive btn-dropdown">Mouse Hovering</button>
+        <div>
+            <div>바나나</div>
+            <div>사과</div>
+            <div>배</div>
+        </div>
+
+        <div class = "cell">
+            추가될 내용
+        </div>
+
+        <div class = "cell">
+            <div class = "dropdown">
+                <button type = "button" class = "btn btn-positive">Mouse Hovering</button>
+                <div class = "collapse">
+                    <div>바나나</div>
+                    <div>사과</div>
+                    <div>배</div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "cell">
+            추가될 내용
+        </div>
+    </div>
+
+
+
+</body>
+</html>

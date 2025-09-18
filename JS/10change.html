@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10change</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    
+    <script>
+        function textareaChangeText()
+        {
+            var top = document.querySelector("[name=topTextArea]");
+            var bottom = document.querySelector("[name=bottomTextArea]");
+
+            var textTop = top.value;
+            var textBottom = bottom.value;
+
+            var swap = textTop;
+            top.value = textBottom;
+            bottom.value = swap;
+        }
+    </script>
+</head>
+<body>
+    
+
+    <div class = "container w-500">
+        <div class = "cell">
+            <textarea name = "topTextArea"></textarea>
+        </div>
+        <div class = "cell">
+            <button type = "submit" class = "btn btn-positive" 
+            onclick="textareaChangeText();">서로 바꾸기</button>
+        </div>
+        <div class = "cell">
+            <textarea name = "bottomTextArea"></textarea>
+        </div>
+    </div>
+
+
+</body>
+</html>

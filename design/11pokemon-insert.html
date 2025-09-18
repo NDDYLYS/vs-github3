@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon-Insert</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <form action="add" method="post" enctype="multipart/form-data"></form>
+    <div class = "container w-250">
+        <div class = "cell mb-30 center">
+            <h1>포켓몬 등록</h1>
+        </div>
+        <div class = "cell mt-30">
+            <label>포켓몬 이름 *</label>
+            <input type ="text" class="field w-100" 
+            name ="pokemonName" placeholder="(ex)피카츄" required>
+        </div>
+        <div class = "cell">
+            <label>포켓몬 속성 *</label>
+            <input type ="text" class="field w-100" 
+            name ="pokemonType" placeholder="(ex)전기" required>
+        </div>
+        <div class = "cell">
+            <label>포켓몬 이미지 *</label>
+            <input type = "file"
+            name = "attach" accept = ".png,.jpg" class = "field w-100">
+        </div>
+        <div class = "cell mt-30">
+            <button class = "btn btn-positive w-100">등록하기</button>
+        </div>
+    </div>
+</body>
+</html>

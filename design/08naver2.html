@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버:로그인</title>
+
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+        .container
+        {
+            /* box-shadow: 0 0 1px 0 blue; */
+            width: 400px;
+            margin: 50px auto;
+        }
+
+        .cell
+        {
+            /* box-shadow: 0 0 1px 0 red; */
+            margin: 10px 0;
+        }
+
+        .field
+        {
+            width: 100%;
+            font-size: 20px;
+            padding: 0.5em;
+            border: 1px solid gray;
+            outline: none;
+        }
+        .btn
+        {
+             width: 100%; 
+             font-size: 20px;
+             font-weight: bold;
+             color: white;
+             padding: 0.5em;
+             border-radius: 5px;
+             border: none;
+             background-color: rgb(33, 203, 1);
+             cursor: pointer;
+        }
+
+        .btn:hover
+        {
+            background-color: #0d5100;
+        }
+
+        .field:focus
+        {
+            border-color: rgb(33, 203, 1);
+        }
+
+        /* 정렬용 클래스 */
+        .left
+        {
+            text-align: left;
+        }
+        .center
+        {
+            text-align: center;
+        }
+        .right
+        {
+            text-align: right;
+        }
+
+    [name=memberId]
+    {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom: none;
+    }
+    [name=memberPw]
+    {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <div class = "cell center">
+            <img src = "images/img.png" width = "200px">
+        </div>
+        <div class = "cell">
+            <input type = "text" name = "memberId" class = "field" placeholder="아이디">
+            <input type = "password" name = "memberPw" class = "field" placeholder="비밀번호">
+        </div>
+        <div class = "cell">
+            <button class = "btn">로그인</button>
+        </div>
+    </div>
+</body>
+</html>

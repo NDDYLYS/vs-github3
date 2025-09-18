@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexible Design</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+    </style>
+</head>
+<body>
+    
+
+      <div class="container w-500">
+        <div class="cell center">
+            <h1>Flexible 디자인</h1>
+        </div>
+
+        <!-- 남은 영역을 비율로 차지할 수 있다 -->
+        <div class="cell">
+            <div style="display: flex; flex-direction: row;">
+                <div style="flex-grow: 0;">135135123123번</div>
+                <div style="flex-grow: 0;">2번</div>
+                <div style="flex-grow: 1;">3번</div>
+            </div>
+        </div>
+
+        <div class="cell">
+            <div style="display: flex;">
+                <div style="width: 100%; height: 150px;">135135123123번</div>
+                <div style="width: 100%;">2번</div>
+                <div style="width: 100%;">3번</div>
+            </div>
+        </div>
+
+        <!-- 
+            flex의 영역 정렬
+            - justify-content : 내부 내용의 가로 정렬 기준
+            - align-items : 내부 내용의 세로 정렬 기준
+        -->
+        <div class="cell" 
+            style="height: 250px; display: flex; justify-content: center; align-items: center;">
+            <div>표시할내용</div>
+        </div>
+
+        <div class="cell mt-40">
+            <div class="flex-box">
+                <div style="width: 80px;">1번</div>
+                <div style="width: 30px;">2번</div>
+                <div class="flex-fill">3번</div>
+            </div>
+        </div>
+
+        <div class="cell">
+            <div class="flex-box flex-vertical" style="height: 200px;">
+                <div style="height: 80px;">1번</div>
+                <div style="height: 20px;">2번</div>
+                <div class="flex-fill">3번</div>
+            </div>
+        </div>
+
+        <div class="cell flex-box flex-center" style="height: 300px;">
+            <img src="https://dummyimage.com/100x100">
+        </div>
+    </div>
+
+
+</body>
+</html>

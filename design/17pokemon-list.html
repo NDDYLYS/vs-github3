@@ -1,0 +1,56 @@
++<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon-List</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    
+<div class = "container w-600">
+    <div class = "cell mb-30 center">
+        <h1>포켓몬 목록</h1>
+    </div>
+
+    <div class = "cell left">
+        <select name = "column" class = "field">
+            <option value="pokemon_name" ${param.column == "pokemon_name" ? "selected" : ""}>이름</option>
+            <option value="pokemon_type" ${param.column == "pokemon_type" ? "selected" : ""}>속성</option>
+        </select>
+        <input type ="search" name="keyword" value = "${param.keyword}" class = "field" required>
+        <Button class = "btn btn-positive">검색</Button>
+    </div>
+
+    <div class = "cell right">
+        <a href = "add" class = "btn me-10  btn-neutral">신규등록</a>
+    </div>
+
+    <div class = "cell">
+        <table class = "table table-hover table-sprited w-100 center">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이미지</th>
+                    <th>이름</th>
+                    <th>속성</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

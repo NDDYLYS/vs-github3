@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <div class = "container w-1100">
+        <div class = "cell">
+            <label>No.${boardDto.boardNo }</label>
+            <c:choose>
+                <c:when test="${ memberDto != null }">
+                , 아이디 : ${boardDto.boardWriter },
+                <a href = "/member/detail?memberId=${ memberDto.memberId }">닉네임 : ${ memberDto.memberNickname }</a>
+                작성자 : ${ memberDto.memberNickname }
+                </c:when>
+                <c:otherwise>
+                    탈퇴한 사용자입니다
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class = "cell">
+            <label>${boardDto.boardTitle }
+                <c:if test= "${ boardDto.boardEtime != null }">
+                (수정됨)
+                </c:if>
+            </label>
+        </div>
+        <div class = "cell">
+            <pre>
+	            <h3>본문 : ${boardDto.boardContent }</h3>
+            </pre>
+        </div>
+        <div class = "cell">
+            <c:if test = "${ sessionScope.loginId != null }">
+                <c:choose>
+                    <c:when test="${ sessionScope.loginId == boardDto.boardWriter }">
+                        <a href = "/board/delete?boardNo=${boardDto.boardNo}" style="float: right;"> [삭제] </a>
+                        <a href = "/board/update?boardNo=${boardDto.boardNo}" style="float: right;"> [수정] </a>
+                    </c:when>
+                    <c:when test="${ sessionScope.loginLevel == '관리자' }">
+                        <a href = "/board/delete?boardNo=${boardDto.boardNo}" style="float: right;"> [삭제] </a>
+                    </c:when>
+                </c:choose>
+            </c:if>
+            <a href = "insert?boardOrigin=${boardDto.boardNo}" style="float: right;"> [답글] </a>
+            <a href = "insert" style="float: right;"> [글쓰기] </a>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

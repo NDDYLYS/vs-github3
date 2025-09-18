@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        .fullscreen
+        {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class = "container w-800">
+        <div class = "cell center">
+            <h1>전체화면 가리기</h1>
+        </div>
+        <div class = "cell center">
+            <a href = "https://www.google.com" class = "btn btn-positive">
+                구글로 이동
+            </a>
+        </div>
+
+        <div class = "fullscreen flex-box flex-center">
+            <!-- 풀스크린
+            <i class="fa-solid fa-spinner fa-spin fa-5x"></i> -->
+            <div class = "container w-400 flex-box flex-center flex-vertical" style = "background-color:white">
+                <div class = "cell">
+                    아이디 : <input type = "text" name = "memberId">
+                </div>
+                <div class = "cell">
+                    비밀번호 : <input type = "password" name = "memberPw">
+                </div>
+                <i class="fa-solid fa-spinner fa-spin fa-5x"></i>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

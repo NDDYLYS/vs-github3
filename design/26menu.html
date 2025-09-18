@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        .ellipsis {
+            white-space: nowrap;      /* 줄바꿈 금지 */
+            overflow: hidden;         /* 넘치는 부분 숨기기 */
+            text-overflow: ellipsis;  /* ...으로 표시 */
+            width: 50px;             /* 꼭 너비를 지정해야 작동함 */
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class = "container w-800">
+        <div class = "cell center">
+            <h1>메뉴 만들기</h1>
+        </div>
+        <!-- <div class = "cell">
+            <div class = "flex-box menu">
+                <a href = "#">메뉴1</a>
+                <a href = "#">메뉴2</a>
+                <a href = "#">메뉴3</a>
+                <div class = "divider"></div>
+                <a href = "#">메뉴4</a>
+                <a href = "#">메뉴5</a>
+            </div>
+        </div> -->
+        <div class = "cell">
+            <div class = "flex-box menu">
+                <a href = "#">메뉴1</a>
+                <a href = "#" class = "ellipsis">메뉴2</a>
+                <!-- <a href = "#" class = "link left-menu" style = "margin-right:auto">메뉴3</a> -->
+                <a href = "#">메뉴3</a>
+                <div class = "divider"></div>
+                <a href = "#">메뉴4</a>
+                <a href = "#">메뉴5</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

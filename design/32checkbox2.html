@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        /* 일반 상태(체크 안된 상태) */
+        .ck1 + span {
+
+        }
+        /* 체크된 상태 */
+        .ck1:checked + span {
+            color: red;
+        }
+
+
+        /* 아이디는 해시(#)를 이용하여 선택한다 */
+        #hide {
+            display: none;
+        }
+        #hide + label::after {
+            content: "안녕하세요?";
+        }
+        #hide:checked + label::after {
+            /* color: red; */
+            content: "Hello?";
+        }
+
+        /* 사이드바 디자인 */
+        #toggle 
+        {
+            display: none;
+        }
+        #toggle + .sidebar {
+            background-color: yellow;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 999;
+            width: 200px;
+            overflow: hidden;
+            transition-property: transform;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-out;
+        }
+        #toggle:checked + .sidebar {
+            /* width: 0px; */
+            /* left: -200px; */
+            /* margin-left: -200px; */
+            transform: translate(-100%, 0);
+        }
+
+        /* #toggle + .fa-solid fa-arrow-right
+        {
+            transition-property: transform;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-out;
+        }
+
+        #toggle:checked + .fa-solid fa-arrow-right
+        {
+            transform: rotate(180deg);
+        } */
+
+        #toggle ~ .toggle-label
+        {
+            font-size: 24px;
+            width: 2em;
+            height: 2em;
+            border: 2px solid #2d3436;
+            border-radius: 0.2em;
+            color : #2d3436;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            cursor: pointer;
+
+            position: fixed;
+            top: 1em;
+            left: 1em;
+            z-index: 1000;
+        }
+
+        #toggle ~ .toggle-label:hover
+        {
+            border-color:black;
+            color: black;
+        }
+
+        #toggle:checked ~ .toggle-label
+        {
+
+        }
+
+        #toggle ~ .toggle-label > .fa-bars,
+        #toggle:checked ~ .toggle-label > .fa-xmark
+        {
+            /* display: none; */
+        }
+
+        #toggle ~ .toggle-label > .fa-xmark,
+        #toggle:checked ~ .toggle-label > .fa-bars
+        {
+            /* display: block; */
+        }
+
+        #toggle:checked ~ .toggle-label > i 
+        {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class = "container w-400">
+        <div class = "cell center">
+            <h1>체크박스 디자인</h1>
+        </div>
+
+        <div class = "cell">
+            <input type = "checkbox" class="ck1">
+            <span>Dummy Text</span>
+        </div>
+
+        <div class = "cell">
+            <input type = "checkbox" class="ck2" id="hide">
+            <label for = "hide">Dummy Text2</label>
+        </div>
+
+        <div class = "cell center">
+            <h1>사이드바 만들기</h1>
+        </div>
+
+        <div class = "cell">
+            <input type = "checkbox" id = "toggle" checked>
+            <div class = "sidebar">
+                사이드바
+            </div>
+            <label for = "toggle" class = "toggle-label">
+                <!-- <i class="fa-solid fa-xmark"></i> -->
+                <i class="fa-solid fa-bars"></i>
+            </label>
+        </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+   
+    <style>
+        /* 드롭다운 메뉴 만들기 
+            1 모든 collapse를 숨김 처리
+            2 기본 메뉴를 단 한 줄로 변경
+            3 모든 메뉴에 마우스가 올라가면 그 하위메뉴
+            4 모든 하위메뉴(.collapse)를 absolute 처리
+            5 a 태그는 
+            6 2차 메뉴부터는 하위메뉴들의 위치를 우측/좌측으로 변경
+             - 우측 : left : 100%; 
+             - 좌측 : right : 100%;
+            7 divider를 이용해서 메뉴를 좌우로 분리
+            8 2차 이상 드롭다운은 좌측으로 나오게 한다
+
+             */
+
+        /* (1) */
+        .dropdown-menu  .collapse
+        {
+            display: none;
+        }
+        /* (2) */
+        .dropdown-menu
+        {
+            display: flex;
+        }
+        /* (3) */
+        .dropdown-menu .dropdown:hover > .collapse 
+        {
+            display: block;
+        }
+        /* (4) */
+        .dropdown-menu .dropdown
+        {
+            position: relative;
+        }
+        .dropdown-menu .collapse 
+        {
+            position: absolute;
+            top:100%;
+            left:0;
+        }
+        /* (5) */
+        .dropdown-menu .dropdown 
+        {
+            width: 130px;
+        }
+        .dropdown-menu a
+        {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            padding: 0.25em 0.5em;
+            text-align: center;
+        }
+        .dropdown-menu .collapse
+        {
+            width: 100%;
+        }
+        .dropdown-menu a:hover 
+        {
+            font-weight: bold;
+            background-color: #eee;
+        }
+        /* (6) 2차 이상의 메뉴에 있는 collapse 
+        dropdown-menu > .dropdown > .collapse .collapse */
+        .dropdown-menu > .dropdown .dropdown > .collapse
+        {
+            top:0;
+            left:100%;
+        }
+        /* (7) divider로 메뉴들을 좌우로 분할한다 */
+        .dropdown-menu > .divider
+        {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* (8) 2차 이상 드롭다운은 좌측으로 나오게 한다*/
+        .dropdown-menu > .divider ~ .dropdown .dropdown .collapse
+        {
+            right:100%;
+            left:auto;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <div class = "container w-1100">
+        <div class = "cell center">
+            <h1>드롭다운 메뉴</h1>
+        </div>
+
+        <div class = "cell">
+            <div class = "dropdown-menu">
+                <div class = "dropdown">
+                    <a href = "#">제목1</a>
+                    <div class = "collapse">
+                        <div class = "dropdown">
+                            <a href = "#">제목1-1</a>
+                            <div class = "collapse">
+                                <div class = "dropdown">
+                                    <a href = "#">제목1-1-1</a>
+                                    <div class = "collapse">
+                                        <div class = "dropdown">
+                                            <a href = "#">제목1-1-1-1</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "dropdown">
+                    <a href = "#">제목2</a>
+                    <div class = "collapse">
+                        <div class = "dropdown">
+                            <a href = "#">제목2-1</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "divider"></div>
+
+                <div class = "dropdown">
+                    <a href = "#">제목3</a>
+                    <div class = "collapse">
+                        <div class = "dropdown">
+                            <a href = "#">제목3-1</a>
+                            <div class = "collapse">
+                                제목3-1-1
+                            </div>
+                        </div>
+                        <div class = "dropdown">
+                            <a href = "#">제목3-2</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

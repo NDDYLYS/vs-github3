@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 구성요소 디자인</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+        /* 
+            입력창 디자인(input/select/textarea)
+        */
+        .field {
+            outline: none; /* 기본 강조효과 제거 */
+            font-size: 16px; /* 기본 글자크기 지정 */
+            padding: 0.5em 0.75em;
+            border: 1px solid #636e72;
+            border-radius: 0.1em;
+        }
+        .field:focus {
+            border-color: #313739;
+        }
+        textarea.field {
+            resize: vertical;
+        }
+
+        /*
+            버튼 디자인
+            - a태그와 button을 동일하게 디자인
+            - 버튼마다 역할이 다름
+                - 긍정버튼 : 현재 페이지의 목적을 달성할 수 있거나 긍정적인 영향을 주는 작업 버튼
+                - 부정버튼 : 현재 페이지의 목적이 부정적인 작업인 경우(수정/삭제) 위험성을 알려주는 버튼
+                - 중립버튼 : 현재 페이지의 목적과 관계없는 작업 버튼
+        */
+        .btn {
+            outline: none;
+            font-size: 16px;
+            padding: 0.5em 0.75em;
+            cursor: pointer;
+            border: 1px solid #636e72;
+            border-radius: 0.1em;
+            /* a태그까지 고려한 디자인 추가 */
+            text-decoration: none;
+            color: #2d3436;
+            background-color: #f2f2f2;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn.btn-positive
+        {
+            background-color: #0097e6;
+            border-color: #0097e6;
+            color:white;
+        }
+        .btn.btn-negative
+        {
+            background-color: #e84118;
+            border-color: #e84118;
+            color:white;
+        }
+        .btn.btn-neutral
+        {
+            background-color: #718093;
+            border-color: #718093;
+            color:white;
+        }
+        .btn:hover
+        {
+            filter: brightness(90%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>폼 구성요소 디자인</h1>
+        </div>        
+
+        <!--
+            폼 안에는 입력창(input, select, textarea)과
+            버튼(a, button)을 배치할 수 있다
+
+            입력창은 태그 무관 field라는 클래스 부여
+        -->
+        <div class="cell">
+            <label>포켓몬 이름</label>
+            <input class="field w-100">
+        </div>    
+        <div class="cell">
+            <select class="field w-100">
+                <option>사과</option>
+                <option>바나나</option>
+            </select>
+        </div>
+        <div class="cell">
+            <textarea class="field w-100" rows="10"></textarea>
+        </div>
+
+        <div class="cell">
+            <button class="btn btn-positive w-100">등록하기</button>
+        </div>
+        <div class="cell">
+            <a href="#" class="btn btn-neutral w-100">목록으로</a>
+        </div>
+        <div class="cell">
+            <button class="btn btn-negative w-100">삭제하기</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        .box 
+        {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            box-shadow: 0 0 0 1px black;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <div class  = "container w-800">
+        <div class = "cell center">
+            <h1>position의 이해</h1>
+        </div>
+
+        <!-- position:static이면 기본값 배치 순서에 따라 위치가 정해짐 -->
+        <div class = "cell">
+            <div class ="box" style = "position:static">1</div>
+            <div class ="box" style = "position:static">2</div>
+            <div class ="box" style = "position:static">3</div>
+        </div>
+
+        <!-- position:relative는 static과 배치 원리는 같지만 미세 조정이 가능함 
+            - 위치 조정시 겹치는 부분은 z-index로 우선순위를 지정
+            z-index:정수. 기본값은 0. 마이너스도 가능
+            원래 있던 영역이 기준-->
+        <div class = "cell">
+            <div class ="box" style = "position:relative; top:30px; z-index:1;">4</div>
+            <div class ="box" style = "position:relative; right:30px;">5</div>
+            <div class ="box" style = "position:relative; bottom:30px;">6</div>
+        </div>
+
+        <!-- position:absolute 문서 전체에서 위치를 잡는다 
+            가장 가까운 position이 설정된 위치를 기준으로 위치를 계산한다
+            static은 제외
+            위치 조정 가능, z-index 가능
+            z-index는 매우 크게 줘서 절대로 가려지지 않게 처리하는 것이 중요-->
+        <div class = "cell">
+            <div class ="box" style = "position:absolute; top:15px; left:15px;">7</div>
+            <div class ="box" style = "position:absolute; top:66px; left:66px;">8</div>
+            <div class ="box" style = "position:absolute">9</div>
+        </div>
+
+        <!-- viewport 기준으로 위치를 지정 
+                다른 position보다 z-index가 높다-->
+        <div class = "cell">
+            <div class ="box" style = "position:fixed; top:15px; left:15px;">10</div>
+            <div class ="box" style = "position:fixed;">11</div>
+            <div class ="box" style = "position:fixed">12</div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기존 방법으로 나눠본 2단 레이어</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+        /* float-box 디자인 
+            float는 좌우 대지안을 손쉽게 배치하는 속성
+             - 일반 디자인은 어울리지 않음
+             - 독자적인 영역을 만들어서 자동 초기화
+             - 가상 영역을 선택하여 실제 영역처럼 사용
+             - 생성을 먼저 해야 함
+             */
+        .float-box > .float-left
+        {
+            float:left;
+        }
+        .float-box > .float-right
+        {
+            float:right;
+        }
+        .float-box::after
+        {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>float를 이용한 화면 배치</h1>
+        </div>
+        <div class = "cell">
+            <div style = "display:inline-block; width: 49.5%;">1번</div>
+            <div style = "display:inline-block; width: 49.5%">2번</div>
+        </div>
+        <div class = "cell mt-40 center">
+            <div style = "float:left;">1번</div>
+            <div style = "float:left;">2번</div>
+        </div>
+        <div class = "cell mt-40 center">
+            <div style = "float:right;">1번</div>
+            <div style = "float:right;">2번</div>
+        </div>
+        <div style = "clear:both"></div>
+        <div class = "cell">
+            다음 줄 배치
+        </div>
+
+        <!-- 클래스를 이용한 디자인의 모듈화 -->
+        <div class = "cell mt-40 center">
+            <h1>float를 모듈화해서 사용</h1>
+        </div>
+        <div class = "cell">
+            <div class = "float-box">
+                <div class = "float-left">1번</div>
+                <div class = "float-left">2번</div>
+                <div class = "float-right">3번</div>
+                <div class = "float-right">4번</div>
+            </div>
+        </div>
+        <div class = "cell">
+            <h1>2단 배치</h1>
+        </div>
+        <div class = "cell">
+            <div class = "float-box">
+                <div class = "float-left w-50">1번</div>
+                <div class = "float-left w-50">2번</div>
+            </div>
+        </div>
+
+        <div class = "cell mt-40 center">
+            <h1>4단 배치</h1>
+        </div>
+        <div class = "cell">
+            <div class = "float-box">
+                <div class = "float-left w-25">1번</div>
+                <div class = "float-left w-25">2번</div>
+                <div class = "float-left w-25">3번</div>
+                <div class = "float-left w-25">4번</div>
+                456
+            </div>
+            1123
+        </div>
+        <div class = "cell mt-40 center">
+            <h1>float를 모듈화한 결과</h1>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

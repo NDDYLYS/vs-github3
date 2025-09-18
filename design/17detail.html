@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <div class = "container w-500">
+        <div class = "cell">
+            <h1>포켓몬 상세정보</h1>
+        </div>
+        <div class = "cell right">
+            <a href = "list" class = "btn btn-nuetral">목록 보기</a>
+        </div>
+        <div class = "cell">
+            <table class = "table table-hover table-sprited w-100 center">
+                <tr width = "15%" align = "center">
+                    <th>번호</th>
+                    <td>${pokemonDto.getPokemonNo()}</td>
+                </tr>
+                <tr width = "55%" align = "center">
+                    <th>이미지</th>
+                    <td><img src = "/pokemon/image?pokemonNo=${pokemonDto.getPokemonNo()}" width="220" height = "220"></td>
+                </tr>
+                <tr width = "15%" align = "center">
+                    <th>이름</th>
+                    <td>${pokemonDto.getPokemonName()}</td>
+                </tr>
+                <tr width = "15%" align = "center">
+                    <th>속성</th>
+                    <td>${pokemonDto.getPokemonType()}</td>
+                </tr>
+            </table>
+        </div>
+        <div class = "cell right">
+            <a href = "edit?pokemonNo=${pokemonDto.getPokemonNo()}" 
+            class = "btn btn-nuetral">수정</a>
+            <a href = "remove?pokemonNo=${pokemonDto.getPokemonNo()}"
+            class = "btn btn-nuetral">삭제</a>   
+        </div>
+    </div>
+
+
+
+</body>
+</html>

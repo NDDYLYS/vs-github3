@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+<div class = "container w-600">
+    <div class = "cell mb-30 center">
+        <h1>상품권 목록</h1>
+    </div>
+
+    <div class = "cell">
+        <table class = "table table-hover table-sprited w-100 center">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>이미지</th>
+                    <th>내용</th>
+                    <th>가격</th>
+                    <th>포인트</th>
+                </tr>
+            </thead>
+
+            <tbody align = "center">
+                <c:forEach var = "giftcardDto" items = "${ giftcardList }">
+                    <tr>
+                        <td><a href = "buy?giftcardNo=${giftcardDto.giftcardNo}">${ giftcardDto.giftcardName }</a></td>
+                        <td><img src = "image?giftcardNo=${giftcardDto.giftcardNo}" width="80" height = "50"></td>
+                        <td>${ giftcardDto.giftcardContent }</td>
+                        <td><fmt:formatNumber value="${giftcardDto.giftcardPrice}" pattern="#,##0"/>원</td>
+                        <td><fmt:formatNumber value="${giftcardDto.giftcardPoint}" pattern="#,##0"/>포인트</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+</body>
+</html>

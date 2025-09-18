@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09phone</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    
+    <script>
+        var target = document.querySelector("[name=selectorInput]");
+        console.log(target);
+
+        function allClear()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value = "";
+        }
+
+        function phone_keypad_1()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "1";
+        }
+        function phone_keypad_2()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "2";
+        }
+        function phone_keypad_3()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "3";
+        }
+        function phone_keypad_4()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "4";
+        }
+        function phone_keypad_5()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "5";
+        }
+        function phone_keypad_6()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "6";
+        }
+        function phone_keypad_7()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "7";
+        }
+        function phone_keypad_8()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "8";
+        }
+        function phone_keypad_9()
+        {
+            var target = document.querySelector("[name=selectorInput]");
+            target.value += "9";
+        }
+    </script>
+</head>
+<body>
+    
+
+    <div class = "container w-500">
+        <div class = "cell w-100">
+            <input type = "text" name = "selectorInput" 
+            class = "field">
+        </div>
+        <div class = "cell w-100">
+            <button type = "submit" 
+            onclick = "phone_keypad_7();">7</button>
+            <button type = "submit" 
+            onclick = "phone_keypad_8();">8</button>
+            <button type = "submit" 
+            onclick = "phone_keypad_9();">9</button>
+        </div>
+        <div class = "cell w-100">            
+            <button type = "submit" 
+            onclick = "phone_keypad_4();">4</button>
+            <button type = "submit" 
+            onclick = "phone_keypad_5();">5</button>
+            <button type = "submit" 
+            onclick = "phone_keypad_6();">6</button>
+        </div>
+        <div class = "cell w-100">            
+            <button type = "submit" 
+            onclick = "phone_keypad_1();">1</button>
+            <button type = "submit" 
+            onclick = "phone_keypad_2();">2</button>
+            <button type = "submit" 
+            onclick = "phone_keypad_3();">3</button>
+        </div>
+        <div class = "cell w-100">
+            <button type = "submit" 
+            onclick = "allClear();">전체 지우기</button>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
