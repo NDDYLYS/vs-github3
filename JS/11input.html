@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열과 입력창</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        var str = "hello javascript?";
+        console.log(str);
+        console.log(str[0]);
+        console.log(str.length);
+        console.log(str.indexOf("java"));
+        // StartsWith, endsWith, contain 없음
+        console.log(str.replace("java", "type"));
+        var regex = /^[a-z]+$/;
+        console.log(regex.test(str));
+    </script>
+
+    <script type = "text/javascript">
+        function calculateLength()
+        {
+            var target = document.querySelector(".target");
+            //var div = document.querySelector(".target + div");
+            var div = target.nextElementSibling; // 바로 뒤에 있는 태그 선택
+            var count = target.value.length;
+
+            div.textContent = "입력된 글자 수 : " + count;
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>문자열과 입력창</h1>
+        </div>
+
+        <div class = "cell">
+            <input type = "text" class = "field w-100 target" 
+            oninput="calculateLength();">
+            <div>입력된 글자 수 : 0</div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

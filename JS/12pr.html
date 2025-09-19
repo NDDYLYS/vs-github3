@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        function myprLength()
+        {
+            var textarea = document.querySelector(".target");
+            var div = textarea.nextElementSibling;
+            var count = textarea.value.length;
+            
+            if (1000 <= count)
+            {
+                div.style.color = "red"; 
+                textarea.value = textarea.value.substring(0, 1000);
+                count = 1000;
+            }
+            else 
+            {
+                div.style.color = ""; 
+            }
+            
+            //var div = document.querySelector(".target + div");
+            div.textContent = "(" + count + "/1000)";
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell">
+            <h1>(Q)내 성격의 장단점을 설명하세요</h1>
+        </div>
+
+        <div class = "cell">
+            <textarea class = "field w-100 target"
+            rows = "8" oninput="myprLength();"></textarea>
+            <div class = "right">(0/1000)</div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
