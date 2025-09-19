@@ -12,11 +12,8 @@
             var top = document.querySelector(".topTextArea");
             var bottom = document.querySelector(".bottomTextArea");
 
-            var textTop = top.value;
-            var textBottom = bottom.value;
-
-            var swap = textTop;
-            top.value = textBottom;
+            var swap = top.value;
+            top.value = bottom.value;
             bottom.value = swap;
         }
     </script>
@@ -26,14 +23,16 @@
 
     <div class = "container w-500">
         <div class = "cell flex-box">
-            <textarea class = "topTextArea w-100"></textarea>
+            <textarea class = "topTextArea field w-100"
+            rows= "6" style="resize: none;"></textarea>
         </div>
         <div class = "cell flex-box">
             <button type = "submit" class = "w-100 btn btn-positive" 
             onclick="textareaChangeText();">서로 바꾸기</button>
         </div>
         <div class = "cell flex-box">
-            <textarea class = "bottomTextArea w-100"></textarea>
+            <textarea class = "bottomTextArea field w-100"
+            rows= "6" style="resize: none;"></textarea>
         </div>
     </div>
 
