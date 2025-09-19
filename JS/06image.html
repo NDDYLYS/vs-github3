@@ -6,26 +6,36 @@
     <title>06image</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
 
+    <style>
+        .selectorImage 
+        {
+            transition-property: width, height;
+            transition-duration: 0.1s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+
     <script>
         function imageToSmall()
         {
-            var target = document.querySelector("[name=selectorImage]");
-            target.width = 150;
-            target.height = 150;
+            var target = document.querySelector(".selectorImage");
+            target.style.width = "150px";
+            target.style.height = "150px";
         }
 
-        function imageToMideum()
+        function imageToMedium()
         {
-            var target = document.querySelector("[name=selectorImage]");
-            target.width = 300;
-            target.height = 300;
+            var target = document.querySelector(".selectorImage");
+            target.style.width = "300px";
+            target.style.height = "300px";
         }
 
         function imageToLarge()
         {
-            var target = document.querySelector("[name=selectorImage]");
-            target.width = 450;
-            target.height = 450;
+            var target = document.querySelector(".selectorImage");
+            //target.style.width = "150px";
+            target.style.width = "450px";
+            target.style.height = "450px";
         }
 
 
@@ -37,18 +47,26 @@
 
 
     <div class = "container w-500">
-        <div class = "cell">
-            <button type = "submit" onclick="imageToSmall();">작게</button>
-            <button type = "submit" onclick="imageToMideum();">보통</button>
-            <button type = "submit" onclick="imageToLarge();">크게</button>
+        <div class = "cell center">
+            <button type = "button" 
+            onclick="imageToSmall();"
+            class = "btn btn-nuetral">작게</button>
+            <button type = "button" 
+            onclick="imageToMedium();"
+            class = "btn btn-nuetral">보통</button>
+            <button type = "button" 
+            onclick="imageToLarge();"
+            class = "btn btn-nuetral">크게</button>
         </div>
 
         <div class = "cell">
             <hr>
         </div>
 
-        <div class = "cell">
-            <img src = "./images/food.jpg" name = "selectorImage" width = 150 height = 150>
+        <div class = "cell center">
+            <img src = "./images/food.jpg" 
+            class = "selectorImage" 
+            width = 150 height = 150>
         </div>
     </div>
 

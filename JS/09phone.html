@@ -6,97 +6,73 @@
     <title>09phone</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
     
-    <script>
-        var target = document.querySelector("[name=selectorInput]");
-        console.log(target);
+    <style>
+        .selectorInput
+        {
+            word-break: keep-all;
+        }
+    </style>
 
+    <script type = "text/javascript">
         function allClear()
         {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value = "";
+            var target = document.querySelector(".selectorInput");
+            target.textContent = "";
         }
 
-        function phone_keypad_1()
+        function phone_keypad_number(number)
         {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "1";
-        }
-        function phone_keypad_2()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "2";
-        }
-        function phone_keypad_3()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "3";
-        }
-        function phone_keypad_4()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "4";
-        }
-        function phone_keypad_5()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "5";
-        }
-        function phone_keypad_6()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "6";
-        }
-        function phone_keypad_7()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "7";
-        }
-        function phone_keypad_8()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "8";
-        }
-        function phone_keypad_9()
-        {
-            var target = document.querySelector("[name=selectorInput]");
-            target.value += "9";
+            var target = document.querySelector(".selectorInput");
+            target.textContent += number;
         }
     </script>
 </head>
 <body>
     
+    <DIV contenteditable>asdasd</DIV>
 
     <div class = "container w-500">
-        <div class = "cell w-100">
-            <input type = "text" name = "selectorInput" 
-            class = "field">
+        <div class = "cell flex-box">
+            <!-- <input type = "text" class = "selectorInput field w-100" 
+            autocomplete="off" readonly> -->
+            <div class = "selectorInput" style = "min-height:2em;">
+
+            </div>
         </div>
-        <div class = "cell w-100">
-            <button type = "submit" 
-            onclick = "phone_keypad_7();">7</button>
-            <button type = "submit" 
-            onclick = "phone_keypad_8();">8</button>
-            <button type = "submit" 
-            onclick = "phone_keypad_9();">9</button>
+        <div class = "cell flex-box">
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('7');">7</button>
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('8');">8</button>
+            <button type = "button" class = "btn w-100"
+            onclick = "phone_keypad_number('9');">9</button>
         </div>
-        <div class = "cell w-100">            
-            <button type = "submit" 
-            onclick = "phone_keypad_4();">4</button>
-            <button type = "submit" 
-            onclick = "phone_keypad_5();">5</button>
-            <button type = "submit" 
-            onclick = "phone_keypad_6();">6</button>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('4');">4</button>
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('5');">5</button>
+            <button type = "button" class = "btn w-100"
+            onclick = "phone_keypad_number('6');">6</button>
         </div>
-        <div class = "cell w-100">            
-            <button type = "submit" 
-            onclick = "phone_keypad_1();">1</button>
-            <button type = "submit" 
-            onclick = "phone_keypad_2();">2</button>
-            <button type = "submit" 
-            onclick = "phone_keypad_3();">3</button>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('1');">1</button>
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('2');">2</button>
+            <button type = "button" class = "btn w-100"
+            onclick = "phone_keypad_number('3');">3</button>
         </div>
-        <div class = "cell w-100">
-            <button type = "submit" 
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('*');">*</button>
+            <button type = "button" class = "btn w-100 me-10"
+            onclick = "phone_keypad_number('0');">0</button>
+            <button type = "button" class = "btn w-100"
+            onclick = "phone_keypad_number('#');">#</button>
+        </div>
+        <div class = "cell flex-box">
+            <button type = "button" class = "btn w-100"
             onclick = "allClear();">전체 지우기</button>
         </div>
     </div>

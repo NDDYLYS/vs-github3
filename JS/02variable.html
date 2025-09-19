@@ -12,17 +12,18 @@
     console.log("a = " + a);
     var c = "ccccc";
     console.log("c = " + c);
-    var d;
+    var d; // undefined
     console.log("d = " + d);
     //console.log("e = " + e);
-    var f = 10/0;
+    var f = 10/0; // infinity
     console.log("f = " + f);    
     var g = null;
     console.log("g = " + g);   
     var h = 10 > 5;
     console.log("h = " + h);
 
-    console.log(0 == false);
+    console.log(0 == false); // 유연한 비교
+    console.log(0 === false); // 엄격한 비교
     console.log(undefined == null);
 </script>
 <body>

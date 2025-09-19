@@ -9,8 +9,8 @@
     <script>
         function textareaChangeText()
         {
-            var top = document.querySelector("[name=topTextArea]");
-            var bottom = document.querySelector("[name=bottomTextArea]");
+            var top = document.querySelector(".topTextArea");
+            var bottom = document.querySelector(".bottomTextArea");
 
             var textTop = top.value;
             var textBottom = bottom.value;
@@ -25,15 +25,15 @@
     
 
     <div class = "container w-500">
-        <div class = "cell">
-            <textarea name = "topTextArea"></textarea>
+        <div class = "cell flex-box">
+            <textarea class = "topTextArea w-100"></textarea>
         </div>
-        <div class = "cell">
-            <button type = "submit" class = "btn btn-positive" 
+        <div class = "cell flex-box">
+            <button type = "submit" class = "w-100 btn btn-positive" 
             onclick="textareaChangeText();">서로 바꾸기</button>
         </div>
-        <div class = "cell">
-            <textarea name = "bottomTextArea"></textarea>
+        <div class = "cell flex-box">
+            <textarea class = "bottomTextArea w-100"></textarea>
         </div>
     </div>
 

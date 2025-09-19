@@ -5,22 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>07fontsize</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
+    
+    <style>
+        .selectorLabel 
+        {
+            transition-property: font-size;
+            transition-duration: 0.1s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+    
     <script>
         function fontsizeToSmall()
         {
-            var target = document.querySelector("[name=selectorLabel]");
+            var target = document.querySelector(".selectorLabel");
             target.style.fontSize="12px";
+            //target.style["font-size"] = "12px";
         }
 
-        function fontsizeToMideum()
+        function fontsizeToMedium()
         {
-            var target = document.querySelector("[name=selectorLabel]");
+            var target = document.querySelector(".selectorLabel");
             target.style.fontSize="16px";
         }
 
         function fontsizeToLarge()
         {
-            var target = document.querySelector("[name=selectorLabel]");
+            var target = document.querySelector(".selectorLabel");
             target.style.fontSize="24px";
         }
 
@@ -28,19 +39,22 @@
 </head>
 <body>
     
-
-    <div class = "container w-500">
-        <div class = "cell">
-            <button type = "submit" 
-            onclick="fontsizeToSmall();">작게</button>
-            <button type = "submit" 
-            onclick="fontsizeToMideum();">보통</button>
-            <button type = "submit" 
-            onclick="fontsizeToLarge();">크게</button>
+n    <div class = "container w-500">
+        <div class = "cell center">
+            <button type = "button" 
+            onclick="fontsizeToSmall();" 
+            class = "btn btn-nuetral">작게</button>
+            <button type = "button" 
+            onclick="fontsizeToMedium();" 
+            class = "btn btn-nuetral">보통</button>
+            <button type = "button" 
+            onclick="fontsizeToLarge();" 
+            class = "btn btn-nuetral">크게</button>
         </div>
         <hr>
-        <div class = "cell">
-            <label name = "selectorLabel" style = "font-size:12px;">
+        <div class = "cell center">
+            <label class = "selectorLabel" 
+            style = "font-size:12px;">
                 Where does it come from?
 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
 

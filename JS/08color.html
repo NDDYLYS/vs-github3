@@ -5,23 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>08color</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+        .selectorLabel 
+        {
+            transition-property: color;
+            transition-duration: 1s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+
     <script>
-        function labelTextToRed()
+        function labelTextToColor(colorText)
         {
-            var target = document.querySelector("[name=selectorLabel]");
-            target.style.color = "red";
-        }
-
-        function labelTextToGreen()
-        {
-            var target = document.querySelector("[name=selectorLabel]");
-            target.style.color = "green";
-        }
-
-        function labelTextToBlue()
-        {
-            var target = document.querySelector("[name=selectorLabel]");
-            target.style.color = "blue";
+            var target = document.querySelector(".selectorLabel");
+            target.style.color = colorText;
         }
     </script>
 </head>
@@ -29,17 +26,25 @@
     
 
     <div class = "container w-500">
-        <div class = "cell">
-            <button type = "submit" 
-            onclick="labelTextToRed();">Red</button>
-            <button type = "submit" 
-            onclick="labelTextToGreen();">Green</button>
-            <button type = "submit" 
-            onclick="labelTextToBlue();">Blue</button>
+        <div class = "cell center">
+            <button type = "button" 
+            onclick="labelTextToColor('red');" 
+            class = "btn btn-positive"
+            style = "color:red">Red</button>
+
+            <button type = "button" 
+            onclick="labelTextToColor('green');"
+            class = "btn btn-positive"
+            style = "color:green">Green</button>
+
+            <button type = "button" 
+            onclick="labelTextToColor('blue');"
+            class = "btn btn-positive"
+            style = "color:blue">Blue</button>
         </div>
         <hr>
-        <div class = "cell">
-            <label name = "selectorLabel" style="font-size: 12px;">Hello Javascript!</label>
+        <div class = "cell center">
+            <label class = "selectorLabel" style="font-size: 12px;">Hello Javascript!</label>
         </div>
     </div>
 
