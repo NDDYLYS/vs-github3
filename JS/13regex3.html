@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+        .success 
+        {
+            color:blue;
+        }
+        .fail
+        {
+            color:red;
+        }
+    </style>
+    <script type = "text/javascript">
+        function checkMemberNickname()
+        {
+            var input = document.querySelector("[name=memberNickname]");
+            var regex = /^[가-힣0-9]{1,10}$/;
+            var valid = regex.test(input.value);
+
+            var feedback = input.nextElementSibling;
+            if (valid)
+            {
+                feedback.textContent = "올바른 닉네임 형식입니다.";
+                feedback.classList.remove("success", "fail");
+                feedback.classList.add("success");         }
+            else 
+            {
+                feedback.textContent = "잘못된 닉네임 형식입니다.";
+                feedback.classList.remove("success", "fail");
+                feedback.classList.add("fail");    
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>Title</h1>
+        </div>
+
+        <div class = "cell">
+            <input type = "text" name = "memberNickname"
+            placeholder="닉네임 입력" oninput="checkMemberNickname();"
+            class = "field w-100">
+            <div class = "feedback"></div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

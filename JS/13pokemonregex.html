@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+        .success 
+        {
+            color:blue;
+        }
+        .fail
+        {
+            color:red;
+        }
+    </style>
+    <script type = "text/javascript">
+        function checkPokemonName()
+        {
+            var input = document.querySelector("[name=pokemonName]");
+            var regex = /^[가-힣]{1,10}$/;
+            var valid = regex.test(input.value);
+
+            var feedback = input.nextElementSibling;
+            if (valid)
+            {
+                feedback.textContent = "올바른 포켓몬 이름입니다.";
+                feedback.classList.remove("success", "fail");
+                feedback.classList.add("success");         }
+            else 
+            {
+                feedback.textContent = "잘못된 포켓몬 이름입니다.";
+                feedback.classList.remove("success", "fail");
+                feedback.classList.add("fail");    
+            }
+        }
+
+        function checkPokemonType()
+        {
+            var input = document.querySelector("[name=pokemonType]");
+            var regex = /^[가-힣\,\.]{1,10}$/;
+            var valid = regex.test(input.value);
+
+            var feedback = input.nextElementSibling;
+            if (valid)
+            {
+                feedback.textContent = "올바른 포켓몬 속성입니다.";
+                feedback.classList.remove("success", "fail");
+                feedback.classList.add("success");         }
+            else 
+            {
+                feedback.textContent = "잘못된 포켓몬 속성입니다.";
+                feedback.classList.remove("success", "fail");
+                feedback.classList.add("fail");    
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>Title</h1>
+        </div>
+
+        <div class = "cell">
+            <input type = "text" name = "pokemonType"
+            placeholder="속성 입력" oninput="checkPokemonType();"
+            class = "field w-100">
+            <div class = "feedback"></div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
