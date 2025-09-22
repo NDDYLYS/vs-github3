@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+        /* field 에 success나 fail이 붙으면 디자인한다
+        */
+        .field.success
+        {
+            border-color: aqua !important;
+        }
+
+        .field.fail
+        {
+            border-color: crimson !important;
+        }
+
+        /* 피드백은 기본적으로 감춘다 */
+        .success-feedback,
+        .fail-feedback
+        {
+            display: none;
+        }
+        .success-feedback
+        {
+            color : aqua;
+        }
+        .fail-feedback
+        {
+            color:crimson;
+        }
+        .field.success ~ .success-feedback
+        {
+            display: block;
+        }
+        .field.fail ~ .fail-feedback
+        {
+            display: block;
+        }
+    </style>
+    <script type = "text/javascript">
+        function checkPokemonName()
+        {
+            var input = document.querySelector("[name=pokemonName]");
+            var regex = /^[가-힣]{1,10}$/;
+            var valid = regex.test(input.value);
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+        }
+
+        function checkPokemonType()
+        {
+            var input = document.querySelector("[name=pokemonType]");
+            var regex = /^[가-힣\,\.]{1,10}$/;
+            var valid = regex.test(input.value);
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+        }
+    </script>
+</head>
+<body>
+
+    <form cation = "" method = "post" autocomplete="off"
+        <div class = "container w-500">
+            <div class = "cell center">
+                <h1>Pokemon - insert</h1>
+            </div>
+
+            <div class = "cell">
+                <label>포켓몬 이름<i class="fa-solid fa-asterisk red"></i></label>
+                <input type = "text" name = "pokemonName"
+                placeholder="이름 입력(한글 10글자 이내)" oninput="checkPokemonName();"
+                class = "field w-100">
+                <div class = "success-feedback">멋진 이름입니다.</div>
+                <div class = "fail-feedback">이름에서 똥내난다.</div>
+            </div>
+
+            <div class = "cell">
+                <label>포켓몬 속성<i class="fa-solid fa-asterisk red"></i></label>
+                <input type = "text" name = "pokemonType"
+                placeholder="속성 입력(한글 10글자 이내)" oninput="checkPokemonType();"
+                class = "field w-100">
+                <div class = "success-feedback">훌륭한 속성입니다.</div>
+                <div class = "fail-feedback">속성에서 똥내난다.</div>
+            </div>
+
+            <div class = "cell">
+                <button type = "submit" class = "btn btn-positive w-100">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    등록하기
+                </button>
+            </div>
+        </div>
+    </form>
+    
+</body>
+</html>

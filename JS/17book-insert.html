@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book - Insert</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        var bookTitleValid = false;
+        var bookAuthorValid = false;
+        var bookPublicationDateValid = false;
+        var bookPriceValid = false;
+        var bookPublisherValid = false;
+        var bookPageCountValid = false;
+        var bookGenreValid = false;
+
+        function checkBookTitle()
+        {
+            var input = document.querySelector("[name=bookTitle]");
+            var valid = true;
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookTitleValid = valid;
+        }
+        function checkBookAuthor()
+        {
+            var input = document.querySelector("[name=bookAuthor]");
+            var regex = /^[^!@#$]+$/;
+            var valid = regex.test(input.value);
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookAuthorValid = valid;
+        }
+        function checkBookPublicationDate()
+        {
+            var input = document.querySelector("[name=bookPublicationDate]");
+            var regex = /^([0-9]{4})-((02-(0[1-9]|1[0-9]|2[0-9]))|((0[469]|11)-(0[1-9]|1[0-9]|2[0-9]|30))|((0[13578]|1[02])-(0[1-9]|1[0-9]|2[0-9]|3[01])))$/;
+            var valid = regex.test(input.value);
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookPublicationDateValid = valid;
+        }
+        function checkBookPrice()
+        {
+            var input = document.querySelector("[name=bookPrice]");
+            var valid = true;
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookPriceValid = valid;
+        }
+        function checkBookPublisher()
+        {
+            var input = document.querySelector("[name=bookPublisher]");
+            var valid = true;
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookPublisherValid = valid;
+        }
+        function checkBookPageCount()
+        {
+            var input = document.querySelector("[name=bookPageCount]");
+            var valid = true;
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookPageCountValid = valid;
+        }
+        function checkBookGenre()
+        {
+            var input = document.querySelector("[name=bookGenre]");
+            var valid = true;
+
+            input.classList.remove("success", "fail");
+            input.classList.add(valid ? "success" : "fail");
+
+            bookGenreValid = valid;
+        }
+
+        function checkForm()
+        {
+            checkBookTitle();
+            checkBookAuthor();
+            checkBookPublicationDate();
+            checkBookPrice();
+            checkBookPublisher();
+            checkBookPageCount();
+            checkBookGenre();
+            return (bookTitleValid && bookAuthorValid 
+            && bookPublicationValid && bookPriceValid
+            && bookPublisherValid && bookPageCountValid
+            && bookGenreValid);
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-400">
+        <form action="save" method="post" 
+         enctype="multipart/form-data" 
+         onsubmit="return checkForm();">
+            <div class = "cell mb-30 center">
+                <h1>도서 등록</h1>
+            </div>
+            <div class = "cell mt-30">
+                <label>도서 제목</label>
+                <input type= "text" name = "bookTitle"
+                class = "field w-100" placeholder="(ex)어린왕자" 
+                onblur="checkBookTitle();">
+                <div class = "success-feedback">훌륭한 책 이름입니다.</div>
+                <div class = "fail-feedback">잘못된 책 이름입니다.</div>
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 저자</label>
+                <input type= "text" name = "bookAuthor"
+                class = "field w-100" placeholder="(ex)홍길동"
+                onblur="checkBookAuthor();">
+                <div class = "success-feedback">훌륭한 저자 이름입니다.</div>
+                <div class = "fail-feedback">잘못된 저자 이름입니다.</div>
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 출판사</label>
+                <input type= "text" name = "bookPublisher"
+                class = "field w-100" placeholder="(ex)출판사"
+                onblur="checkBookPublisher();">
+                <div class = "success-feedback">옳은 출판사입니다.</div>
+                <div class = "fail-feedback">잘못된 출판사입니다.</div>
+            </div>
+            <div class = "cell mt-10">
+                <label>출간일</label>
+                <input type= "date" name = "bookPublicationDate"
+                class = "field w-100" placeholder="(ex)출간일"
+                onblur="checkBookPublicationDate();">
+                <div class = "success-feedback">옳은 출간일입니다.</div>
+                <div class = "fail-feedback">잘못된 출간일입니다.</div>
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 가격</label>
+                <input type= "number" name = "bookPrice"
+                class = "field w-100" placeholder="(ex)도서 가격"
+                inputmode="numeric" 
+                onblur="checkBookPrice();">
+                <div class = "success-feedback">옳은 가격입니다.</div>
+                <div class = "fail-feedback">잘못된 가격입니다.</div>
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 페이지 수</label>
+                <input type= "number" name = "bookPageCount"
+                class = "field w-100" placeholder="(ex)페이지 수"
+                inputmode = "numeric" 
+                onblur="checkBookPageCount();">
+                <div class = "success-feedback">옳은 페이지 수입니다.</div>
+                <div class = "fail-feedback">잘못된 페이지 수입니다.</div>
+            </div>
+            <div class = "cell mt-10">
+                <label>도서 장르</label>
+                <input type= "text" name = "bookGenre"
+                class = "field w-100" placeholder="(ex)장르"
+                onblur="checkBookGenre();">
+                <div class = "success-feedback">옳은 장르입니다.</div>
+                <div class = "fail-feedback">잘못된 장르입니다.</div>
+            </div>
+                <label>도서 표지</label>
+                <div class = "cell">
+                <input type = "file"
+                name = "attach" accept = ".png,.jpg" class = "field w-100">
+            </div>
+            <div class = "cell">
+                <button class = "btn btn-positive w-100">등록하기</button>
+            </div>
+        </form>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        function checkMove()
+        {
+            var choice = confirm("정말로 이동? 무브무브");
+            console.log("choice =" + choice);
+            //return true; // 기본 이벤트 실행
+            //return false; // 기본 이벤트 차단
+            return choice;
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>기본 이벤트 제어</h1>
+        </div>
+
+        <!-- a, form은 같은 태그는 내장 이벤트가 존재
+         내장 이벤트를 제어해야 함 -->
+        <div class = "cell">
+            <a href = "https://www.google.com" 
+            class = "btn btn-positive" onclick="return false;">구글로 이동</a>
+            <a href = "https://www.google.com" 
+            class = "btn btn-positive" onclick="return checkMove();">구글로 이동</a>
+        </div>
+    </div>
+
+    
+</body>
+</html>
