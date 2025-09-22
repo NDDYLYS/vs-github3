@@ -11,13 +11,25 @@
     </style>
 
     <script type="text/javascript">
-        var bookTitleValid = false;//필수 항목
-        var bookAuthorValid = true;//선택 항목
-        var bookPublisherValid = true;//선택 항목
-        var bookPublicationDateValid = true;//선택 항목
-        var bookPriceValid = false;//필수 항목
-        var bookPageCountValid = false;//필수 항목
-        var bookGenreValid = false;//필수 항목
+        //상태 객체
+        var state = {
+            bookTitleValid : false,//필수 항목
+            bookAuthorValid : true,//선택 항목
+            bookPublisherValid : true,//선택 항목
+            bookPublicationDateValid : true,//선택 항목
+            bookPriceValid : false,//필수 항목
+            bookPageCountValid : false,//필수 항목
+            bookGenreValid : false,//필수 항목
+            ok : function(){
+                //this 생략하면 큰일남
+                console.log(this.bookTitleValid && this.bookAuthorValid && this.bookPublisherValid
+                            && this.bookPublicationDateValid && this.bookPriceValid 
+                            && this.bookPageCountValid && this.bookGenreValid);
+                return this.bookTitleValid && this.bookAuthorValid && this.bookPublisherValid
+                            && this.bookPublicationDateValid && this.bookPriceValid 
+                            && this.bookPageCountValid && this.bookGenreValid;
+            },
+        };
 
         function checkBookTitle(){
             var input = document.querySelector("[name=bookTitle]");
@@ -27,7 +39,7 @@
 
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookTitleValid = valid;
+            state.bookTitleValid = valid;
         }
         function checkBookAuthor(){
             var input = document.querySelector("[name=bookAuthor]");
@@ -35,7 +47,7 @@
             var valid = input.value.length == 0 || regex.test(input.value);//선택항목이므로 없어도 통과
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookAuthorValid = valid;
+            state.bookAuthorValid = valid;
         }
         function checkBookPublisher(){
             var input = document.querySelector("[name=bookPublisher]");
@@ -43,7 +55,7 @@
             var valid = input.value.length <= 30;
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookPublisherValid = valid;
+            state.bookPublisherValid = valid;
         }
         function checkBookPublicationDate(){
             var input = document.querySelector("[name=bookPublicationDate]");
@@ -51,7 +63,7 @@
             var valid = input.value.length == 0 || regex.test(input.value);
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookPublicationDateValid = valid;
+            state.bookPublicationDateValid = valid;
         }
         function checkBookPrice(){
             var input = document.querySelector("[name=bookPrice]");
@@ -59,7 +71,7 @@
             var valid = regex.test(input.value) && parseInt(input.value) >= 0;
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookPriceValid = valid;
+            state.bookPriceValid = valid;
         }
         function filterBookPrice() {
             var input = document.querySelector("[name=bookPrice]");
@@ -75,7 +87,7 @@
             var valid = regex.test(input.value) && parseInt(input.value) > 0;
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookPageCountValid = valid;
+            state.bookPageCountValid = valid;
         }
         function filterBookPageCount(){
             var input = document.querySelector("[name=bookPageCount]");
@@ -90,7 +102,7 @@
             //var valid = input.value != false;//부정적인 값이 아니면
             input.classList.remove("success", "fail");
             input.classList.add(valid ? "success" : "fail");
-            bookGenreValid = valid;
+            state.bookGenreValid = valid;
         }
 
         function checkForm(){
@@ -101,16 +113,12 @@
             checkBookPrice();
             checkBookPageCount();
             checkBookGenre();
-
+            
             //그냥 전송
-            // return bookTitleValid && bookAuthorValid && bookPublisherValid
-            //             && bookPublicationDateValid && bookPriceValid 
-            //             && bookPageCountValid && bookGenreValid;
-
+            // return state.ok();
+            
             //(+추가) 확인창
-            var all = bookTitleValid && bookAuthorValid && bookPublisherValid
-                        && bookPublicationDateValid && bookPriceValid 
-                        && bookPageCountValid && bookGenreValid;
+            var all = state.ok();
             if(all == false) return false;
             var choice = confirm("정말 등록하시겠습니까?");
             return choice;
@@ -118,8 +126,7 @@
     </script>
 </head>
 <body>
-    <form action="" method="post" autocomplete="off" 
-    onsubmit="return checkForm();">
+    <form action="" method="post" autocomplete="off" onsubmit="return checkForm();">
     <div class="container w-500">
         <div class="cell center">
             <h1>도서 등록</h1>
