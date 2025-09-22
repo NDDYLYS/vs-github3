@@ -25,16 +25,15 @@
             var valid = regex.test(input.value);
 
             var feedback = input.nextElementSibling;
+            feedback.classList.remove("success", "fail");
+            feedback.classList.add(valid ? "success" : "fail");
             if (valid)
             {
                 feedback.textContent = "올바른 포켓몬 이름입니다.";
-                feedback.classList.remove("success", "fail");
-                feedback.classList.add("success");         }
+            }
             else 
             {
                 feedback.textContent = "잘못된 포켓몬 이름입니다.";
-                feedback.classList.remove("success", "fail");
-                feedback.classList.add("fail");    
             }
         }
 
@@ -45,36 +44,50 @@
             var valid = regex.test(input.value);
 
             var feedback = input.nextElementSibling;
+            feedback.classList.remove("success", "fail");
+            feedback.classList.add(valid ? "success" : "fail");
             if (valid)
             {
                 feedback.textContent = "올바른 포켓몬 속성입니다.";
-                feedback.classList.remove("success", "fail");
-                feedback.classList.add("success");         }
             else 
             {
                 feedback.textContent = "잘못된 포켓몬 속성입니다.";
-                feedback.classList.remove("success", "fail");
-                feedback.classList.add("fail");    
             }
         }
     </script>
 </head>
 <body>
 
+    <form cation = "" method = "post" autocomplete="off"
+        <div class = "container w-500">
+            <div class = "cell center">
+                <h1>Pokemon - insert</h1>
+            </div>
 
-    <div class = "container w-500">
-        <div class = "cell center">
-            <h1>Title</h1>
+            <div class = "cell">
+                <label>포켓몬 이름<i class="fa-solid fa-asterisk red"></i></label>
+                <input type = "text" name = "pokemonName"
+                placeholder="이름 입력(한글 10글자 이내)" oninput="checkPokemonName();"
+                class = "field w-100">
+                <div class = "feedback"></div>
+            </div>
+
+            <div class = "cell">
+                <label>포켓몬 속성<i class="fa-solid fa-asterisk red"></i></label>
+                <input type = "text" name = "pokemonType"
+                placeholder="속성 입력(한글 10글자 이내)" oninput="checkPokemonType();"
+                class = "field w-100">
+                <div class = "feedback"></div>
+            </div>
+
+            <div class = "cell">
+                <button type = "submit" class = "btn btn-positive w-100">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    등록하기
+                </button>
+            </div>
         </div>
-
-        <div class = "cell">
-            <input type = "text" name = "pokemonType"
-            placeholder="속성 입력" oninput="checkPokemonType();"
-            class = "field w-100">
-            <div class = "feedback"></div>
-        </div>
-    </div>
-
+    </form>
     
 </body>
 </html>
