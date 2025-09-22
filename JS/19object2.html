@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장 객체</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        function window01()
+        {
+            alert("123123");
+        }
+
+        function window02()
+        {
+            var choice = confirm("확인창 샘플");
+            console.log("choice : " + choice);
+        }
+
+        function window03()
+        {
+            var input = window.prompt("원하는 글자 입력");
+            console.log("input : " + input);
+        }
+
+        function window04()
+        {
+            window.open("https://www.naver.com"); // 다른 탭에서 열린다
+        }
+
+        function window05()
+        {
+            window.open("https://www.naver.com", "Test", "width=500, height=500");
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>내장 객체</h1>
+        </div>
+
+        <div class = "cell">
+            <button type = "button" class = "btn btn-positive"
+            onclick="window01();">알림창</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="window02();">확인창</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="window03();">입력창</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="window04();">새탭</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="window05();">새창</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
