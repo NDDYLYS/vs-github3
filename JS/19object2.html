@@ -37,6 +37,50 @@
         {
             window.open("https://www.naver.com", "Test", "width=500, height=500");
         }
+
+        function location01()
+        {
+            //console.log(window.location);
+            location.href = "https://www.naver.com";
+        }
+
+        function location02()
+        {
+            //console.log(window.location);
+            //setInterval(location02, 5000)
+            location.reload();
+        }
+
+        function history01()
+        {
+            history.back();
+        }
+
+        function history02()
+        {
+            history.forward();
+        }
+
+        function document01()
+        {
+            var target = document.getElementById("sample");
+            target.style.color = "red";
+        }
+
+        function document02()
+        {
+            var targets = document.querySelectorAll(".target");
+            console.log(targets);
+        }
+
+        function document03()
+        {
+            var targets = document.querySelectorAll(".target");
+            for(var i = 0; i < targets.length; i++)
+            {
+                targets[i].style.color = "red";
+            }
+        }
     </script>
 </head>
 <body>
@@ -58,6 +102,43 @@
             onclick="window04();">새탭</button>
             <button type = "button" class = "btn btn-positive"
             onclick="window05();">새창</button>
+        </div>
+
+        <div class = "cell">
+            <button type = "button" class = "btn btn-positive"
+            onclick="location01();">주소 변경</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="location02();">새로고침</button>
+        </div>
+
+        <div class = "cell">
+            <button type = "button" class = "btn btn-positive"
+            onclick="history01();">뒤로 가기</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="history02();">앞으로 가기</button>
+        </div>
+
+        <div class = "cell">
+            <button type = "button" class = "btn btn-positive"
+            onclick="document01();">태그 선택</button>
+        </div>
+
+        <div class = "cell">
+            <h2 id = "sample" class = "target">Hello javascript</h2>
+            <button type = "button" class = "btn btn-positive"
+            onclick="document01();">태그 선택</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="document02();">태그 선택</button>
+            <button type = "button" class = "btn btn-positive"
+            onclick="document03();">다중 선택</button>
+        </div>
+
+         <div class = "cell">
+            <h2 id = "sample1" class = "target">Hello javascript</h2>
+            <h2 id = "sample2" class = "target">Hello javascript</h2>
+            <h2 id = "sample3" class = "target">Hello javascript</h2>
+            <h2 id = "sample4" class = "target">Hello javascript</h2>
+            <h2 id = "sample5" class = "target">Hello javascript</h2>
         </div>
     </div>
 

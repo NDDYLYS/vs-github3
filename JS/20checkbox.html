@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckBox - Control</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        function check1()
+        {
+            var checkbox = document.querySelector(".ck1");
+            console.log(checkbox.checked);
+            //checked, selected, required, readonly들은 토글 속성을 논리로 관리한다
+        }
+
+        function check2on()
+        {
+            var checkbox = document.querySelector(".ck2");
+            checkbox.checked = true;
+        }
+        function check2off()
+        {
+            var checkbox = document.querySelector(".ck2");
+            checkbox.checked = false;
+        }
+
+        function check3on()
+        {
+            var checkboxs = document.querySelectorAll(".ck3");
+            for(var i = 0; i < checkboxs.length; i++)
+            {
+                checkboxs[i].checked = true;
+            }
+        }
+        function check3off()
+        {
+            var checkboxs = document.querySelectorAll(".ck3");
+            for(var i = 0; i < checkboxs.length; i++)
+            {
+                checkboxs[i].checked = false;
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>CheckBox - Control</h1>
+        </div>
+
+        <div class = "cell">
+            <input type = "checkbox" class = "ck1" oninput = "check1();">
+            <label>체크하세요 : </label>
+        </div>
+
+        <div class = "cell">
+            <input type = "checkbox" class = "ck2">
+            <button type="button" class = "btn btn-positive" onclick="check2on();">체크</button>
+            <button type="button" class = "btn btn-negative" onclick="check2off();">해제</button>
+        </div>
+
+        <div class = "cell flex-box flex-vertical">
+            <input type = "checkbox" class = "ck3">
+            <input type = "checkbox" class = "ck3">
+            <input type = "checkbox" class = "ck3">
+            <input type = "checkbox" class = "ck3">
+            <input type = "checkbox" class = "ck3">
+            <button type="button" class = "btn btn-positive" onclick="check3on();">전체 체크</button>
+            <button type="button" class = "btn btn-negative" onclick="check3off();">전체 해제</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
