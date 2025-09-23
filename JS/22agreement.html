@@ -12,15 +12,15 @@
     </style>
     <script type = "text/javascript">
         function checkAll()
-        {           
-            console.log("checkAll");
-            
+        {        
             var all = document.querySelector(".check-all");
             var alls = document.querySelectorAll(".check-item");
             for(var i = 0; i < alls.length; i++)
             {
                 alls[i].checked = all.checked;
             }
+
+            refreshCheck();
         }
 
         function checkRequired()
@@ -31,6 +31,23 @@
             {
                 requireds[i].checked = required.checked;
             }
+
+            refreshCheck();
+        }
+
+        function refreshCheck()
+        {
+            var checkitems = document.querySelectorAll(".check-item");
+            var selectedcheckitems = document.querySelectorAll(".check-item:checked");
+            var all = checkitems.length == selectedcheckitems.length;
+            var allcheckbox = document.querySelector(".check-all");
+            allcheckbox.checked = all;
+
+            var requireditems = document.querySelectorAll(".check-item-required");
+            var selectedrequireditems = document.querySelectorAll(".check-item-required:checked");
+            var required = requireditems.length == selectedrequireditems.length;
+            var requiredcheckbox = document.querySelector(".check-required");
+            requiredcheckbox.checked = required;
         }
     </script>
 </head>
@@ -58,24 +75,34 @@
             <hr>
 
             <div class = "flex-box">
-                <input type = "checkbox" class = "field check-item check-item-required">
-                <label>(필수) 11111</label>
+                <input type = "checkbox" 
+                class = "field check-item check-item-required"
+                onclick="refreshCheck();">
+                <label>(필수)네 개인정보를 네 동의하에 남용할 것이다.</label>
             </div>
             <div class = "flex-box">
-                <input type = "checkbox" class = "field check-item check-item-required">
-                <label>(필수) 22222</label>
+                <input type = "checkbox" 
+                class = "field check-item check-item-required"
+                onclick="refreshCheck();">
+                <label>(필수)이것에 동의하면 네 이름으로 대출을 받을 것이다.</label>
             </div>
             <div class = "flex-box">
-                <input type = "checkbox" class = "field check-item">
-                <label>(선택) 33333</label>
+                <input type = "checkbox" 
+                class = "field check-item"
+                onclick="refreshCheck();">
+                <label>(선택)내 개인정보를 사용하는 데에 동의하지 않는다.</label>
             </div>
             <div class = "flex-box">
-                <input type = "checkbox" class = "field check-item">
-                <label>(선택) 44444</label>
+                <input type = "checkbox" 
+                class = "field check-item"
+                onclick="refreshCheck();">
+                <label>(선택)내 개인정보로 받는 대출은 내 계좌로 받을 것이다.</label>
             </div>
             <div class = "flex-box">
-                <input type = "checkbox" class = "field check-item">
-                <label>(선택) 55555</label>
+                <input type = "checkbox" 
+                class = "field check-item"
+                onclick="refreshCheck();">
+                <label>(선택)내 장기들을 돈 주고 파는 것에 동의한다.</label>
             </div>
         </div>
     </div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 동의</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script src = "./checkbox.js"></script>
+    <script type = "text/javascript">
+
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>전체 동의</h1>
+        </div>
+
+        <div class = "cell">
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-all"
+                onclick="checkAll();">
+                <label>전체 이용약관에 모두 동의합니다.</label>
+            </div>
+
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-required"
+                onclick="checkRequired();">
+                <label>필수 이용약관에 모두 동의합니다.</label>
+            </div>
+
+            <hr>
+
+            <div class = "flex-box">
+                <input type = "checkbox" 
+                class = "field check-item check-item-required"
+                onclick="refreshCheck();">
+                <label>(필수)네 개인정보를 네 동의하에 남용할 것이다.</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" 
+                class = "field check-item check-item-required"
+                onclick="refreshCheck();">
+                <label>(필수)이것에 동의하면 네 이름으로 대출을 받을 것이다.</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" 
+                class = "field check-item"
+                onclick="refreshCheck();">
+                <label>(선택)내 개인정보를 사용하는 데에 동의하지 않는다.</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" 
+                class = "field check-item"
+                onclick="refreshCheck();">
+                <label>(선택)내 개인정보로 받는 대출은 내 계좌로 받을 것이다.</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" 
+                class = "field check-item"
+                onclick="refreshCheck();">
+                <label>(선택)내 장기들을 돈 주고 파는 것에 동의한다.</label>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
