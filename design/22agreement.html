@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 동의</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        function checkAll()
+        {           
+            console.log("checkAll");
+            
+            var all = document.querySelector(".check-all");
+            var alls = document.querySelectorAll(".check-item");
+            for(var i = 0; i < alls.length; i++)
+            {
+                alls[i].checked = all.checked;
+            }
+        }
+
+        function checkRequired()
+        {            
+            var required = document.querySelector(".check-required");
+            var requireds = document.querySelectorAll(".check-item-required");
+            for(var i = 0; i < requireds.length; i++)
+            {
+                requireds[i].checked = required.checked;
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>전체 동의</h1>
+        </div>
+
+        <div class = "cell">
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-all"
+                onclick="checkAll();">
+                <label>전체 이용약관에 모두 동의합니다.</label>
+            </div>
+
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-required"
+                onclick="checkRequired();">
+                <label>필수 이용약관에 모두 동의합니다.</label>
+            </div>
+
+            <hr>
+
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-item check-item-required">
+                <label>(필수) 11111</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-item check-item-required">
+                <label>(필수) 22222</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-item">
+                <label>(선택) 33333</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-item">
+                <label>(선택) 44444</label>
+            </div>
+            <div class = "flex-box">
+                <input type = "checkbox" class = "field check-item">
+                <label>(선택) 55555</label>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
