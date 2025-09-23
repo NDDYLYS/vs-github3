@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독립형 자바스크립트</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script type = "text/javascript">
+        function changeColor()
+        {
+            var target = document.querySelector(".target");
+            target.style.color = "red";
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>독립형 자바스크립트</h1>
+        </div>
+
+        <div class = "cell">
+            <button type = "button"
+            class = "btn btn-positive w-100"
+            onclick="changeColor();">누르세요!</button>
+        </div>
+
+        <div class = "cell center">
+            <h2 class = "target">Welcome to javascript</h2>
+        </div>
+    </div>
+
+    
+</body>
+</html>
