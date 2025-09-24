@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제목</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+
+    </style>
+
+    <!-- 카카오 우편 API CDN -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script src="./confirm.js"></script>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            //검색 버튼에 대한 클릭 이벤트를 설정
+            var addressSearchBtn = document.querySelector(".btn-address-search");
+            addressSearchBtn.addEventListener("click", findAddress);
+            document.querySelector("[name=memberPost]").addEventListener("click", findAddress);
+            document.querySelector("[name=memberAddress1]").addEventListener("click", findAddress);
+
+            function findAddress() 
+            {
+                //daum에서 제공하는 샘플 코드
+                new daum.Postcode({
+                    oncomplete: function (data) 
+                    {
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var addr = ''; // 주소 변수
+
+                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                            addr = data.roadAddress;
+                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                            addr = data.jibunAddress;
+                        }
+
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.querySelector("[name=memberPost]").value = data.zonecode;
+                        document.querySelector("[name=memberAddress1]").value = addr;
+                        // 커서를 상세주소 필드로 이동한다.
+                        document.querySelector("[name=memberAddress2]").focus();
+                        //document.querySelector("[name=memberAddress2]").dispatchEvent(new Event("focus"));
+
+                        //삭제버튼 표시
+                        document.querySelector(".btn-address-clear").style.display = "";
+                    }
+                }).open();
+            }
+
+            //주소 삭제버튼
+            document.querySelector(".btn-address-clear").addEventListener("click", function(){
+                //this == 주소 삭제버튼
+                document.querySelector("[name=memberPost]").value = "";
+                document.querySelector("[name=memberAddress1]").value = "";
+                document.querySelector("[name=memberAddress2]").value = "";
+                this.style.display = "none";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container w-800">
+        <div class="cell center">
+            <h1>회원 가입</h1>
+        </div>
+
+        <div class="cell">
+            주소
+        </div>
+        <div class="cell">
+            <input type="text" name="memberPost" placeholder="우편번호" size="6" class="field" inputmode="numeric" readonly>
+            <button type="button" class="btn btn-neutral btn-address-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="cell">
+            <input type="text" name="memberAddress1" placeholder="기본주소" class="field w-100" readonly>
+        </div>
+        <div class="cell">
+            <input type="text" name="memberAddress2" placeholder="상세주소" class="field w-100">
+        </div>
+    </div>
+</body>
+
+</html>

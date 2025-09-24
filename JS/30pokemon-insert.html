@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script src = "./confirm.js"></script>
+    <script type = "text/javascript">
+        var links = document.querySelector(".form-insert");
+        links.addEventListener("submit", function(e)
+        {
+            var pokemonName = document.querySelector("[name=pokemonName]");
+            var pokemonType = document.querySelector("[name=pokemonType]");
+            
+            if (0 < pokemonName.value.length &&
+                0 < pokemonType.value.length)
+            {
+	            var comment = this.dataset.comment;
+	            if (comment == undefined)
+	                comment = "정말로 이동하시겠습니까?";
+	
+	            var choice = window.confirm(comment);
+	            if (choice == false)
+	                e.preventDefault(); // 기본 이벤트 차단
+            }
+            else 
+            {
+				window.alert("포켓몬의 이름이나 속성을 입력하지 않았습니다.");            	
+                e.preventDefault();
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>Title</h1>
+        </div>
+
+        <div class = "cell">
+
+        </div>
+    </div>
+
+    
+</body>
+</html>
