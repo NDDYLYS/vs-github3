@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08color</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <style>
+        label 
+        {
+            display: inline-block; /* 배경이 잘 보이도록 블록화 */
+            padding: 10px 20px;    /* 안쪽 여백 */
+            border-radius: 8px;    /* 모서리 둥글게 */
+            color: gainsboro;          /* 글자색 */
+            font-weight: bold;     /* 글자 두껍게 */
+        
+            background: linear-gradient(
+                to right,
+                red,
+                orange,
+                yellow,
+                green,
+                blue,
+                darkblue,
+                purple
+                );
+        }
+
+        .target 
+        {
+            transition-property: color;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+
+    <script type = "text/javascript">
+        window.addEventListener("load", function()
+        {
+            var btnColors = document.querySelectorAll(".btn-color");
+            for(var i = 0; i < btnColors.length; i++)
+            {
+                btnColors[i].addEventListener("click", function()
+                {
+                    var target = document.querySelector(".target");
+                    target.style.color = this.dataset.color;
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    
+
+    <div class = "container w-600">
+        <div class = "cell center">
+            <label>무지개(Rainbow)</label>
+        </div>
+
+        <div class = "cell center">
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:red" data-color = "red">Red</button>
+
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:orange" data-color = "orange">Orange</button>
+            
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:yellow" data-color = "yellow">Yellow</button>
+            
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:green" data-color = "green">Green</button>
+
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:blue" data-color = "blue">Blue</button>
+
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:darkblue" data-color = "darkblue">Darkblue</button>
+
+            <button type = "button"
+            class = "btn btn-positive btn-color"
+            style = "color:purple" data-color = "purple">Purple</button>
+
+
+        </div>
+        <hr>
+        <div class = "cell center">
+            <label class = "target" style="font-size: 12px;">Hello Javascript!</label>
+        </div>
+    </div>
+
+
+</body>
+</html>

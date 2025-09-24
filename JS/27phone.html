@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09phone</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    
+    <style>
+        .target
+        {
+            word-break: keep-all;
+        }
+    </style>
+
+    <script type = "text/javascript">
+        window.addEventListener("load", function()
+        {
+            var btnTexts = document.querySelectorAll(".btn-text");
+            for(var i = 0; i < btnTexts.length; i++)
+            {
+                btnTexts[i].addEventListener("click", function()
+                {
+                    var target = document.querySelector(".target");
+                    target.textContent += this.textContent;
+                });
+            }
+
+            var btnClear = document.querySelector(".btn-clear");
+            btnClear.addEventListener("click", function()
+            {
+                var target = document.querySelector(".target");
+                target.textContent = "";
+            });
+        }); 
+    </script>
+</head>
+<body>
+    
+    <DIV contenteditable>asdasd</DIV>
+
+    <div class = "container w-500">
+        <div class = "cell flex-box">
+            <!-- <input type = "text" class = "selectorInput field w-100" 
+            autocomplete="off" readonly> -->
+            <div class = "target" style = "min-height:2em;">
+
+            </div>
+        </div>
+        <div class = "cell flex-box">
+            <button type = "button" class = "btn w-100 btn-text me-10">7</button>
+            <button type = "button" class = "btn w-100 btn-text me-10">8</button>
+            <button type = "button" class = "btn w-100 btn-text">9</button>
+        </div>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 btn-text me-10">4</button>
+            <button type = "button" class = "btn w-100 btn-text me-10">5</button>
+            <button type = "button" class = "btn w-100 btn-text">6</button>
+        </div>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 btn-text me-10">1</button>
+            <button type = "button" class = "btn w-100 btn-text me-10">2</button>
+            <button type = "button" class = "btn w-100 btn-text">3</button>
+        </div>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 btn-text me-10">*</button>
+            <button type = "button" class = "btn w-100 btn-text me-10">0</button>
+            <button type = "button" class = "btn w-100 btn-text">#</button>
+        </div>
+        <div class = "cell flex-box">
+            <button type = "button" class = "btn w-100 btn-clear">전체 지우기</button>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
