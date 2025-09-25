@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멀티페이지 문제</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <style>
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var page = 0;
+            var totalPage = $(".page").length;
+
+            function updateProgress() {
+                var percent = (page / (totalPage - 1)) * 100;
+                 $(".page").eq(page).find("progress").val(percent);
+            }
+            updateProgress();
+
+            $(".page").hide();
+            $(".page").eq(page).show();
+
+            $(".btn-next").on("click", function () {
+                $(".page").eq(page).hide();
+                page++;
+                $(".page").eq(page).show();
+                updateProgress();
+            });
+
+            $(".btn-prev").on("click", function () {
+                $(".page").eq(page).hide();
+                page--;
+                $(".page").eq(page).show();
+                updateProgress();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>멀티페이지 문제</h1>
+        </div>
+
+        <div class="cell page">
+            <h1>1페이지</h1>
+            <progress class = "field w-100" max="100" value="0"></progress>
+            <div class="cell w-100 center">
+                <button type="button" class="btn btn-positive btn-next">다음 <i
+                        class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="cell page">
+            <h1>2페이지</h1>
+            <progress class = "field w-100" max="100" value="0"></progress>
+            <div class="cell w-100 center">
+                <button type="button" class="btn btn-positive btn-prev"><i class="fa-solid fa-arrow-left"></i>
+                    이전</button>
+                <button type="button" class="btn btn-positive btn-next">다음 <i
+                        class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="cell page">
+            <h1>3페이지</h1>
+            <progress class = "field w-100" max="100" value="0"></progress>
+            <div class="cell w-100 center">
+                <button type="button" class="btn btn-positive btn-prev"><i class="fa-solid fa-arrow-left"></i>
+                    이전</button>
+                <button type="button" class="btn btn-positive btn-next">다음 <i
+                        class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="cell page">
+            <h1>4페이지</h1>
+            <progress class = "field w-100" max="100" value="0"></progress>
+            <div class="cell w-100 center">
+                <button type="button" class="btn btn-positive btn-prev"><i class="fa-solid fa-arrow-left"></i>
+                    이전</button>
+                <button type="button" class="btn btn-positive btn-next">다음 <i
+                        class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="cell page">
+            <h1>5페이지</h1>
+            <progress class = "field w-100" max="100" value="0"></progress>
+            <div class="cell w-100 center">
+                <button type="button" class="btn btn-positive btn-prev"><i class="fa-solid fa-arrow-left"></i>
+                    이전</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
