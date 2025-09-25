@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06image</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+
+    <style>
+        .target 
+        {
+            transition-property: width, height;
+            transition-duration: 0.1s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $(".image-size").on("click", function(){
+                var size = $(this).data("size");
+                $(".target").css("width", size).css("height", size);
+            })
+        });
+    </script>
+
+</head>
+<body>
+    
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <button type = "button"
+            class = "btn btn-nuetral image-size" data-size="150px">작게</button>
+            <button type = "button"
+            class = "btn btn-nuetral image-size" data-size="333px">보통</button>
+            <button type = "button"
+            class = "btn btn-nuetral image-size" data-size="666px">크게</button>
+        </div>
+
+        <div class = "cell">
+            <hr>
+        </div>
+
+        <div class = "cell center">
+            <img src = "./images/food.jpg" 
+            class = "target" 
+            width = 150 height = 150>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

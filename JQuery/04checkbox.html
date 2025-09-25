@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $(".check-all").on("input", function(){
+                var checked = $(this).prop("checked");
+                $(".check-item").prop("checked", checked);
+            
+                refreshCheckbox();
+            });
+            
+            $(".check-required").on("input", function(){                
+                var checked = $(this).prop("checked");
+                $(".check-item.check-item-required").prop("checked", checked);
+            
+                refreshCheckbox();
+            });
+
+            // $(".check-item").on("input", refreshCheckbox);
+            
+            function refreshCheckbox(){
+                var checkAll = $(".check-item").length == $(".check-item:checked").length;
+                $(".check-all").prop("checked", checkAll);
+                var checkRequiredAll = $(".check-item-required").length == $(".check-item.check-item-required:checked").length;
+                $(".check-required").prop("checked", checkRequiredAll);
+            }
+        });
+    </script>
+</head>
+<body>
+
+
+<div class = "container w-500">
+        <div class = "cell center">
+            <h1>CheckBox - Control</h1>
+        </div>
+        
+        <div class = "cell flex-box flex-vertical">
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-all">
+                <label>전체 체크</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-required">
+                <label>필수 선택</label>
+            </div>
+
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item check-item-required">
+                <label>(필수)1</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item check-item-required">
+                <label>(필수)2</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item check-item-required">
+                <label>(필수)3</label>
+            </div>
+            
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item">
+                <label>(선택)4</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item">
+                <label>(선택)5</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item">
+                <label>(선택)6</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-item">
+                <label>(선택)7</label>
+            </div>
+
+             <div class = "cell center">
+                <input type = "checkbox" class = "check-all">
+                <label>전체 체크</label>
+            </div>
+            <div class = "cell center">
+                <input type = "checkbox" class = "check-required">
+                <label>필수 선택</label>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

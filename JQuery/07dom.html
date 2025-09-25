@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 제어</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+        .hide
+        {
+            display: none;
+        }
+    </style>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $(".btn").on("click", function(){
+                $(this).parent(".cell").prev(".cell").children("h2").fadeToggle();//.hide();//.show();//.toggleClass("hide");//.addClass("hide");
+            });
+        });
+    </script>
+</head>
+<body>
+x
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>DOM 제어</h1>
+        </div>
+
+        <div class = "cell center">
+            <h2>제어 당할 텍스트1</h2>
+        </div>
+        <div class = "cell center">
+            <button type = "button" class = "btn btn-positive w-100">제어할 버튼1</button>
+        </div>
+
+         <div class = "cell center">
+            <h2>제어 당할 텍스트2</h2>
+        </div>
+        <div class = "cell center">
+            <button type = "button" class = "btn btn-positive w-100">제어할 버튼2</button>
+        </div>
+
+         <div class = "cell center">
+            <h2>제어 당할 텍스트3</h2>
+        </div>
+        <div class = "cell center">
+            <button type = "button" class = "btn btn-positive w-100">제어할 버튼3</button>
+        </div>
+
+         <div class = "cell center">
+            <h2>제어 당할 텍스트4</h2>
+        </div>
+        <div class = "cell center">
+            <button type = "button" class = "btn btn-positive w-100">제어할 버튼4</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>

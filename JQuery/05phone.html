@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09phone</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    
+    <style>
+        .selectorInput
+        {
+            word-break: keep-all;
+        }
+    </style>
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $(".btn-clear").on("click", function(){
+                $(".target").text("");
+            });
+
+            $(".btn-numberPad").on("click", function(){
+                var add = $(this).text();
+                var text = $(".target").text();
+
+                //console.log("add : " + add);
+                //console.log("text : " + text);
+                $(".target").text(text + add);
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <DIV contenteditable>asdasd</DIV>
+
+    <div class = "container w-500">
+        <div class = "cell flex-box">
+            <!-- <input type = "text" class = "selectorInput field w-100" 
+            autocomplete="off" readonly> -->
+            <div class = "target" style = "min-height:2em;">
+
+            </div>
+        </div>
+        <div class = "cell flex-box">
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">7</button>
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">8</button>
+            <button type = "button" class = "btn w-100 btn-numberPad">9</button>
+        </div>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">4</button>
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">5</button>
+            <button type = "button" class = "btn w-100 btn-numberPad">6</button>
+        </div>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">1</button>
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">2</button>
+            <button type = "button" class = "btn w-100 btn-numberPad">3</button>
+        </div>
+        <div class = "cell flex-box">            
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">*</button>
+            <button type = "button" class = "btn w-100 me-10 btn-numberPad">0</button>
+            <button type = "button" class = "btn w-100 btn-numberPad">#</button>
+        </div>
+        <div class = "cell flex-box">
+            <button type = "button" class = "btn w-100 btn-clear">전체 지우기</button>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

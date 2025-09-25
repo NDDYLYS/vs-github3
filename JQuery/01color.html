@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색상 변경</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $(".btn-red").on("click", function(){
+                $(".target").css("color", "red");
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>색상 변경</h1>
+        </div>
+
+        <div class = "cell">
+            <button type = "button" class = "btn btn-positive btn-red">삘깅</button>
+        </div>
+
+        <div class = "cell">
+            <h2 class = "target">Hello jQuery</h2>
+            <h2 class = "target">Hello jQuery</h2>
+            <h2 class = "target">Hello jQuery</h2>
+            <h2 class = "target">Hello jQuery</h2>
+            <h2 class = "target">Hello jQuery</h2>
+            <h2 class = "target">Hello jQuery</h2>
+        </div>
+    </div>
+
+    
+</body>
+</html>
