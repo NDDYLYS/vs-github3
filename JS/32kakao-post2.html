@@ -18,6 +18,30 @@
     <script src="./confirm.js"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
+            var state = { memberAddressValid : true,
+            };
+
+            document.querySelector("[name=memberAddress2]")
+            .addEventListener("blur", function(){
+                var memberPostInput = document.querySelector("[name=memberPost]");
+                var memberAddress1Input = document.querySelector("[name=memberAddress1]");
+                var memberAddress2Input = this;
+                var empty = memberPostInput.value.length == 0 &&
+                 memberAddress1Input.value.length == 0 &&
+                  memberAddress2Input.value.length == 0;
+                var fill = memberPostInput.value.length > 0 &&
+                 memberAddress1Input.value.length > 0 &&
+                  memberAddress2Input.value.length > 0;
+                  var valid = empty || fill;
+
+                memberPostInput.classList.remove("success", "fail");
+                memberPostInput.classList.add(valid? "success" : "fail");
+                memberAddress1Input.classList.remove("success", "fail");
+                memberAddress1Input.classList.add(valid? "success" : "fail");
+                memberAddress2Input.classList.remove("success", "fail");
+                memberAddress2Input.classList.add(valid? "success" : "fail");
+            });
+
             //검색 버튼에 대한 클릭 이벤트를 설정
             var addressSearchBtn = document.querySelector(".btn-address-search");
             addressSearchBtn.addEventListener("click", findAddress);
@@ -91,7 +115,9 @@
         </div>
         <div class="cell">
             <input type="text" name="memberAddress2" placeholder="상세주소" class="field w-100">
+            <div class="fail-feedback">주소는 모두 작성해야 합니다.</div>
         </div>
+
     </div>
 </body>
 
