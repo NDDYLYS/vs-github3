@@ -1,38 +1,51 @@
-function checkAll()
-{        
-    var all = document.querySelector(".check-all");
-    var alls = document.querySelectorAll(".check-item");
-    for(var i = 0; i < alls.length; i++)
-    {
-        alls[i].checked = all.checked;
-    }
-
-    refreshCheck();
-}
-
-function checkRequired()
-{            
-    var required = document.querySelector(".check-required");
-    var requireds = document.querySelectorAll(".check-item-required");
-    for(var i = 0; i < requireds.length; i++)
-    {
-        requireds[i].checked = required.checked;
-    }
-
-    refreshCheck();
-}
-
-function refreshCheck()
+window.addEventListener("load", function()
 {
-    var checkitems = document.querySelectorAll(".check-item");
-    var selectedcheckitems = document.querySelectorAll(".check-item:checked");
-    var all = checkitems.length == selectedcheckitems.length;
-    var allcheckbox = document.querySelector(".check-all");
-    allcheckbox.checked = all;
+    var allCheckList = document.querySelectorAll(".check-all");
+    for(var i = 0; i < allCheckList.length; i++)
+    {
+        allCheckList[i].addEventListener("input", function(){
+            var checkItemList = document.querySelectorAll(".check-item");
+            for(var k = 0; k < checkItemList.length; k++)
+            {
+                checkItemList[k].checked = this.checked;
+            }
 
-    var requireditems = document.querySelectorAll(".check-item-required");
-    var selectedrequireditems = document.querySelectorAll(".check-item-required:checked");
-    var required = requireditems.length == selectedrequireditems.length;
-    var requiredcheckbox = document.querySelector(".check-required");
-    requiredcheckbox.checked = required;
-}
+            refreshCheckbox();
+        });
+    }
+
+    var requiredCheckList = document.querySelectorAll(".check-required");
+    for(var i = 0; i < requiredCheckList.length; i++)
+    {
+        requiredCheckList[i].addEventListener("input", function(){
+            var requiredCheckItemList = document.querySelectorAll(".check-item.check-item-required");
+            for(var k = 0; k < requiredCheckItemList.length; k++)
+            {
+                requiredCheckItemList[k].checked = this.checked;
+            }
+
+            refreshCheckbox();
+        });
+    }
+
+    function refreshCheckbox()
+    {
+        var checkitemList = document.querySelectorAll(".check-item");
+        var selectedcheckitemList = document.querySelectorAll(".check-item:checked");
+        var all = checkitemList.length == selectedcheckitemList.length;
+        var allcheckboxList = document.querySelectorAll(".check-all");
+        for(var i = 0; i < allcheckboxList.length; i++)
+           allcheckboxList[i].checked = all;
+    
+        var requireditemList = document.querySelectorAll(".check-item.check-item-required");
+        var selectedrequireditemList = document.querySelectorAll(".check-item.check-item-required:checked");
+        var required = requireditemList.length == selectedrequireditemList.length;
+        var requiredcheckboxList = document.querySelectorAll(".check-required");
+        for(var i = 0; i < requiredcheckboxList.length; i++)
+           requiredcheckboxList[i].checked = required;
+    }
+
+    var checkItemList = document.querySelectorAll(".check-item");
+    for(var i = 0; i < checkItemList.length; i++)
+        checkItemList[i].addEventListener("input", refreshCheckbox);
+});
