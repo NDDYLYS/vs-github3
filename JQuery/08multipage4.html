@@ -59,15 +59,12 @@
             function updateProgress()
             {
                 var percent = (page / totalPage) * 100 + "%";
-                //console.log("percent : " + percent);
                 $(".guage").css("width", percent);
             }
 
             function updatePage()
             {
                 $(".total-page").text(totalPage + 1);
-                
-                //var currentPage = $(".page").index(".page:visible");
                 $(".current-page").text(page + 1);
             }
         });

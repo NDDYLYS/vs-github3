@@ -104,6 +104,43 @@
                 $(this).find("[name]").trigger("blur");
                 return state.ok();
             });
+
+            var page = 0;
+            var totalPage = $(".page").length - 1;
+
+            $(".page").hide();
+            $(".page").first().show();//$(".page").eq(page).show();
+
+            updatePage();
+            updateProgress();
+
+            $(".btn-next").on("click", function () {
+                $(this).closest(".page").hide();//$(".page").eq(page).hide();
+                page++;
+                $(this).closest(".page").next().show();////$(".page").eq(page).show();
+                updatePage();
+                updateProgress();
+            });
+
+            $(".btn-prev").on("click", function () {
+                $(this).closest(".page").hide();//$(".page").eq(page).hide();
+                page--;
+                $(this).closest(".page").prev().show();//$(".page").eq(page).show();
+                updatePage();
+                updateProgress();
+            });
+
+            function updateProgress()
+            {
+                var percent = (page / totalPage) * 100 + "%";
+                $(".guage").css("width", percent);
+            }
+
+            function updatePage()
+            {
+                $(".total-page").text(totalPage + 1);
+                $(".current-page").text(page + 1);
+            }
         });
     </script>
 </head>
