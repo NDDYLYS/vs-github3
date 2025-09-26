@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //상태객체
+            var state = {
+                boardTitleValid : false,//필수항목
+                boardContentValid : false,//필수항목
+                ok : function(){
+                    return this.boardTitleValid && this.boardContentValid;
+                }
+            };
+            //항목검사
+            $("[name=boardTitle]").on("blur", function(){
+                var text = $(this).val();
+                var encoder = new TextEncoder();
+                var encoded = encoder.encode(text);
+                var size = encoded.length;
+                var valid = size > 0 && size <= 300;//1~300byte 범위
+                $(this).removeClass("success fail").addClass(valid ? "success" : "fail");
+                state.boardTitleValid = valid;
+            });
+            $("[name=boardContent]").on("blur", function(){
+                var text = $(this).val();
+                var encoder = new TextEncoder();//변환도구를 만들어서
+                var encoded = encoder.encode(text);//변환 처리
+                var size = encoded.length;
+                var valid = size > 0 && size <= 4000;
+                $(this).removeClass("success fail").addClass(valid ? "success" : "fail");
+                state.boardContentValid = valid;
+            });
+            //글자수처리
+            $("[name=boardTitle]").on("input", function(){
+                var text = $(this).val();
+                var encoder = new TextEncoder();
+                var encoded = encoder.encode(text);
+                var size = encoded.length;
+                if(size > 300) {
+                    window.alert("제목은 300byte 이내로 작성해야 합니다");
+                }
+            });
+            $("[name=boardContent]").on("input", function(){
+                var text = $(this).val();//글자를 불러온다
+                
+                //var size = text.length;//글자수를 센다 (종류 상관없이 1글자)
+                // if(size > 4000) {//크기 초과시에는 잘라내서 재설정
+                //     var change = text.substring(0, 4000);//잘라내서
+                //     $(this).val(change);//재설정
+                //     size = 4000;//size도 변경
+                // }
+
+                var encoder = new TextEncoder();//변환도구를 만들어서
+                var encoded = encoder.encode(text);//변환 처리
+                var size = encoded.length;
+                if(size > 4000) {
+                    window.alert("4000byte까지만 작성이 가능합니다");
+                }
+                
+                $(this).next("div").find(".count").text(size);
+            });
+            //폼검사
+            $(".check-form").on("submit", function(){
+                $(this).find("[name]").trigger("blur");
+                return state.ok();
+            });
+        });
+    </script>
+</head>
+<body>
+    <form action="" method="post" autocomplete="off" class="check-form">
+    <div class="container w-800">
+        <div class="cell center">
+            <h1>게시글 작성</h1>
+        </div>
+        
+        <div class="cell">
+            <label>제목 <i class="fa-solid fa-asterisk red"></i></label>
+            <input type="text" name="boardTitle" placeholder="제목을 입력해주세요" class="field w-100">
+            <div class="fail-feedback">제목은 필수항목이며 300byte 이내로 작성해야 합니다</div>
+        </div>
+
+        <div class="cell">
+            <label>내용 <i class="fa-solid fa-asterisk red"></i></label>
+            <textarea name="boardContent" placeholder="내용을 입력해주세요" class="field w-100" rows="10"></textarea>
+            <div class="right"><span class="count">0</span> / 4000 byte</div>
+            <div class="fail-feedback">내용은 필수항목이며 4000byte 이내로 작성해야 합니다</div>
+        </div>
+
+        <div class="cell mt-40">
+            <button type="submit" class="btn btn-positive w-100">
+                <i class="fa-solid fa-plus"></i>
+                <span>글 작성하기</span>
+            </button>
+        </div>
+
+    </div>
+    </form>
+</body>
+</html>

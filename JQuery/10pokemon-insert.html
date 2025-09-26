@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제목</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //상태객체
+            var state = {
+                pokemonNameValid : false,
+                pokemonTypeValid : false,
+                ok : function(){
+                    return this.pokemonNameValid && this.pokemonTypeValid;
+                }
+            };
+
+            //항목검사
+            $("[name=pokemonName]").on("blur", function(){
+                var regex = /^[가-힣]{1,10}$/;
+                //var valid = regex.test(this.value);//VanillaJS
+                var valid = regex.test($(this).val());//jQuery
+                //this.classList.remove("success", "fail");
+                //this.classList.add(valid ? "success" : "fail");
+                $(this).removeClass("success fail").addClass(valid ? "success" : "fail");
+                state.pokemonNameValid = valid;
+            });
+            $("[name=pokemonType]").on("blur", function(){
+                //var valid = this.value.length > 0;//VanillaJS
+                var valid = $(this).val().length > 0;//jQuery
+                $(this).removeClass("success fail").addClass(valid ? "success" : "fail");
+                state.pokemonTypeValid = valid;
+            });
+
+            //폼검사
+            $(".check-form").on("submit", function(){
+                //this == 폼
+                $(this).find("[name]").trigger("blur");//blur 강제 발생
+                return state.ok();
+            });
+        });
+    </script>
+</head>
+<body>
+    <form action="" method="post" autocomplete="off" class="check-form">
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>포켓몬 등록</h1>
+        </div>
+        
+        <div class="cell">
+            <label>포켓몬 이름 <i class="fa-solid fa-asterisk red"></i></label>
+            <input type="text" name="pokemonName" placeholder="한글 10글자 이내" class="field w-100">
+            <div class="success-feedback">멋진 이름이네요!</div>
+            <div class="fail-feedback">한글 10글자 이내로 작성하세요!</div>
+        </div>
+
+        <div class="cell">
+            <label>포켓몬 속성 <i class="fa-solid fa-asterisk red"></i></label>
+            <select name="pokemonType" class="field w-100">
+                <option value="">선택하세요</option>
+                <option>전기</option>
+                <option>풀</option>
+                <option>땅</option>
+                <option>독</option>
+                <option>바람</option>
+                <option>비행</option>
+                <option>무속성</option>
+            </select>
+            <!-- <div class="success-feedback">올바른 형식입니다</div> -->
+            <div class="fail-feedback">필수 항목입니다! 반드시 선택하세요!</div>
+        </div>
+
+        <div class="cell mt-40">
+            <button type="submit" class="btn btn-positive w-100">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>저장하기</span>
+            </button>
+        </div>
+
+    </div>
+    </form>
+</body>
+</html>
