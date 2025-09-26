@@ -8,7 +8,22 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
     <style>
-
+        .guage 
+        {
+            transition-property: width;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-out;
+        }
+        .progressbar {
+            width: 100%;
+            height: 5px;
+        }
+        .progressbar > .guage {
+            width: 0%;
+            height: 100%;
+            background: #465ee3;
+            background: linear-gradient(90deg, rgba(70, 94, 227, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+        }
     </style>
     <!-- 카카오 우편 API CDN -->
     <script src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -153,44 +168,79 @@
             <div class="cell center">
                 <h1>회원 가입 정보 입력</h1>
             </div>
+
+            <div class="cell center">
+                <span class="current-page"></span>
+                /
+                <span class="total-page"></span>
+            </div>
             <div class="cell">
+                <div class="progressbar">
+                    <div class="guage"></div>
+                </div>
+            </div>
+
+            <div class="cell page">
                 <label>아이디 <span class="red">*</span></label>
                 <input type="text" name="memberId" placeholder="영문 소문자로 시작하며 숫자 포함 5~20자" 
                             class="field w-100">
                 <div class="fail-feedback">아이디의 첫 글자는 소문자로 시작하여 숫자가 포함되며 5~20글자입니다.</div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-next">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
+            <div class="cell page">
                 <label>비밀번호 <span class="red">*</span></label>
                 <input type="password" name="memberPw" placeholder="대소문자, 숫자, 특수문자를 반드시 포함한 8~16자" 
                             class="field w-100">
                 <div class="success-feedback"></div>
                 <div class="fail-feedback"></div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="button" class="btn btn-positive btn-next ms-10">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
+            <div class="cell page">
                 <label>닉네임 <span class="red">*</span></label>
                 <input type="text" name="memberNickname" placeholder="한글 또는 숫자 2~10자" 
                     class="field w-100">
                 <div class="success-feedback">옳은 닉네임입니다.</div>
                 <div class="fail-feedback">숫자가 포함된 한글이어야 하며 2~10글자입니다.</div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="button" class="btn btn-positive btn-next ms-10">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
+            <div class="cell page">
                 <label>이메일 <span class="red">*</span></label>
                 <input type="email" inputmode="email" name="memberEmail" placeholder="test@kh.com"
                     class="field w-100">
                 <div class="fail-feedback">이메일이 틀렸습니다.</div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="button" class="btn btn-positive btn-next ms-10">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
+            <div class="cell page">
                 <label>생년월일</label>
                 <input type="date" name="memberBirth" class="field w-100">
                 <div class="fail-feedback">생일이 형식과 다릅니다.</div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="button" class="btn btn-positive btn-next ms-10">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
+            <div class="cell page">
                 <label>연락처</label>
                 <input type="tel" inputmode="tel" name="memberContact" class="field w-100"
                         placeholder="010XXXXXXXX (- 제외하고 작성)">
                 <div class="fail-feedback">전화번호는 0101???????입니다.</div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="button" class="btn btn-positive btn-next ms-10">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
+            <div class="cell page">
                 <label style="display: block;">주소</label>
                 <input type="text" name="memberPost" placeholder="우편번호" class="field"
                             size="6">
@@ -198,20 +248,25 @@
                 <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
+                <div class="cell">
+                    <input type="text" name="memberAddress1" placeholder="기본주소" class="field w-100">
+                </div>
+                <div class="cell">
+                    <input type="text" name="memberAddress2" placeholder="상세주소" class="field w-100">
+                    <div class="fail-feedback">우편번호, 기본주소, 상세주소를 모두 입력해주셔야 합니다.</div>
+                </div>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="button" class="btn btn-positive btn-next ms-10">다음 <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="cell">
-                <input type="text" name="memberAddress1" placeholder="기본주소" class="field w-100">
-            </div>
-            <div class="cell">
-                <input type="text" name="memberAddress2" placeholder="상세주소" class="field w-100">
-                <div class="fail-feedback">우편번호, 기본주소, 상세주소를 모두 입력해주셔야 합니다.</div>
-            </div>
-            <div class="cell">
+            <div class="cell page">
                 <label>프로필 이미지(선택)</label>
                 <input type="file" name="attach" accept="image/*" class="field w-100">
-            </div>
-            <div class="cell mt-30">
-                <button type="submit" class="btn btn-positive w-100">회원 가입하기</button>
+                <div class="cell mt-30 flex-box flex-center">
+                    <button type="button" class="btn btn-positive btn-prev me-10"><i class="fa-solid fa-arrow-left"></i>이전</button>
+                    <button type="submit" class="btn btn-positive ms-10">회원가입</button>
+                </div>
             </div>
         </div>
     </form>
