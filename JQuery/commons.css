@@ -371,14 +371,16 @@ textarea.field {
     border-color: aqua !important;
 }
 
-.field.fail
+.field.fail,
+.field.fail2
 {
     border-color: crimson !important;
 }
 
 /* 피드백은 기본적으로 감춘다 */
 .success-feedback,
-.fail-feedback
+.fail-feedback,
+.fail2-feedback
 {
     display: none;
 }
@@ -386,7 +388,8 @@ textarea.field {
 {
     color : aqua;
 }
-.fail-feedback
+.fail-feedback,
+.fail2-feedback
 {
     color:crimson;
 }
@@ -394,7 +397,8 @@ textarea.field {
 {
     display: block;
 }
-.field.fail ~ .fail-feedback
+.field.fail ~ .fail-feedback,
+.field.fail2 ~ .fail2-feedback
 {
     display: block;
 }

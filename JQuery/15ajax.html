@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15Ajax 비동기 통신</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $(".btn-ajax").on("click", function(){
+                // jQuery가 Spring 서버로 요청해서 받아온 글자를 설정
+                //$.ajax({옵션객체})
+                $.ajax({
+                    url:"http://www.localhost:8080/rest/sample/hello",
+                    success:function(response){
+                        $(".target").text(response);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>15Ajax 비동기 통신</h1>
+        </div>
+
+        <div class = "cell">
+            <button class = "btn btn-positive btn-ajax">눌러</button>
+        </div>
+
+        <div class = "cell target">
+
+        </div>
+    </div>
+
+    
+</body>
+</html>
