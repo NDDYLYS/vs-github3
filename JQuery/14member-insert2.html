@@ -62,7 +62,7 @@
             });
 
             $("[name=memberPw]").on("blur", function(){
-                var regex = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])+$/";
+                var regex = "/^[a-z][a-z0-9]{4,19}$/";
                 var valid = regex.test($(this).val());
                 $(this).removeClass("success fail").addClass(valid ? "success" : "fail");
                 state.memberPwValid = valid;
