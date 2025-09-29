@@ -16,10 +16,15 @@
             $(".btn-ajax").on("click", function(){
                 // jQuery가 Spring 서버로 요청해서 받아온 글자를 설정
                 //$.ajax({옵션객체})
+                var memberId = $("[name=memberId]").val();
                 $.ajax({
-                    url:"http://www.localhost:8080/rest/sample/hello",
+                    url:"http://www.localhost:8080/rest/member/checkmember?memberId=" + memberId,
                     success:function(response){
-                        $(".target").text(response);
+                        if (response == true)
+                            $("[name=memberId]").removeClass("success fail fail2").addClass("fail2");
+                        else 
+                            $("[name=memberId]").removeClass("success fail fail2").addClass("success");
+
                     }
                 });
             });
