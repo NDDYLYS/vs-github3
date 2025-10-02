@@ -50,6 +50,7 @@
                     data:{certEmail:email},
                     success:function(response){
                         console.log("완료");
+                        $(".cell-cert-input").show();
                     },
                     beforeSend:function(){
                         $(".btn-cert-send").prop("disabled", true);
@@ -62,10 +63,33 @@
                         $(".btn-cert-send").find("span").text("인증번호 보내기");
                     }
                 });
-            });
 
             $(".btn-cert-check").on("click", function(){
-                
+                var checkNumber = $(".cert-input").val();
+                var regex = /^[0-9]{6}$/;
+                var valid = regex.test(checkNumber);
+                if (valid == false)
+                {
+                    $(".cert-input").removeClass("success fail fail2").addClass("fail");
+                }
+
+                $.ajax({
+                    url:"http://localhost:8080/rest/member/certCheck",
+                    method:"post",
+                    data:{certEmail:?, certNumber:?},
+                    success:function(response){
+                        if (response == true)
+                        {
+                            $(".cert-input").removeClass("success fail fail2").val("");
+                            $(".cell-cert-input").hide();
+                        }
+                        else 
+                        {
+                            $(".cert-input").removeClass("success fail fail2").addClass("fail2");
+                        }
+                        
+                    }
+                });
             });
 
         });
@@ -74,27 +98,42 @@
 
 <body>
 
-    <div class="container w-600"></div>
-        <div class="cell page">
-            <!-- 이메일 -->
-            <div class="cell">
-                <label>이메일 <i class="fa-solid fa-asterisk red"></i></label>
-                
-                <div class = "flex-box" style = "flex-wrap:wrap">
-                    <input type="text" inputmode="email" name="memberEmail" class="field w-50 flex-fill me-20">
-                    <button type = "button" 
-                    class = "btn btn-nuetral btn-cert-send">인증번호 보내기</button>
-                    <div class="success-feedback">이메일 인증이 완료되었습니다</div>
-                    <div class="fail-feedback">올바른 이메일 형식이 아니다</div>
-                    <div class="fail2-feedback">이메일 인증이 완료되지 않았다</div>
-                </div>
+   <div class="container w-800">
+        <div class="cell center">
+            <h1>이메일 인증</h1>
+        </div>
+        
+        <!-- 이메일 -->
+        <div class="cell">
+            <label>이메일 <i class="fa-solid fa-asterisk red"></i></label>
+
+            <div class="flex-box" style="flex-wrap: wrap;">
+                <input type="text" inputmode="email" name="memberEmail" class="field w-50 flex-fill">
+                <button type="button" class="btn btn-neutral ms-10 btn-cert-send">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>인증번호 보내기</span>
+                </button>
+                <div class="success-feedback">이메일 인증이 완료되었습니다</div>
+                <div class="fail-feedback">올바른 이메일 형식이 아닙니다</div>
+                <div class="fail2-feedback">이메일 인증이 완료되지 않았습니다</div>
             </div>
 
-            <div class = "cell">
-                <input type = "text" inputmode="numeric" class = "field" placeholder="인증번호 입력">
-                <button type = "button" 
-                class = "btn btn-positive btn-cert-check">인증번호 확인</button>
-            </div>           
+        </div>
+
+        <!-- 인증번호 입력창 -->
+        <div class="cell flex-box cell-cert-input" style = "display:none">
+            <input type="text" inputmode="numeric" class="field cert-input" 
+            placeholder="인증번호 입력">
+            <button type="button" class="btn btn-positive ms-10 btn-cert-check">
+                <i class="fa-solid fa-key"></i>
+                <span>인증번호 확인</span>
+            </button>
+        </div>
+        <div class="fail-feedback">
+            인증번호는 숫자 6자리이어야 합니다
+        </div>
+        <div class="fail2-feedback">
+            인증번호가 일치하지 않습니다
         </div>
     </div>
 
