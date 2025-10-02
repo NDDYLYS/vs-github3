@@ -1,104 +1,120 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>제목</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <style>
-
+        
     </style>
+
     <!-- jquery cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- momentjs CDN-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <script type="text/javascript">
         $(function(){
             //상태 객체
             var state = {
-                memberIdValid: false,
-                memberPwValid: false,
-                memberPwCheckValid: false,
-                memberNicknameValid: false,
-                memberEmailValid: false,
-                memberContactValid: true,
-                memberBirthValid: true,
-                memberAddressValid: true,
-                ok: function () {
+                memberIdValid : false,
+                memberPwValid : false,
+                memberPwCheckValid : false,
+                memberNicknameValid : false,
+                memberEmailValid : false,
+                memberContactValid : true,
+                memberBirthValid : true,
+                memberAddressValid : true,
+                ok: function(){
                     return this.memberIdValid && this.memberPwValid && this.memberPwCheckValid
-                        && this.memberNicknameValid && this.memberEmailValid;
+                                && this.memberNicknameValid && this.memberEmailValid;
                 }
             };
-
+        
+            //이메일 관련
             $(".btn-cert-send").on("click", function(){
-                var regex = /^(.*?)@(.*?)$/;
-                var email = $("[name=memberEmail]").val();
-                var valid = regex.test(email);
-                if (valid == false)
+                // 재발송인 경우 fa-rotate-right
+                if ($(this).find("i").hasClass("fa-rotate-right"))
                 {
-                    $("[name=memberEmail]").removeClass("success fail fail2").addClass("fail");
+                    $("[name=memberEmail]").removeClass("success fail fail2").val("").prop("readonly", false);                    
+                    $(this).find("span").text("인증메일 보내기");
+                    $(this).find("i").removeClass("fa-rotate-right").addClass("fa-paper-plane");
+                    state.memberEmailValid = false;
                     return;
                 }
 
+
+                //[1] 이메일 형식 검사
+                var regex = /^(.*?)@(.*?)$/;
+                var email = $("[name=memberEmail]").val();
+                var valid = regex.test(email);
+                if(valid == false) {
+                    $("[name=memberEmail]").removeClass("success fail fail2").addClass("fail");
+                    state.memberEmailValid = false;
+                    return;
+                }
+
+                //[2] 인증 이메일 발송 요청
                 $.ajax({
                     url:"http://localhost:8080/rest/member/certSend",
                     method:"post",
-                    data:{certEmail:email},
-                    success:function(response){
-                        console.log("완료");
+                    data: { certEmail : email },
+                    success: function(response) {
                         $(".cell-cert-input").show();
                     },
+                    //통신이 진행 중일 때 버튼의 상태를 변화시키기 위한 장치
                     beforeSend:function(){
                         $(".btn-cert-send").prop("disabled", true);
                         $(".btn-cert-send").find("i").removeClass("fa-paper-plane").addClass("fa-spinner fa-spin");
-                        $(".btn-cert-send").find("span").text("인증메일 발송 중");
+                        $(".btn-cert-send").find("span").text("인증메일 발송중");
                     },
                     complete:function(){
                         $(".btn-cert-send").prop("disabled", false);
                         $(".btn-cert-send").find("i").removeClass("fa-spinner fa-spin").addClass("fa-paper-plane");
-                        $(".btn-cert-send").find("span").text("인증번호 보내기");
-                    }
-                });
-
-            $(".btn-cert-check").on("click", function(){
-                var checkNumber = $(".cert-input").val();
-                var regex = /^[0-9]{6}$/;
-                var valid = regex.test(checkNumber);
-                if (valid == false)
-                {
-                    $(".cert-input").removeClass("success fail fail2").addClass("fail");
-                }
-
-                $.ajax({
-                    url:"http://localhost:8080/rest/member/certCheck",
-                    method:"post",
-                    data:{certEmail:?, certNumber:?},
-                    success:function(response){
-                        if (response == true)
-                        {
-                            $(".cert-input").removeClass("success fail fail2").val("");
-                            $(".cell-cert-input").hide();
-                        }
-                        else 
-                        {
-                            $(".cert-input").removeClass("success fail fail2").addClass("fail2");
-                        }
-                        
+                        $(".btn-cert-send").find("span").text("인증메일 보내기");
                     }
                 });
             });
 
+            //.btn-cert-check를 누르면 이메일과 인증번호를 보내서 확인 요청
+            $(".btn-cert-check").on("click", function(){
+                var certNumber = $(".cert-input").val();
+                var regex = /^[0-9]{6}$/;
+                var valid = regex.test(certNumber);
+                if(valid == false) {
+                    $(".cert-input").removeClass("success fail fail2").addClass("fail");
+                    return;
+                }
+
+                var certEmail = $("[name=memberEmail]").val();
+                $.ajax({
+                    url:"http://localhost:8080/rest/member/certCheck",
+                    method:"post",
+                    data: {certEmail : certEmail , certNumber : certNumber},
+                    success: function(response) {
+                        if(response) // true가 온 경우 (인증 완료)
+                        {
+                            $(".cert-input").removeClass("success fail fail2").val("");//입력창 초기화
+                            $(".cell-cert-input").hide();//영역 자체를 숨김 처리
+                            $("[name=memberEmail]").removeClass("success fail fail2").addClass("success");
+                            $("[name=memberEmail]").prop("readonly", true);
+
+                            $(".btn-cert-send").find("i").removeClass("fa-paper-plane").addClass("fa-rotate-right");
+                            $(".btn-cert-send").find("span").text("인증번호 재발송");
+                            state.memberEmailValid = true;
+                        }
+                        else //false가 온 경우 (인증 실패)
+                        {
+                            $(".cert-input").removeClass("success fail fail2").addClass("fail2");
+                            state.memberEmailValid = false;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </head>
-
 <body>
-
-   <div class="container w-800">
+    <div class="container w-800">
         <div class="cell center">
             <h1>이메일 인증</h1>
         </div>
@@ -113,30 +129,24 @@
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>인증번호 보내기</span>
                 </button>
-                <div class="success-feedback">이메일 인증이 완료되었습니다</div>
-                <div class="fail-feedback">올바른 이메일 형식이 아닙니다</div>
-                <div class="fail2-feedback">이메일 인증이 완료되지 않았습니다</div>
+                <div class="success-feedback w-100">이메일 인증이 완료되었습니다</div>
+                <div class="fail-feedback w-100">올바른 이메일 형식이 아닙니다</div>
+                <div class="fail2-feedback w-100">이메일 인증이 완료되지 않았습니다</div>
             </div>
 
         </div>
 
         <!-- 인증번호 입력창 -->
-        <div class="cell flex-box cell-cert-input" style = "display:none">
-            <input type="text" inputmode="numeric" class="field cert-input" 
-            placeholder="인증번호 입력">
+        <div class="cell flex-box cell-cert-input" style="flex-wrap: wrap; display: none;">
+            <input type="text" inputmode="numeric" class="field cert-input" placeholder="인증번호 입력">
             <button type="button" class="btn btn-positive ms-10 btn-cert-check">
                 <i class="fa-solid fa-key"></i>
                 <span>인증번호 확인</span>
             </button>
+            <div class="fail-feedback w-100">인증번호는 숫자 6자리여야 합니다</div>
+            <div class="fail2-feedback w-100">인증번호가 일치하지 않습니다</div>
         </div>
-        <div class="fail-feedback">
-            인증번호는 숫자 6자리이어야 합니다
-        </div>
-        <div class="fail2-feedback">
-            인증번호가 일치하지 않습니다
-        </div>
+        
     </div>
-
 </body>
-
 </html>
