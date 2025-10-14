@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- momentjs CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <link rel = "stylesheet" type="text/css" href = "./lightpick.css" >
+    <!-- 라이트 픽 js -->
+    <script src = "./lightpick.js" ></script>
+    <script type = "text/javascript">
+        $(function(){
+            var picker = new Lightpick({ 
+    	        field: document.querySelector("[name=date]"),
+                maxDate: moment().subtract(1, 'days'),
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>DatePicker</h1>
+        </div>
+
+        <div class = "cell">
+            <input type="date" name="date">
+        </div>
+    </div>
+
+    
+</body>
+</html>
