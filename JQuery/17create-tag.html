@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그 생성</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- momentjs CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script type = "text/javascript">
+        $(function(){
+            $("#btn1").on("click", function(){
+                //$(".target").text("<h1>Hello</h1>");
+                //$(".target").html("<h1>Hello</h1>");
+                //$(".target").append("<h1>Hello</h1>");
+                // 뒤로 붙는다
+                //$(".target").prepend("<h1>Hello</h1>");
+                // 앞으로 붙는다
+                //$(".target").after("<h1>Hello</h1>");
+                // 바깥 뒤
+                //$(".target").before("<h1>Hello</h1>");
+                // 바깥 앞
+                var origin = $("#dummy-template").text();
+                console.log(origin);
+                var html = $.parseHTML(origin);
+                $(html).find(".replyWriter").text("h2h2h2");
+                $(html).find(".replyContent").text("ppppp");
+                // $(html).find(".btn-reply-delete").on("click", function(){
+                //     var choice = window.confirm("really remove?");
+                //     if (choice)
+                //         $(html).remove();                    
+                // });
+                $(".target").append(html);
+
+                $(document).on("click", ".btn-reply-delete", function(){
+                    $(this).closest(".reply-wrapper").remove();
+                });
+            });
+        });
+    </script>
+    <script type = "text/template" id="dummy-template">
+        <div class="reply-wrapper">
+            <h2 class="replyWriter">작성자</h2>
+            <p class="replyContent">내용</p>
+            <button class="btn-reply-delete">삭제</button>
+        </div>
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-500">
+        <div class = "cell center">
+            <h1>태그 생성</h1>
+        </div>
+
+        <div class = "cell">
+            <button type = "button" 
+            class="btn btn-nuetral"
+            id = "btn1">
+                html 생성
+            </button>
+        </div>
+
+        <div class = "cell target">
+
+        </div>
+    </div>
+
+    
+</body>
+</html>
