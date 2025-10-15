@@ -19,22 +19,15 @@
 
     <script type = "text/javascript">
       $(function(){
-          var ctx = document.querySelector('#myChart');
-
-          new Chart(ctx, {
-            type: 'line', // bar line pie doughnut polarArea
+          new Chart($(".pokemon-chart")[0], {
+            type: 'doughnut', // bar line pie doughnut polarArea
             data: {
-              labels: ['Red', 'Blue', 'Yellow',
-               'Green', 'Purple',],
+              labels: ['땅', '불', '바람',
+               '물', '마음',],
               datasets: [
                 {
-                label: '1data',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-              },
-              {
-                label: '2data',
-                data: [32, 29, 13, 55, 32, 13, 10],
+                label: '개체수',
+                data: [12, 19, 3, 5, 3],
                 borderWidth: 1
               },
             ]
@@ -53,13 +46,27 @@
 <body>
 
 
-    <div class = "container w-500">
+    <div class = "container w-800">
         <div class = "cell center">
-            <h1>차트</h1>
+            <h1>홈페이지 통계</h1>
         </div>
 
         <div class = "cell">
-          <canvas id="myChart"></canvas>
+          <div class="flex-box">
+            <div class="w-100 center">
+              <label>포켓몬</label>
+              <canvas class="pokemon-chart"></canvas>
+            </div>
+            
+            <div class="w-100 center">학생</div>
+          </div>
+        </div>
+
+        <div class = "cell">
+          <div class="flex-box">
+            <div class="w-100 center">도서</div>
+            <div class="w-100 center">회원</div>
+          </div>
         </div>
     </div>
 

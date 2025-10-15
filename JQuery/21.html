@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+            <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $.ajax({
+                        url: "http://localhost:8080/rest/admin/stat/pokemon",
+                        method: "post",
+                        success: function (response) { // List<StatVO>
+                            var labels = [], data = [];
+                            for (var i = 0; i < response.length; i++) {
+                                labels[i] = response[i].title;
+                                data[i] = response[i].value;
+                            }
+                            new Chart($(".pokemon-chart")[0], {
+                                type: "polarArea",
+                                data: { labels: labels, datasets: [{ label: "타입별 개체수", data: data, borderWidth: 1, },] },
+                                options: { scales: { y: { beginAtZero: true } } }
+                            });
+                        }
+                    });
+
+                    $.ajax({
+                        url: "http://localhost:8080/rest/admin/stat/student",
+                        method: "post",
+                        success: function (response) { // List<StatVO>
+                            var labels = [], data = [];
+                            for (var i = 0; i < response.length; i++) {
+                                labels[i] = response[i].title;
+                                data[i] = response[i].value;
+                            }
+                            new Chart($(".student-chart")[0], {
+                                type: "bar",
+                                data: { labels: labels, datasets: [{ label: "등록일별 학생수", data: data, borderWidth: 1, },] },
+                                options: { scales: { y: { beginAtZero: true } } }
+                            });
+                        }
+                    });
+
+                    $.ajax({
+                        url: "http://localhost:8080/rest/admin/stat/book",
+                        method: "post",
+                        success: function (response) { // List<StatVO>
+                            var labels = [], data = [];
+                            for (var i = 0; i < response.length; i++) {
+                                labels[i] = response[i].title;
+                                data[i] = response[i].value;
+                            }
+                            new Chart($(".book-chart")[0], {
+                                type: "line",
+                                data: { labels: labels, datasets: [{ label: "장르별 권수", data: data, borderWidth: 1, },] },
+                                options: { scales: { y: { beginAtZero: true } } }
+                            });
+                        }
+                    });
+
+                    $.ajax({
+                        url: "http://localhost:8080/rest/admin/stat/member",
+                        method: "post",
+                        success: function (response) { // List<StatVO>
+                            var labels = [], data = [];
+                            for (var i = 0; i < response.length; i++) {
+                                labels[i] = response[i].title;
+                                data[i] = response[i].value;
+                            }
+                            new Chart($(".member-chart")[0], {
+                                type: "doughnut",
+                                data: { labels: labels, datasets: [{ label: "등급별 회원수", data: data, borderWidth: 1, },] },
+                                options: { scales: { y: { beginAtZero: true } } }
+                            });
+                        }
+                    });
+                });
+            </script>
+
+
+            <div class="container w-800">
+                <div class="cell center">
+                    <h1>홈페이지 통계</h1>
+                </div>
+
+                <div class="cell">
+                    <div class="flex-box">
+                        <div class="w-100 center">
+                            <label>포켓몬</label>
+                            <canvas class="pokemon-chart"></canvas>
+                            <a href="http://www.localhost:8080/admin/stat/pokemon">더보기</a>
+                        </div>
+
+                        <div class="w-100 center">
+                            <label>학생</label>
+                            <canvas class="student-chart"></canvas>
+                            <a href="http://www.localhost:8080/admin/stat/student">더보기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cell">
+                    <div class="flex-box">
+                        <div class="w-100 center">
+                            <label>도서</label>
+                            <canvas class="book-chart"></canvas>
+                            <a href="http://www.localhost:8080/admin/stat/book">더보기</a>
+                        </div>
+
+                        <div class="w-100 center">
+                            <div class="flex-box flex-center">
+                                <label>회원</label>
+                                <a href="http://www.localhost:8080/admin/stat/member">(더보기)</a>
+                            </div>
+                            <canvas class="member-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
