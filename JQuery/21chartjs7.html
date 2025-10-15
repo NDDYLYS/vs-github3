@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>차트</title>
+  <link rel="stylesheet" type="text/css" href="./commons.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <style>
+
+  </style>
+  <!-- jquery cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- momentjs CDN-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/ko.min.js"></script>
+  <!-- chartjs cdn -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      function createChart2(url, selector) {
+        $.ajax({
+          url: url,
+          method: "post",
+          success: function (response) { // List<StatVO>
+            new Chart($(selector)[0], {
+              type: response.type,
+              data: { labels: response.labels, datasets: [{ label: response.subject, data:  response.data, borderWidth: 1, },] },
+              options: { scales: { y: { beginAtZero: true } } }
+            });
+          }
+        });
+      }
+
+      createChart2("http://localhost:8080/rest/admin/stat/pokemon2", ".pokemon-chart");
+    });
+  </script>
+</head>
+
+<body>
+
+
+  <div class="container w-800">
+    <div class="cell center">
+      <h1>홈페이지 통계</h1>
+    </div>
+
+    <div class="cell">
+      <div class="flex-box">
+        <div class="w-100 center">
+          <label>포켓몬</label>
+          <canvas class="pokemon-chart"></canvas>
+        </div>
+
+        <div class="w-100 center">
+          <label>학생</label>
+          <canvas class="student-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="flex-box">
+        <div class="w-100 center">
+          <label>도서</label>
+          <canvas class="book-chart"></canvas>
+        </div>
+
+        <div class="w-100 center">
+          <label>회원</label>
+          <canvas class="member-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
