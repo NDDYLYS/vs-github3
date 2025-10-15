@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>차트</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
@@ -18,7 +18,36 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script type = "text/javascript">
+      $(function(){
+          var ctx = document.querySelector('#myChart');
 
+          new Chart(ctx, {
+            type: 'line', // bar line pie doughnut polarArea
+            data: {
+              labels: ['Red', 'Blue', 'Yellow',
+               'Green', 'Purple',],
+              datasets: [
+                {
+                label: '1data',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+              },
+              {
+                label: '2data',
+                data: [32, 29, 13, 55, 32, 13, 10],
+                borderWidth: 1
+              },
+            ]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true // y축을 반드시 0부터 시작한다
+                }
+              }
+            }
+          });
+      });
     </script>
 </head>
 <body>
@@ -26,11 +55,11 @@
 
     <div class = "container w-500">
         <div class = "cell center">
-            <h1>Title</h1>
+            <h1>차트</h1>
         </div>
 
         <div class = "cell">
-
+          <canvas id="myChart"></canvas>
         </div>
     </div>
 

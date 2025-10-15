@@ -3,26 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DatePicker</title>
     <link rel="stylesheet" type="text/css" href="./commons.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
     <style>
 
     </style>
-    <!-- jquery cdn -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- momentjs CDN-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
-    <link rel = "stylesheet" type="text/css" href = "./lightpick.css" >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/ko.min.js"></script>
+    
     <!-- 라이트 픽 js -->
+    <link rel = "stylesheet" type="text/css" href = "./lightpick.css" >
     <script src = "./lightpick.js" ></script>
+    
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
     <script type = "text/javascript">
         $(function(){
             var picker = new Lightpick({ 
-    	        field: document.querySelector("[name=date]"),
-                maxDate: moment().subtract(1, 'days'),
+                field: document.querySelector(".picker-1"),
+                //maxDate: moment().subtract(1, 'days'),
+                //numberOfMonths: 2,
             });
+
+            var picker2 = new Lightpick({ 
+                field: document.querySelector(".picker-2"),
+                format: "YYYY-MM-DD",
+                //maxDate: moment().subtract(1, 'days'),
+                //numberOfMonths: 2,
+            });
+
+            var picker3 = new Lightpick({ 
+                field: document.querySelector(".picker-3"),
+                format: "YYYY-MM-DD",
+                //maxDate: moment().subtract(1, 'days'),
+                //numberOfMonths: 2,
+                firstDay:7, // 1~7
+            });
+
+            var picker4 = new Lightpick({ 
+                field: document.querySelector(".picker-4"),
+                format: "YYYY-MM-DD",
+                maxDate: moment().subtract(1, 'days'),
+                //numberOfMonths: 2,
+                firstDay:7, // 1~7
+            });
+
+            var picker5 = new Lightpick({ 
+                field: document.querySelector(".picker-5"),
+                format: "YYYY-MM-DD",
+                minDate: moment(),
+                //numberOfMonths: 2,
+                firstDay:7, // 1~7
+            });
+
+            var picker6 = new Lightpick({ 
+                field: document.querySelector(".picker-6"),
+                format: "YYYY-MM-DD",
+                firstDay:7, // 1~7
+                //disableDates:["2025-10-22", moment().add("week"), ["2025-10-29", "2025-10-31"]],
+                disableDates:[moment().endOf("week").add(2, "days")],
+            });
+
+var picker7 = new Lightpick({ 
+    field: document.querySelector(".picker-7"),
+    format: "YYYY-MM-DD",
+    firstDay:7, // 1~7
+    secondField:document.querySelector(".picker-8"),
+    singleDate:false,
+});
+
+var picker9 = new Lightpick({ 
+    field: document.querySelector(".picker-9"),
+    format: "YYYY-MM-DD",
+    firstDay:7, // 1~7
+    numberOfMonths: 4,
+    numberOfColumns:2,
+    
+    singleDate:false,
+    //selectForward:true,
+    //selectBackward:true,
+    minDays:3,
+    maxDays:5,
+});
         });
     </script>
 </head>
@@ -35,7 +102,52 @@
         </div>
 
         <div class = "cell">
-            <input type="date" name="date">
+            <label>기본 input date</label>
+            <input type="date" class="field w-100" name="date">
+        </div>
+
+        <div class = "cell">
+            <label>lightpicker 디폴트</label>
+            <input type="text" class="field w-100 picker-1">
+        </div>
+
+        <div class = "cell"> 
+            <label>lightpicker 포맷 변경</label>
+            <input type="text" class="field w-100 picker-2">
+        </div>
+
+        <div class = "cell">
+            <label>lightpicker 시작 요일 변경</label>
+            <input type="text" class="field w-100 picker-3">
+        </div>
+
+        <div class = "cell">
+            <label>lightpicker 과거만 선택 가능</label>
+            <input type="text" class="field w-100 picker-4">
+        </div>
+
+        <div class = "cell">
+            <label>lightpicker 미래만 선택 가능</label>
+            <input type="text" class="field w-100 picker-5">
+        </div>
+        
+        <div class = "cell">
+            <label>lightpicker 특정 날짜 선택 불가</label>
+            <input type="text" class="field w-100 picker-6">
+        </div>
+
+        <div class = "cell">
+            <label>lightpicker 기간 선택</label>
+            <div class = "flex-box">
+                <input type="text" class="field w-100 picker-7">
+                <label>~</label>
+                <input type="text" class="field w-100 picker-8">
+            </div>
+        </div>
+
+        <div class = "cell">
+            <label>lightpicker 한 번에 여러 달 표시</label>
+            <input type="text" class="field w-100 picker-9">
         </div>
     </div>
 
