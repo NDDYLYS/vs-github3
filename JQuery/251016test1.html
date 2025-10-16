@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>평가 문항</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () 
+        {
+            var secret = "";
+            var maxlength = 7;
+
+            shuffleButton();
+            displayNumber();
+
+            $(".btn-clear").on("click", function () {
+                if (secret.length == 0) return;
+                secret = "";
+                displayNumber();
+            });
+            $(".btn-delete").on("click", function () {
+                if (secret.length == 0) return;
+                secret = secret.substring(0, secret.length - 1);
+                displayNumber();
+            });
+            $(".btn-shuffle").on("click", function () {
+                secret = "1";
+                displayNumber();
+            });
+            $(".btn-number").on("click", function () {
+                var number = $(this).text().trim();
+                if (number.length == 0) return;
+                if (secret.length == maxlength) return;
+
+                secret += number;
+                displayNumber();
+            });
+
+            //secret에 맞게 화면에 번호를 표시하는 함수
+            function displayNumber() 
+            {
+                var numbers = $(".number");
+                numbers.removeClass("red gray").addClass("gray");
+                for (var i = 0; i < secret.length; i++) 
+                {
+                    numbers.eq(i).removeClass("gray").addClass("red");
+                }
+            }
+
+            //키패드를 섞는 함수
+            function shuffleButton() 
+            {
+                var buttons = $(".btn-number");
+                buttons.text("");
+                
+                number = 1;
+                while(number < 10) 
+                {
+                    var index = parseInt(Math.random() * buttons.length);
+                    var text = buttons.eq(index).text();
+                    if(text == "") 
+                    {
+                        buttons.eq(index).text(number);
+                        number++;
+                    }
+                }
+
+                //번호가 없는 버튼에는 자물쇠 표시를 추가
+                for (var i = 0; i < buttons.length; i++) 
+                {
+                    if (buttons.eq(i).text() == "")
+                        buttons.eq(i).html("<i class='fa-solid fa-lock'></i>");
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container w-400">
+        <div class="cell center">
+            <h1>평가 문항</h1>
+        </div>
+        <div class="cell center">주민번호 뒷번호 7자리를 입력해 주세요</div>
+        <div class="cell center">
+            <i class="fa-solid fa-circle gray number"></i>
+            <i class="fa-solid fa-circle gray number"></i>
+            <i class="fa-solid fa-circle gray number"></i>
+            <i class="fa-solid fa-circle gray number"></i>
+            <i class="fa-solid fa-circle gray number"></i>
+            <i class="fa-solid fa-circle gray number"></i>
+            <i class="fa-solid fa-circle gray number"></i>
+        </div>
+        <div class="cell flex-box mt-30">
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-negative w-100 btn-clear"><i class="fa-solid fa-eraser"></i> 전체</button>
+        </div>
+        <div class="cell flex-box">
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-negative w-100 btn-delete"><i class="fa-solid fa-delete-left"></i> 글자</button>
+        </div>
+        <div class="cell flex-box">
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-75 btn-number me-10"></button>
+            <button class="btn btn-positive w-100 btn-shuffle"><i class="fa-solid fa-rotate-right"></i> 섞기</button>
+        </div>
+    </div>
+</body>
+
+</html>
