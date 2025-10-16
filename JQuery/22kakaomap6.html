@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+
+    </style>
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- momentjs cdn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/ko.min.js"></script>
+    <!-- chartjs cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- lightpick cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/css/lightpick.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/lightpick.min.js"></script>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c0495b79296959d8f7b0982b61fdf54"></script>
+    <script type = "text/javascript">
+        $(function(){
+            var container = document.querySelector(".kakao-map");
+            var options = {
+                center: new kakao.maps.LatLng(37.499018, 127.032894),
+                level: 1,
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+            // 지도를 클릭한 위치에 표출할 마커입니다
+            var marker = new kakao.maps.Marker({ 
+                // 지도 중심좌표에 마커를 생성합니다 
+                position: new kakao.maps.LatLng(37.499018, 127.032894),
+                clickable:true,
+            }); 
+            // 지도에 마커를 표시합니다
+            marker.setMap(map);
+
+            var origin = $("#info-template").text();
+            var div = $("<div>").html(origin);
+            div.find(".name").text("kh1").css("font-size", "24px");
+            div.find(".content").text("kh2");
+            div.find(".link").attr("href", "https://www.naver.com").text("네이버");
+
+            var infoWindow = div.html();
+            //var infoWindow = "인포윈도우";
+
+            var info = new kakao.maps.InfoWindow({
+                position:new kakao.maps.LatLng(37.499018, 127.032894),
+                content:infoWindow,
+                removable:true,
+            });
+
+            kakao.maps.event.addListener(marker, "mouseover", function(){
+                info.open(map, marker);
+            });
+
+               kakao.maps.event.addListener(marker, "mouseout", function(){
+                info.close();
+            });
+
+            //info.open(map, marker);
+        });
+    </script>
+    <script type = "text/template" id="info-template">
+        <div style = "padding:10px;">
+            <div class="name">상호명</div>
+            <div class="content">설명</div>
+            <a class="link" href="#">사이트 보기</a>
+        </div>
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-800">
+        <div class = "cell center">
+            <h1>Kakao Map</h1>
+        </div>
+
+        <div class = "cell">
+            <div class="kakao-map w-100" style="height:300px;">
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
