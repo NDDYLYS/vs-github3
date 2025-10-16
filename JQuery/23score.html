@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별점 유틸</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="../score.js"></script>
+    <script>
+        $(function(){
+            $(".test-score1").score();
+            $(".test-score2").score({
+                editable:true,
+                display:{
+                    showNumber:true,
+                    placeLimit:2
+                }
+            });
+            $(".test-score3").score({
+                editable:true,
+                integerOnly:true,
+                display:{
+                    showNumber:true
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>별점 표시(1) - 5점 만점에 4점</h1>
+    <div class="test-score1" data-max="5" data-rate="4"></div>
+    <h1>별점 표시(2) - 5점 만점에 4.5점(점수 표시 - 소수점 2자리)</h1>
+    <div class="test-score2" data-max="5" data-rate="4.5"></div>
+    <h1>별점 표시(3) - 클릭 수정 가능(점수 표시 - 소수점 1자리)</h1>
+    <div class="test-score3" data-max="5"></div>
+</body>
+</html>
