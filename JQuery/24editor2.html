@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./commons.css">
+  <!-- font-awesome -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <!-- jquery cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- summernote -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+  <style>
+    .note-editor {
+      border: 1px solid #636e72 !important;
+    }
+
+    .note-editable {
+      background-color: white;
+    }
+  </style>
+  <script type="text/javascript">
+    $(function () {
+      $(".summernote-editor").summernote({
+        height: 250, // set editor height
+        minHeight: 200, // set minimum height of editor
+        maxHeight: 400, // set maximum height of editor
+
+        placeholder: "타인 죽는다?",
+        toolbar: [
+          ["font", ["style", "fontname", "fontsize", "forecolor", "backcolor"]],
+          ["style", ["bold", "italic", "underline", "strikethrough"]],
+          ["attach", ["picture"]],
+          ["tool", ["ol", "ul", "paragraph", "table", "hr", "fullscreen"]],
+        ],
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+
+  <div class="container w-800">
+    <div class="cell center">
+      <h1>게시글 작성</h1>
+    </div>
+
+    <div class="cell">
+      <label>제목</label>
+      <input type="text" name="boardTitle" class="field w-100">
+    </div>
+
+    <div class="cell">
+      <label>내용</label>
+      <textarea name="boardContent" class="summernote-editor"></textarea>
+    </div>
+
+    <div class="cell">
+      <button type="submit" class="btn btn-positive w-100">글쓰기</button>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
