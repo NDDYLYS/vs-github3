@@ -20,6 +20,11 @@
     rel="stylesheet">
 
   <style>
+    @media (min-width:768px) {
+      .w-md-auto {
+        width: auto !important;
+      }
+    }
   </style>
 
   <script type="text/javascript">
@@ -75,8 +80,8 @@
 
 <body>
 
-<!-- 컨테이너 -->
-<form action="add" method="post" enctype="multipart/form-data" class="form-control"></form>
+  <!-- 컨테이너 -->
+  <form action="add" method="post" enctype="multipart/form-data" class="form-control"></form>
   <div class="container mt-4">
 
     <!-- 점보트론(jumbotron) -->
@@ -107,7 +112,7 @@
         <div class="invalid-feedback">옳지 못한 국어점수입니다.</div>
       </div>
     </div>
-    
+
     <div class="row mt-4">
       <div class="col">
         <label>영어점수 <i class="fa-solid fa-asterisk text-danger"></i></label>
@@ -134,15 +139,27 @@
     </div>
 
     <div class="row mt-5">
-      <div class="col">
-        <button type="submit" class="btn btn-primary w-100">
+      <div class="col text-end">
+        <button type="submit" class="btn btn-primary w-md-auto">
           <i class="fa-solid fa-floppy-disk"></i>
           <span>학생 등록</span>
         </button>
       </div>
     </div>
+
+    <div class="row mt-5">
+      <div class="col text-start">
+        123
+      </div>
+      <div class="col text-center">
+        123
+      </div>
+      <div class="col text-end">
+        123
+      </div>
+    </div>
   </div>
-</form>
+  </form>
 
 
 </body>
