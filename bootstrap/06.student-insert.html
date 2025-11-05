@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <!-- font-awesome -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <!-- jquery cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.8/flatly/bootstrap.rtl.min.css"
+    rel="stylesheet">
+
+  <style>
+  </style>
+
+  <script type="text/javascript">
+    $(function () {
+      var state = {
+        studentNameValid: false,
+        studentKorValid: false,
+        studentEngValid: false,
+        studentMatValid: false,
+        ok: function () {
+          return this.studentNameValid &&
+            this.studentKorValid &&
+            this.studentEngValid &&
+            this.studentMatValid;
+        }
+      };
+
+      $("[name=studentName]").on("blur", function () {
+        var regex = /^[가-힣]{2,7}$/;
+        var valid = regex.test(this.value);
+        $(this).removeClass("is-valid is-invalid").addClass(valid ? "is-valid" : "is-invalid");
+        state.studentNameValid = valid;
+      });
+
+      $("[name=studentKor]").on("blur", function () {
+        var score = parseInt($(this).val());
+        var valid = score >= 0 && score <= 100;
+        $(this).removeClass("is-valid is-invalid").addClass(valid ? "is-valid" : "is-invalid");
+        state.studentKorValid = valid;
+      });
+
+      $("[name=studentEng]").on("blur", function () {
+        var score = parseInt($(this).val());
+        var valid = score >= 0 && score <= 100;
+        $(this).removeClass("is-valid is-invalid").addClass(valid ? "is-valid" : "is-invalid");
+        state.studentEngValid = valid;
+      });
+
+      $("[name=studentMat]").on("blur", function () {
+        var score = parseInt($(this).val());
+        var valid = score >= 0 && score <= 100;
+        $(this).removeClass("is-valid is-invalid").addClass(valid ? "is-valid" : "is-invalid");
+        state.studentMatValid = valid;
+      });
+
+      $(".form-control").on("submit", function () {
+        $(this).find("[name]").trigger("blur");
+        return state.ok();
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+<!-- 컨테이너 -->
+<form action="add" method="post" enctype="multipart/form-data" class="form-control"></form>
+  <div class="container mt-4">
+
+    <!-- 점보트론(jumbotron) -->
+    <div class="row">
+      <div class="col">
+        <div class="bg-dark text-light p-4 rounded-4">
+          <h1>학생 등록</h1>
+          <p>학생을 새로 등록합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 컨텐츠 내용 -->
+    <div class="row mt-4">
+      <div class="col">
+        <label>학생 이름 <i class="fa-solid fa-asterisk text-danger"></i></label>
+        <input type="text" name="studentName" class="form-control" placeholder="">
+        <div class="valid-feedback">훌륭한 학생 이름입니다.</div>
+        <div class="invalid-feedback">잘못된 학생 이름입니다.</div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <label>국어점수 <i class="fa-solid fa-asterisk text-danger"></i></label>
+        <input type="number" name="studentKor" class="form-control" placeholder="0~100" inputmode="numeric">
+        <div class="valid-feedback">올바른 국어점수입니다.</div>
+        <div class="invalid-feedback">옳지 못한 국어점수입니다.</div>
+      </div>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col">
+        <label>영어점수 <i class="fa-solid fa-asterisk text-danger"></i></label>
+        <input type="number" name="studentEng" class="form-control" placeholder="0~100" inputmode="numeric">
+        <div class="valid-feedback">올바른 영어점수입니다.</div>
+        <div class="invalid-feedback">옳지 못한 영어점수입니다.</div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <label>수학점수 <i class="fa-solid fa-asterisk text-danger"></i></label>
+        <input type="number" name="studentMat" class="form-control" placeholder="0~100" inputmode="numeric">
+        <div class="valid-feedback">올바른 수학점수입니다.</div>
+        <div class="invalid-feedback">옳지 못한 수학점수입니다.</div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <label>학생 사진 <i class="fa-solid fa-asterisk text-danger"></i></label>
+        <input type="file" name="attach" accept=".png,.jpg" class="form-control">
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col">
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>학생 등록</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+</body>
+
+</html>

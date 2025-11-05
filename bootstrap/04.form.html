@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <!-- font-awesome -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.8/flatly/bootstrap.rtl.min.css" rel="stylesheet">
+
+    <style>
+    </style>
+
+    <script type="text/javascript">
+        $(function(){
+
+        });
+    </script>
+  </head>
+  <body>
+
+    <!-- 컨테이너 -->
+    <div class="container my-5">
+
+        <!-- 점보트론(jumbotron) -->
+        <div class="row">
+            <div class="col">
+                <div class="bg-dark text-light p-4 rounded">
+                    <h1>Form Design</h1>
+                    <p>부트스트랩에서 Form 구성요소를 디자인한다</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 컨텐츠 내용 -->
+        <div class="row mt-4">
+            <div class="col">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <textarea class="form-control" rows="10" cols="6"></textarea>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <select class="form-select text-center">
+                    <option>사과</option>
+                    <option>배</option>
+                    <option>포도</option>
+                </select>
+            </div>
+        </div>
+        <!-- 라벨과 입력창에 높이 차는 col-form-label로 해결 -->
+        <div class="row mt-4">
+            <label class="col-3 col-form-label text-center">아이디 <i class="fa-solid fa-asterisk text-danger"></i></label>
+            <div class="col-9">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <label class="col-sm-3 col-form-label text-sm-center">아이디 <i class="fa-solid fa-asterisk text-danger"></i></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+
+        <!-- feedback -->
+        <!-- 성공 실패가 아니라 유효한지 아닌지로 구분한다
+         is-valid, is-invalid -->
+        <div class="row mt-4">
+            <label class="col-sm-3 col-form-label text-sm-center">아이디 <i class="fa-solid fa-asterisk text-danger"></i></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control is-valid">
+                <div class="valid-feedback">멋진아이디</div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <label class="col-sm-3 col-form-label text-sm-center">아이디 <i class="fa-solid fa-asterisk text-danger"></i></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control is-invalid">
+                <div class="invalid-feedback">나쁜아이디</div>
+            </div>
+        </div>
+
+        <!-- 플로팅 입력창 -->
+        <div class="row mt-4">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" placeholder="보이지 않지만 있어야 한다">
+                    <label>아이디123</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  </body>
+</html>
