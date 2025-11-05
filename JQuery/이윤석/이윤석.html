@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <style>
+        .btn-round{
+            border-radius: 10px;
+            padding-left: 20px;
+        }
+
+        .btn-not-send:hover{
+            cursor: not-allowed;
+        }
+
+        .btn-send:hover{
+            cursor: pointer;
+        }
+    </style>
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- momentjs cdn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/ko.min.js"></script>
+    <!-- chartjs cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- lightpick cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/css/lightpick.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/lightpick.min.js"></script>
+
+    <script type = "text/javascript">
+        $(function(){
+            $("#pw-switch").hide();
+            $(".hide-pw").show();
+            $(".show-pw").hide();
+            $(".btn-this").removeClass("btn-send").addClass("btn-not-send");
+            //$(".btn-this").attr("disabled", true);
+
+            $(".input-onlyNumber").on("input", function(){
+                var regex = /^[0-9]$/;
+                var valid = regex.test($(this).val());
+                if (valid){
+                    var count = $(this).val().length;
+                    if (count >= 1)
+                        $(this).next().focus();
+                }
+                else
+                    $(this).val("");
+
+                allCheck();
+            });
+
+            $(".input-onlyNumber").keydown(function (e) {
+                if(e.keyCode == 8) {
+                    var count = $(this).val().length;
+                    if (count >= 1)
+                        $(this).val("");
+                    else
+                        $(this).prev().focus();
+
+                    allCheck();
+                }
+            })
+
+            $("#pw-switch").on("input", function(){
+                pwSwitch();
+            });
+
+            function pwSwitch(){
+                $("#pw-switch").change(function(){
+                    if($("#pw-switch").is(":checked")){
+                        $(".hide-pw").hide();
+                        $(".show-pw").show();
+                        $('.input-onlyNumber').attr("type", "text");
+                    }
+                    else{
+                        $(".hide-pw").show();
+                        $(".show-pw").hide();
+                        $('.input-onlyNumber').attr("type", "password");
+                    }
+                });
+            }
+
+            function allCheck(){
+                var ok = true;
+                $(".input-onlyNumber").each(function(){
+                    var count = $(this).val().length;
+                    if (count != 1)
+                        ok = false;
+                });
+                // 버튼을 비활성화 시키는 기능이 안 되는 중
+                if (ok){
+                    $(".btn-this").removeClass("btn-not-send").addClass("btn-send");
+                    //$(".btn-this").attr("disabled", false);
+                }
+                else {
+                    $(".btn-this").removeClass("btn-send").addClass("btn-not-send");
+                    //$(".btn-this").attr("disabled", true);
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+
+
+    <div class = "container w-400">
+        <div class = "cell center">
+            <h1>평가 문항</h1>
+        </div>
+        <div class = "cell center">
+            <h4>인증번호를 입력하세요</h4>
+        </div>
+
+        <div class = "cell center flex-box flex-center">
+            <input type="password" class="input-onlyNumber field w-50 me-10 btn-round">
+            <input type="password" class="input-onlyNumber field w-50 ms-10 me-10 btn-round">
+            <input type="password" class="input-onlyNumber field w-50 ms-10 me-10 btn-round">
+            <input type="password" class="input-onlyNumber field w-50 ms-10 me-10 btn-round">
+            <input type="password" class="input-onlyNumber field w-50 ms-10 me-10 btn-round">
+            <input type="password" class="input-onlyNumber field w-50 ms-10 btn-round">
+        </div>
+
+        <div class = "cell left">
+            <input type="checkbox" id="pw-switch">
+            <label for="pw-switch">
+                <div class="hide-pw red">
+                    <i class="fa-regular fa-eye-slash"></i> 현재 번호 숨김 중 (눌러서 표시)
+                </div>    
+                <div class="show-pw blue">
+                    <i class="fa-solid fa-eye"></i> 현재 번호 표시 중 (눌러서 숨김)
+                </div>
+            </label>
+        </div>
+        <br>
+        <div class = "cell">
+            <button type="button" class="btn-this btn btn-positive w-100">
+                <i class="fa-solid fa-arrow-right"></i> 다음 단계로
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
