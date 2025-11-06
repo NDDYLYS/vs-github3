@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap word-break 예제</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* 추가 커스텀 유틸리티 (원하면 .css 파일에 넣으세요) */
+    .break-all { word-break: break-all; }        /* 글자 단위로 강제 분할 */
+    .keep-all { word-break: keep-all; }          /* CJK에서 단어 내부 분할 금지 */
+    .wrap-anywhere { overflow-wrap: anywhere; }  /* 가능한 곳에서 줄바꿈 */
+    .demo-box { min-height: 100px; }
+  </style>
+</head>
+<body class="bg-light py-4">
+  <div class="container">
+    <h1 class="mb-4">Bootstrap + word-break 데모</h1>
+
+    <div class="row g-3">
+      <!-- 1. Bootstrap 유틸 .text-break -->
+      <div class="col-md-6">
+        <div class="card demo-box">
+          <div class="card-body">
+            <h5 class="card-title">Bootstrap 유틸: <code>.text-break</code></h5>
+            <p class="card-text text-break">
+              <!-- 긴 한 단어(공백 없음) -->
+              이것은매우매우길고끊어지지않는문자열examplelongwordwithoutanyspaceswhichwouldoverflowthecontainerunlessitbreaks
+            </p>
+            <p class="small text-muted">설명: Bootstrap의 <code>.text-break</code>는 긴 단어나 URL이 컨테이너를 벗어나지 않도록 줄바꿈을 허용합니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. CSS: break-all -->
+      <div class="col-md-6">
+        <div class="card demo-box">
+          <div class="card-body">
+            <h5 class="card-title">CSS: <code>word-break: break-all</code></h5>
+            <p class="card-text break-all">
+              examplelongwordwithoutanyspaceswhichwouldoverflowthecontainerunlessitbreaks 그리고또다른아주아주긴한글문장입니다한글도글자단위로강제로끊어집니다
+            </p>
+            <p class="small text-muted">설명: 글자 단위로 강제 분할하므로 영어 단어도 글자 단위로 잘립니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CSS: keep-all (한글에서 단어 내부 줄바꿈 방지) -->
+      <div class="col-md-6">
+        <div class="card demo-box">
+          <div class="card-body">
+            <h5 class="card-title">CSS: <code>word-break: keep-all</code></h5>
+            <p class="card-text keep-all">
+              이것은공백이없는한글데모문장이에요한글의특성상단어사이에줄바꿈을하지않게됩니다예시문장입니다예시문장예시문장
+            </p>
+            <p class="small text-muted">설명: 한글(또는 CJK)에서 단어 내부 분할을 막고 가능한 한 단위(어절)로 줄바꿈을 유지합니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. overflow-wrap: anywhere (브라우저 호환성을 위해 사용) -->
+      <div class="col-md-6">
+        <div class="card demo-box">
+          <div class="card-body">
+            <h5 class="card-title">CSS: <code>overflow-wrap: anywhere</code></h5>
+            <p class="card-text wrap-anywhere">
+              https://www.example.com/this/is/a/very/long/url/that/usually/would/overflow/the/container/unless/it/is/wrapped/by/some/strategy
+            </p>
+            <p class="small text-muted">설명: 긴 URL처럼 자연스러운 줄바꿈 포인트가 없을 때 유용합니다. 일부 오래된 브라우저는 지원이 다를 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS (옵션) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./show-div.css"> -->
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.8/cosmo/bootstrap.min.css">
+
+    <style>
+        .content-viewport {
+            /* 줄바꿈시 글자 단위로 처리 */
+            word-break: break-all;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <!-- 전체 컨테이너 -->
+    <div class="container my-5">
+
+        <!-- 화면을 통제하기 위한 추가 코드 (화면이 넓을 경우와 좁을 경우) -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+
+
+
+                <!-- 게시글 목록 테이블 -->
+                <div class="row mt-4">
+                    <div class="col">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item p-0 mb-4">
+                                <div class="border border-secondary shadow p-2 rounded">
+                                    <div class="row text-nowrap">
+                                        <div class="col-9 fs-3 text-truncate">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada
+                                            aliquet felis,
+                                        </div>
+                                        <div class="col-3 text-end text-primary">
+                                            Lorem
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col content-viewport" style="word-break: break-all;">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada
+                                            aliquet felis, sit amet malesuada risus fringilla et. Fusce volutpat
+                                            lobortis ante, sed congue turpis scelerisque ut. Sed eu enim non nisi
+                                            fermentum consequat non sed velit. Mauris est est, elementum a quam id,
+                                            consectetur aliquet odio. Vivamus imperdiet diam at iaculis accumsan.
+                                            Praesent mollis, elit ac rutrum maximus, lorem urna tincidunt elit,
+                                            ultricies fringilla ipsum ex et mi. Donec libero felis, viverra sed
+                                            facilisis at, fringilla a metus. Praesent venenatis viverra gravida. Donec
+                                            ullamcorper mi et gravida viverra.
+                                            Nullam porttitor vulputate risus, ut varius orci convallis ac. Pellentesque
+                                            dapibus eget mauris nec dapibus. Nullam dictum fringilla ante eu ultrices.
+                                            Donec gravida elementum neque, a feugiat nisl consectetur vitae. Nunc
+                                            tempor, ligula sit amet venenatis fringilla, massa elit faucibus quam, sed
+                                            posuere sem sapien et diam. Morbi scelerisque sem tortor, ac gravida ante
+                                            blandit et. Duis pulvinar sollicitudin consectetur. Nullam faucibus ex non
+                                            ante rhoncus imperdiet. Aliquam vestibulum eros volutpat viverra finibus.
+                                            Duis ullamcorper, velit nec accumsan vestibulum, lectus ex posuere nisi, nec
+                                            vehicula erat augue id leo.
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-8">
+                                            <div class="d-flex">
+                                                <div class="text-primary">
+                                                    <i class="fa-solid fa-eye"></i> <span>110</span>
+                                                </div>
+                                                <div class="ms-4 text-danger">
+                                                    <i class="fa-solid fa-heart"></i> <span>52</span>
+                                                </div>
+                                                <div class="ms-4 text-secondary">
+                                                    <i class="fa-solid fa-list"></i> <span>7</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 text-end text-muted">
+                                            5분전
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item p-0 mb-4">
+                                <div class="border border-secondary shadow p-2 rounded">
+                                    <div class="row text-nowrap">
+                                        <div class="col-9 fs-3 text-truncate">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada
+                                            aliquet felis,
+                                        </div>
+                                        <div class="col-3 text-end text-primary">
+                                            Lorem
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col content-viewport" style="word-break: break-all;">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada
+                                            aliquet felis, sit amet malesuada risus fringilla et. Fusce volutpat
+                                            lobortis ante, sed congue turpis scelerisque ut. Sed eu enim non nisi
+                                            fermentum consequat non sed velit. Mauris est est, elementum a quam id,
+                                            consectetur aliquet odio. Vivamus imperdiet diam at iaculis accumsan.
+                                            Praesent mollis, elit ac rutrum maximus, lorem urna tincidunt elit,
+                                            ultricies fringilla ipsum ex et mi. Donec libero felis, viverra sed
+                                            facilisis at, fringilla a metus. Praesent venenatis viverra gravida. Donec
+                                            ullamcorper mi et gravida viverra.
+                                            Nullam porttitor vulputate risus, ut varius orci convallis ac. Pellentesque
+                                            dapibus eget mauris nec dapibus. Nullam dictum fringilla ante eu ultrices.
+                                            Donec gravida elementum neque, a feugiat nisl consectetur vitae. Nunc
+                                            tempor, ligula sit amet venenatis fringilla, massa elit faucibus quam, sed
+                                            posuere sem sapien et diam. Morbi scelerisque sem tortor, ac gravida ante
+                                            blandit et. Duis pulvinar sollicitudin consectetur. Nullam faucibus ex non
+                                            ante rhoncus imperdiet. Aliquam vestibulum eros volutpat viverra finibus.
+                                            Duis ullamcorper, velit nec accumsan vestibulum, lectus ex posuere nisi, nec
+                                            vehicula erat augue id leo.
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-8">
+                                            <div class="d-flex">
+                                                <div class="text-primary">
+                                                    <i class="fa-solid fa-eye"></i> <span>110</span>
+                                                </div>
+                                                <div class="ms-4 text-danger">
+                                                    <i class="fa-solid fa-heart"></i> <span>52</span>
+                                                </div>
+                                                <div class="ms-4 text-secondary">
+                                                    <i class="fa-solid fa-list"></i> <span>7</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 text-end text-muted">
+                                            5분전
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
