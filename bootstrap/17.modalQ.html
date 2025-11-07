@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <!-- font-awesome -->
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    rel="stylesheet">
+  <!-- commons -->
+  <link rel="stylesheet" type="text/css" href="./show-div.css">
+
+  <!-- jquery cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.8/flatly/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+  </style>
+
+  <script type="text/javascript">
+    $(function () {
+        $(".btn-modal-open").on("click", function(){
+            var target = document.querySelector("#questionModal");
+            var modal = bootstrap.Modal.getOrCreateInstance(target);
+            modal.show();
+
+            $("#checkbox").prop("checked", false);
+        });
+
+        $(".btn-close").on("click", function(){
+            var choice = confirm("정말로 구매를 취소하시겠습니까?");
+            if (choice == false)
+                return;
+
+            var target = document.querySelector("#questionModal");
+            var modal = bootstrap.Modal.getInstance(target);
+            modal.hide();
+        });
+
+        $(".btn-modal-close").on("click", function(){
+            var choice = confirm("정말로 구매를 취소하시겠습니까?");
+            if (choice == false)
+                return;
+
+            var target = document.querySelector("#questionModal");
+            var modal = bootstrap.Modal.getInstance(target);
+            modal.hide();
+        });
+
+        $(".btn-modal-continue").on("click", function(){
+            var check = document.querySelector("#checkbox");
+            if (check.checked)
+                location.href = "https://google.com";
+            else
+                alert("체크가 되어 있지 않습니다.");
+        });
+    });
+  </script>
+</head>
+
+<body>
+
+  <!-- 컨테이너 -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4 offset-md-4 col-sm-10 offset-sm-1">
+        <!-- 점보트론(jumbotron) -->
+        <div class="row">
+          <div class="col">
+            <div class="bg-dark text-light p-4 rounded-4">
+              <h1>Modal 문제</h1>
+              <p>모달 문제에 대해 알아본다</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 컨텐츠 내용 -->
+        <div class="row mt-4">
+          <div class="col">
+            <button type="button" class="btn btn-primary btn-modal-open">구매하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" id="questionModal" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">                
+                <h5 class="modal-title">전자상거래 주의사항</h5>
+                <button type="button" class="btn-close"
+                data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="checkbox" class="input-control" id="checkbox">
+                        <label for="checkbox">모든 주의사항을 확인하였습니다.</label>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary btn-modal-close">
+                            <label>구매 취소</label>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-primary btn-modal-continue">
+                            <label>계속 진행</label>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+</body>
+
+</html>
