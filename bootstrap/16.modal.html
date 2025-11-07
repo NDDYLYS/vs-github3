@@ -25,16 +25,28 @@
 
   <script type="text/javascript">
     $(function () {
+        // $(".btn-modal-open").on("click", function(){
+        //     var choice = window.confirm("real open?");
+        //     if (choice)
+        //         $("#modal03").modal("show");
+        // });
+
+        // $(".btn-modal-close").on("click", function(){
+        //     var choice = window.confirm("real close?");
+        //     if (choice)
+        //         $("#modal03").modal("hide");
+        // });
+
         $(".btn-modal-open").on("click", function(){
-            var choice = window.confirm("real open?");
-            if (choice)
-                $("#modal03").modal("show");
+            var target = document.querySelector("#modal03");
+            var modal = bootstrap.Modal.getOrCreateInstance(target);
+            modal.show();
         });
 
         $(".btn-modal-close").on("click", function(){
-            var choice = window.confirm("real close?");
-            if (choice)
-                $("#modal03").modal("hide");
+            var target = document.querySelector("#modal03");
+            var modal = bootstrap.Modal.getInstance(target);
+            modal.hide();
         });
     });
   </script>
