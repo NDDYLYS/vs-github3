@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>평가</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hiphop5782/css@latest/commons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            var status = {
+                memberPw1 : false,
+                memberPw2 : false,
+                memberPw3 : false,
+                memberPw4 : false,
+                memberPw5 : false,
+                memberPw6 : false,
+                save: function(c1, c2, c3, c4, c5, c6) {
+                    this.memberPw1 = c1;
+                    this.memberPw2 = c2;
+                    this.memberPw3 = c3;
+                    this.memberPw4 = c4;
+                    this.memberPw5 = c5;
+                    this.memberPw6 = c6;
+                },
+                progress: function(){
+                    var count = 0;
+                    if(this.memberPw1) count++;
+                    if(this.memberPw2) count++;
+                    if(this.memberPw3) count++;
+                    if(this.memberPw4) count++;
+                    if(this.memberPw5) count++;
+                    if(this.memberPw6) count++;
+                    return count;
+                },
+                ok: function(){
+                    return this.memberPw1 && this.memberPw2 
+                    && this.memberPw3 && this.memberPw4 
+                    && this.memberPw5 && this.memberPw6;
+                },
+            };
+
+            $("[name=memberPw]").on("input", function(){
+                var password = $(this).val();
+
+                var condition1 = password.length >= 8 && password.length <= 16;
+                var condition2 = /^[A-Za-z0-9!@#$]+$/.test(password);
+                var condition3 = /[A-Z]+/.test(password);
+                var condition4 = /[a-z]+/.test(password);
+                var condition5 = /[0-9]+/.test(password);
+                var condition6 = /[!@#$]+/.test(password);
+
+                status.save(condition1, condition2, condition3, condition4, condition5, condition6);
+
+                $(".condition-wrapper").eq(0).removeClass("blue red").addClass(condition1 ? "blue" : "red")
+                .find("i").removeClass("fa-o fa-xmark").addClass(condition1? "fa-o" : "fa-xmark");
+                $(".condition-wrapper").eq(1).removeClass("blue red").addClass(condition2 ? "blue" : "red")
+                .find("i").removeClass("fa-o fa-xmark").addClass(condition2? "fa-o" : "fa-xmark");
+                $(".condition-wrapper").eq(2).removeClass("blue red").addClass(condition3 ? "blue" : "red")
+                .find("i").removeClass("fa-o fa-xmark").addClass(condition3? "fa-o" : "fa-xmark");
+                $(".condition-wrapper").eq(3).removeClass("blue red").addClass(condition4 ? "blue" : "red")
+                .find("i").removeClass("fa-o fa-xmark").addClass(condition4? "fa-o" : "fa-xmark");
+                $(".condition-wrapper").eq(4).removeClass("blue red").addClass(condition5 ? "blue" : "red")
+                .find("i").removeClass("fa-o fa-xmark").addClass(condition5? "fa-o" : "fa-xmark");
+                $(".condition-wrapper").eq(5).removeClass("blue red").addClass(condition6 ? "blue" : "red")
+                .find("i").removeClass("fa-o fa-xmark").addClass(condition6? "fa-o" : "fa-xmark");
+                
+                $(".condition-summary").removeClass("blue red").addClass(status.ok() ? "blue" : "red")
+                $(".condition-summary")
+                .find("i").removeClass("fa-lock fa-lock-open").addClass(status.ok() ? "fa-lock" : "fa-lock-open");
+                $(".condition-summary").find(".current").text(status.progress());
+
+                $(".btn-next").prop("disabled", status.ok() == false);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container w-800">
+        <div class="cell center">
+            <h1>비밀번호 입력</h1>
+        </div>
+        <div class="cell">
+            모든 요구 형식을 만족하는 비밀번호를 설정하세요
+        </div>
+
+        <div class="cell mt-50">
+            <label>비밀번호 입력 <i class="fa-solid fa-asterisk red"></i></label>
+            <input type="password" name="memberPw" class="field w-100">
+        </div>
+        <div class="cell">
+            <div class="condition-summary red mb-10"><i class="fa-solid fa-lock-open me-10"></i>총 6개 항목 중 <span class="current">0</span>개 항목 달성</div>
+            <div class="condition-wrapper red"><i class="fa-solid fa-xmark"></i>비밀번호는 8글자 이상 16글자 이하로 작성해야 합니다.</div>
+            <div class="condition-wrapper red"><i class="fa-solid fa-xmark"></i>비밀번호는 알파벳 대소문자, 숫자, 특수문자(!, @, #, $)로만 작성 가능합니다.</div>
+            <div class="condition-wrapper red"><i class="fa-solid fa-xmark"></i>비밀번호에 반드시 알파벳 대문자가 1개 이상 포함되어야 합니다.</div>
+            <div class="condition-wrapper red"><i class="fa-solid fa-xmark"></i>비밀번호에 반드시 알파벳 소문자가 1개 이상 포함되어야 합니다.</div>
+            <div class="condition-wrapper red"><i class="fa-solid fa-xmark"></i>비밀번호에 반드시 숫자가 1개 이상 포함되어야 합니다.</div>
+            <div class="condition-wrapper red"><i class="fa-solid fa-xmark"></i>비밀번호에 반드시 특수문자(!, @, #, $)가 1개 이상 포함되어야 합니다.</div>
+        </div>
+
+        <div class="cell mt-40">
+            <button type="button" 
+            class="btn btn-positive w-100 btn-next" 
+            disabled>다음 단계로 <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</body>
+</html>
