@@ -25,7 +25,17 @@
 
   <script type="text/javascript">
     $(function () {
+        $(".btn-modal-open").on("click", function(){
+            var choice = window.confirm("real open?");
+            if (choice)
+                $("#modal03").modal("show");
+        });
 
+        $(".btn-modal-close").on("click", function(){
+            var choice = window.confirm("real close?");
+            if (choice)
+                $("#modal03").modal("hide");
+        });
     });
   </script>
 </head>
@@ -55,6 +65,8 @@
             
             <button type="button" class="btn btn-primary" data-bs-target="#modal02"
             data-bs-toggle="modal">2번 모달 열기</button>
+
+            <button type="button" class="btn btn-primary btn-modal-open">3번 모달 수동으로 열기</button>
           </div>
         </div>
       </div>
@@ -80,7 +92,7 @@
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="modal02">
+<div class="modal fade" tabindex="-1" id="modal02" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">                
@@ -94,6 +106,22 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary"
                 data-bs-dismiss="modal">닫기2</button>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="modal03" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">                
+                <h5 class="modal-title">제목3</h5>
+            </div>
+            <div class="modal-body">
+                내용3
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-modal-close">닫기</button>
             </div>
         </div>       
     </div>
