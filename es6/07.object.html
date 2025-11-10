@@ -1,0 +1,47 @@
+<script>
+    // 객체 다루는 법 변화
+    // 옵저버 패턴 : 원본은 변경하지 않는다
+
+    const a = {
+        no: 4,
+        name: "파이리",
+        type: "불"
+    };
+
+    //a.name="피카츄"; // 원본을 수정
+
+    const b = {
+        no: a.no,
+        name: "피카츄",
+        type: a.type
+    };
+
+
+    const c = {
+        ...a,
+        name:"라이츄"
+    };
+
+    
+    //console.log(a);
+    //console.log(b);
+    //console.log(c);
+
+    // const name = c.name;
+    // const type = c.type;
+    // console.log("before:"+name, type);
+
+
+    /*
+    구조 분해 할당(destructuring assignment)
+    객체에서 원하는 항목을 골라서 변수화 시키는 방법
+    */
+    const {name, type} = c;
+    //console.log(name, type);
+
+    // 배열도 가능
+    const numbers = [10,20,30,40,50];
+    const [n2, , , ddd9] = numbers;
+    console.log(n2, ddd9);
+
+</script>
