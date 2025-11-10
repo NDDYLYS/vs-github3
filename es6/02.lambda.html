@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    /* 람다(Lambda)의 사용
+     - 추론을 통해 완성되는 축약식(함수)
+     function plus(a, b){
+        return a+b;
+     }
+    ES5
+    const v1 = plus(10, 20); 함수를 호출
+    console.log(v1);
+
+    ES6
+    const add = (a, b)=>a+b; // const add = (a, b)=>{return a+b};
+    const v2 = add(10, 20);
+    console.log(v2);
+
+    모던 자바스크립트에서는 람다 활용한 축약표현이 주류를 이룬다
+    (ex)다음 배열에서 30 이하인 데이터만 새로운 배열로 복사하세요
+    ES5
+    var a = [10,20,30,40,50];
+    var b = [];
+    for(var i=0;i<a.length;i++)
+    {
+        if(a[i]<=30)
+            b.push(a[i]);
+    }
+    
+    첫번째 변화 > filter라는 함수로 데이터를 필터링, forEach 함수로 반복작업
+    const c=a.filter(function(number){
+        if (number <= 30)
+            return true; 옮겨담아
+        else
+            return false; 옮겨담지마
+    });
+    c.forEach(function(number){
+        console.log(number);
+    });
+
+    ---------------------------
+    두번째 변화 - 코드량을 줄이고 체이닝 사용으로 변경
+    a.filter(function(number){
+        return number<=30;
+    }).forEach(function(number){
+        console.log(number);
+    });
+
+    ----------------------------
+    세번째 변화 - 람다로 변화
+    a.filter((number)=>){
+        return number<=30;
+    })
+    .forEach((number)=>{
+        console.log(number);
+    });
+
+    ----------------------------
+    네번째 변화 - 함수 바디 제거, 형태 최소화
+    a.filter((number)=>number<=30)
+    .forEach((number)=>console.log(number));
+    */
+</script>
