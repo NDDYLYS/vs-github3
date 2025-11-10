@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1>Hello React</h1>
+      <marquee behavior="alternate" scrollamount="33"><h1>KH 정보교육원</h1></marquee>
     </>
   )
 }
