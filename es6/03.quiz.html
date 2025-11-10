@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    const data=[1,2,3,4,5,6,7,8,9,10];
+
+    // data.filter((number)=>number%2==0).map(number=>number * number)
+    // .forEach((number)=>console.log("even:"+number));
+
+    // data.map(number=>number * number)
+    // .forEach((number)=>console.log("all:"+number));
+
+    data
+    .filter((number)=>number%2==1)
+    .map(number=>number * number)
+    .forEach((number)=>console.log("odd:"+number));
+    
+    data
+    .filter((number)=>number%2==0)
+    .map(number=>number * number)
+    .forEach((number)=>console.log("even:"+number));
+
+    data
+    .map(number=>number * number)
+    .forEach((number)=>console.log("all:"+number));
+
+    data
+    .forEach((number)=>console.log("data:"+number));
+
+</script>
