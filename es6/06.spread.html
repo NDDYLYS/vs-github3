@@ -1,0 +1,31 @@
+<script>
+    // const a=[10,20,30,50];
+    // const b=[30,50,60];
+
+    // const c=[];
+    // for(let i=0;i<a.length;i++)
+    //     c.push("a-"+a[i]);
+    // for(let i=0;i<b.length;i++)
+    //     c.push("b-"+b[i]);
+    // for(let i=0;i<c.length;i++)
+    //     console.log("c:"+c[i]);
+
+    // // ES6 - 기초구문 최소화
+    // // concat 원본 변경 없이 두 배열을 합친다
+    // a.concat(b).forEach((number)=>console.log("concat:"+number));
+    // // 전개연산(...)을 이용하면 배열을 반복문 없이 풀어헤칠 수 있다(spread operator)
+    // const d =[...a, ...b];
+    // d.forEach((number)=>console.log("spread:"+number));
+
+    const d1=[10,20,30,40,50];
+    const d2=[1,2,3,4,5];
+
+    const d4 = d1.map(number=>number * 2);
+    const d5 = d2.map(number=>number*number);
+
+    const d3=[...d4, ...d5];
+    d3
+    .filter(number=>number%3==0)
+    .sort((a, b)=>b-a)
+    .forEach(number=>console.log("filter-d3:"+number));
+</script>
