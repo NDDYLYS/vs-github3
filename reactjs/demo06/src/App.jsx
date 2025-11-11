@@ -35,14 +35,32 @@ export default function App() {
             </div>
 
             <div className="row mb-5">
-                
-              <Exam01></Exam01>
-              <hr className="my-5"/>
-              <Exam02></Exam02>
-              <hr className="my-5"/>
-              <Exam03></Exam03>
-              <hr className="my-5"/>
-              <Exam04></Exam04>
+
+              {isOpen01 && (
+                <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
+                  <Exam01></Exam01>
+                  <hr className="my-5" />
+                </div>
+              )}
+              {isOpen02 && (
+                <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
+                  <Exam02></Exam02>
+                  <hr className="my-5" />
+                </div>
+              )}
+              {isOpen03 && (
+                <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
+                  <Exam03></Exam03>
+                  <hr className="my-5" />
+                </div>
+              )}
+              {isOpen04 && (
+                <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
+                  <Exam04></Exam04>
+                  <hr className="my-5" />
+                </div>
+              )}
+
             </div>
           </div>
         </div>
