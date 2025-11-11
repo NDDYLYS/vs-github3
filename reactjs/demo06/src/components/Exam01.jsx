@@ -1,4 +1,4 @@
-import '../App.css'
+import './Exam01.css'
 import { useState } from 'react'
 
 export default function Exam01(){
@@ -17,9 +17,31 @@ export default function Exam01(){
 
             <div className="row mt-4">
                 <div className="col text-center">
+                    <div>현재 크기 {size}x{size}</div>
+                </div>
+            </div>
+
+            {/* 작동이 안 된다 */}
+            <div className="row mt-4">
+                <div className="col">
+                    <input type="text" value={size} className="form-control"/>
+                </div>
+            </div>
+
+            {/* 작동이 안 된다 */}
+            <div className="row mt-4">
+                <div className="col">
+                    <input type="range" min={1} max={1000} value={size} className="form-control" onChange={e=>{SetSize(e.target.value);}}/>
+                </div>
+            </div>
+
+            <div className="row mt-4">
+                <div className="col text-center">
+                    <button className="btn btn-primary me-2" onClick={e=>{SetSize(size-10)}}>-</button>
                     <button className="btn btn-primary me-2" onClick={e=>{SetSize(150)}}>small</button>
                     <button className="btn btn-primary" onClick={e=>{SetSize(300)}}>medium</button>
-                    <button className="btn btn-primary ms-2" onClick={e=>{SetSize(450)}}>large</button>
+                    <button className="btn btn-primary ms-2" onClick={e=>{SetSize(450)}}>large</button>                    
+                    <button className="btn btn-primary ms-2" onClick={e=>{SetSize(size+10)}}>+</button>
                 </div>
             </div>
 
