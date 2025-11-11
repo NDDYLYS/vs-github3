@@ -3,15 +3,37 @@ import './App.css'
 import Exam01 from "./components/Exam01"
 import Exam02 from "./components/Exam02"
 import Exam03 from "./components/Exam03"
+import Exam04 from "./components/Exam04"
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen01, setIsOpen01] = useState(false);
+  const [isOpen02, setIsOpen02] = useState(false);
+  const [isOpen03, setIsOpen03] = useState(false);
+  const [isOpen04, setIsOpen04] = useState(false);
 
   return (
     <>
       <div className="container-fluid my-5">
         <div className="row">
           <div className="col-md-8 offset-md-2 col-sm-10 offset-sm-1 ">
+
+            <div className="row my-3">
+              <div className="col d-flex">
+                <button onClick={() => setIsOpen01(!isOpen01)} className="mx-1 btn btn-info">
+                  {isOpen01 ? "예제01 접기" : "예제01 펼치기"}
+                </button>
+                <button onClick={() => setIsOpen02(!isOpen02)} className="mx-1 btn btn-info">
+                  {isOpen02 ? "예제02 접기" : "예제02 펼치기"}
+                </button>
+                <button onClick={() => setIsOpen03(!isOpen03)} className="mx-1 btn btn-info">
+                  {isOpen03 ? "예제03 접기" : "예제03 펼치기"}
+                </button>
+                <button onClick={() => setIsOpen03(!isOpen04)} className="mx-1 btn btn-info">
+                  {isOpen04 ? "예제04 접기" : "예제04 펼치기"}
+                </button>
+              </div>
+            </div>
+
             <div className="row mb-5">
                 
               <Exam01></Exam01>
@@ -19,6 +41,8 @@ export default function App() {
               <Exam02></Exam02>
               <hr className="my-5"/>
               <Exam03></Exam03>
+              <hr className="my-5"/>
+              <Exam04></Exam04>
             </div>
           </div>
         </div>
