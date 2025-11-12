@@ -68,7 +68,7 @@ export default function App() {
               {isOpen05 && (
                 <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
                   <Exam05></Exam05>
-                  <hr className="my-5" />
+                  <hr className="my-5" /> 
                 </div>
               )}
 
