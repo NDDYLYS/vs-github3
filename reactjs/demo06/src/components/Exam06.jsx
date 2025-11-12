@@ -103,6 +103,55 @@ export default function Exam06(){
             </div>
 
             <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">도서 금액 <FaAsterisk className="text-danger" /></label>
+                <div className="col-sm-9">
+                    <input type="text" name="bookPrice" 
+                    className={`form-control ${bookClass.bookPrice}`}
+                    value={book.bookPrice} 
+                    onChange={changeNumberValue} inputMode="numeric" 
+                    onBlur={checkBookNumber1}>
+                    </input>
+                    <div className="invalid-feedback">0원 이상이어야 합니다.</div>
+                </div>
+            </div>
+
+            <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">도서 페이지 수 <FaAsterisk className="text-danger" /></label>
+                <div className="col-sm-9">
+                    <input type="text" name="bookPageCount" 
+                    className={`form-control ${bookClass.bookPageCount}`}
+                    value={book.bookPageCount} 
+                    onChange={changeNumberValue} inputMode="numeric"
+                    onBlur={checkBookNumber2}>
+                    </input>
+                    <div className="invalid-feedback">1장 이상이어야 합니다.</div>
+                </div>
+            </div>
+            
+            <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">도서 장르 <FaAsterisk className="text-danger" /></label>
+                <div className="col-sm-9">
+                    <select name="bookGenre" 
+                    className={`form-select ${bookClass.bookGenre}`}
+                    value={book.bookGenre} 
+                    onChange={changeStrValue}                     
+                    onBlur={checkBookStr3}>
+                        <option value="">선택하세요</option>
+                        <option>추리/미스터리</option>
+                        <option>과학소설</option>
+                        <option>판타지</option>
+                        <option>로맨스</option>
+                        <option>스릴러/서스펜스</option>
+                        <option>역사 소설</option>
+                        <option>전기/평전</option>
+                        <option>성장 소설</option>
+                        <option>자기 계발</option>
+                    </select>
+                    <div className="invalid-feedback">옳지 않은 장르입니다.</div>
+                </div>
+            </div>
+
+            <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">도서 저자</label>
                 <div className="col-sm-9">
                     <input type="text" name="bookAuthor" 
@@ -129,18 +178,6 @@ export default function Exam06(){
                 </div>
             </div>
 
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서 금액 <FaAsterisk className="text-danger" /></label>
-                <div className="col-sm-9">
-                    <input type="text" name="bookPrice" 
-                    className={`form-control ${bookClass.bookPrice}`}
-                    value={book.bookPrice} 
-                    onChange={changeNumberValue} inputMode="numeric" 
-                    onBlur={checkBookNumber1}>
-                    </input>
-                    <div className="invalid-feedback">0원 이상이어야 합니다.</div>
-                </div>
-            </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">출판사</label>
@@ -153,42 +190,6 @@ export default function Exam06(){
                     </input>
                     <div className="valid-feedback">좋은 출판사입니다.</div>
                     <div className="invalid-feedback">나쁜 출판사입니다.</div>
-                </div>
-            </div>
-
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서 페이지 수 <FaAsterisk className="text-danger" /></label>
-                <div className="col-sm-9">
-                    <input type="text" name="bookPageCount" 
-                    className={`form-control ${bookClass.bookPageCount}`}
-                    value={book.bookPageCount} 
-                    onChange={changeNumberValue} inputMode="numeric"
-                    onBlur={checkBookNumber2}>
-                    </input>
-                    <div className="invalid-feedback">1장 이상이어야 합니다.</div>
-                </div>
-            </div>
-
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서 장르 <FaAsterisk className="text-danger" /></label>
-                <div className="col-sm-9">
-                    <select name="bookGenre" 
-                    className={`form-select ${bookClass.bookGenre}`}
-                    value={book.bookGenre} 
-                    onChange={changeStrValue}                     
-                    onBlur={checkBookStr3}>
-                        <option value="">선택하세요</option>
-                        <option>추리/미스터리</option>
-                        <option>과학소설</option>
-                        <option>판타지</option>
-                        <option>로맨스</option>
-                        <option>스릴러/서스펜스</option>
-                        <option>역사 소설</option>
-                        <option>전기/평전</option>
-                        <option>성장 소설</option>
-                        <option>자기 계발</option>
-                    </select>
-                    <div className="invalid-feedback">옳지 않은 장르입니다.</div>
                 </div>
             </div>
         </>

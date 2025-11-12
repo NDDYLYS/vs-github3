@@ -20,7 +20,7 @@ export default function App() {
     <>
       <div className="container-fluid my-5">
         <div className="row">
-          <div className="col-md-8 offset-md-2 col-sm-10 offset-sm-1 ">
+          <div className="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 ">
 
             <div className="row my-3">
               <div className="col d-flex">
@@ -42,6 +42,8 @@ export default function App() {
                 <button onClick={() => setIsOpen06(!isOpen06)} className="mx-1 btn btn-outline-info">
                   {isOpen06 ? <>Exam06 <FaArrowUp /></> : <>Exam06 <FaArrowDown /></> }
                 </button>
+                <button className="mx-1 btn btn-outline-info">Exam07</button>
+                <button className="mx-1 btn btn-outline-info">Exam08</button>
               </div>
             </div>
 
