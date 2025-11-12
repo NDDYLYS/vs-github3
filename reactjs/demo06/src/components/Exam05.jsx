@@ -21,9 +21,53 @@ export default function Exam05() {
         })
     } , [student]);
 
-    const changeStudentKor = useCallback(e=>{}, [student]);
-    const changeStudentEng = useCallback(e=>{}, [student]);
-    const changeStudentMat = useCallback(e=>{}, [student]);
+    const changeStudentKor = useCallback(e=>{
+        //숫자 입력은 미리 값을 정제할 필요가 있다
+        const regex = /[^0-9]+/g;
+        const replacement = e.target.value.replace(regex, "");
+        const number = replacement.length == 0 ? "" : parseInt(replacement);
+
+        setStudent({
+            ...student,
+            studentKor : number
+        })
+    }, [student]);
+    const changeStudentEng = useCallback(e=>{
+        //숫자 입력은 미리 값을 정제할 필요가 있다
+        const regex = /[^0-9]+/g;
+        const replacement = e.target.value.replace(regex, "");
+        const number = replacement.length == 0 ? "" : parseInt(replacement);
+
+        setStudent({
+            ...student,
+            studentEng : number
+        })
+    }, [student]);
+    const changeStudentMat = useCallback(e=>{
+        //숫자 입력은 미리 값을 정제할 필요가 있다
+        const regex = /[^0-9]+/g;
+        const replacement = e.target.value.replace(regex, "");
+        const number = replacement.length == 0 ? "" : parseInt(replacement);
+
+        setStudent({
+            ...student,
+            studentMat : number
+        })
+    }, [student]);
+
+    const changeStudentScore = useCallback(e=>{
+        console.log(e.target.name);
+
+        //숫자 입력은 미리 값을 정제할 필요가 있다
+        const regex = /[^0-9]+/g;
+        const replacement = e.target.value.replace(regex, "");
+        const number = replacement.length == 0 ? "" : parseInt(replacement);
+
+        setStudent({
+            ...student,
+            [e.target.name] : number
+        })
+    }, [student]);
     
     //memo
     //문법 : const 이름 = useMemo(함수, [연관항목]);
@@ -45,17 +89,7 @@ export default function Exam05() {
             <div className="col-sm-9">
                 <input type="text" name="studentKor" className="form-control" placeholder="0 ~ 100"
                         inputMode="numeric" value={student.studentKor} 
-                        onChange={ e=>{
-                            //숫자 입력은 미리 값을 정제할 필요가 있다
-                            const regex = /[^0-9]+/g;
-                            const replacement = e.target.value.replace(regex, "");
-                            const number = replacement.length == 0 ? "" : parseInt(replacement);
-
-                            setStudent({
-                                ...student,
-                                studentKor : number
-                            })
-                        } } />
+                        onChange={changeStudentScore} />
             </div>
         </div>
 
@@ -64,17 +98,7 @@ export default function Exam05() {
             <div className="col-sm-9">
                 <input type="text" name="studentEng" className="form-control" placeholder="0 ~ 100"
                         inputMode="numeric" value={student.studentEng} 
-                        onChange={ e=>{
-                            //숫자 입력은 미리 값을 정제할 필요가 있다
-                            const regex = /[^0-9]+/g;
-                            const replacement = e.target.value.replace(regex, "");
-                            const number = replacement.length == 0 ? "" : parseInt(replacement);
-
-                            setStudent({
-                                ...student,
-                                studentEng : number
-                            })
-                        } } />
+                        onChange={changeStudentScore} />
             </div>
         </div>
 
@@ -83,17 +107,7 @@ export default function Exam05() {
             <div className="col-sm-9">
                 <input type="text" name="studentMat" className="form-control" placeholder="0 ~ 100"
                         inputMode="numeric" value={student.studentMat} 
-                        onChange={ e=>{
-                            //숫자 입력은 미리 값을 정제할 필요가 있다
-                            const regex = /[^0-9]+/g;
-                            const replacement = e.target.value.replace(regex, "");
-                            const number = replacement.length == 0 ? "" : parseInt(replacement);
-
-                            setStudent({
-                                ...student,
-                                studentMat : number
-                            })
-                        } } />
+                        onChange={changeStudentScore} />
             </div>
         </div>
     </>)
