@@ -5,6 +5,7 @@ import Exam02 from "./components/Exam02"
 import Exam03 from "./components/Exam03"
 import Exam04 from "./components/Exam04"
 import Exam05 from "./components/Exam05"
+import Exam06 from "./components/Exam06"
 
 export default function App() {
   const [isOpen01, setIsOpen01] = useState(false);
@@ -12,6 +13,7 @@ export default function App() {
   const [isOpen03, setIsOpen03] = useState(false);
   const [isOpen04, setIsOpen04] = useState(false);
   const [isOpen05, setIsOpen05] = useState(false);
+  const [isOpen06, setIsOpen06] = useState(false);
 
   return (
     <>
@@ -35,6 +37,9 @@ export default function App() {
                 </button>
                 <button onClick={() => setIsOpen05(!isOpen05)} className="mx-1 btn btn-info">
                   {isOpen05 ? "예제05 접기" : "예제05 펼치기"}
+                </button>
+                <button onClick={() => setIsOpen06(!isOpen06)} className="mx-1 btn btn-info">
+                  {isOpen06 ? "예제06 접기" : "예제06 펼치기"}
                 </button>
               </div>
             </div>
@@ -68,6 +73,12 @@ export default function App() {
               {isOpen05 && (
                 <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
                   <Exam05></Exam05>
+                  <hr className="my-5" /> 
+                </div> // 23
+              )}              
+              {isOpen06 && (
+                <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
+                  <Exam06></Exam06>
                   <hr className="my-5" /> 
                 </div> // 23
               )}
