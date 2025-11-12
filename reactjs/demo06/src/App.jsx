@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 import Exam01 from "./components/Exam01"
 import Exam02 from "./components/Exam02"
 import Exam03 from "./components/Exam03"
@@ -24,22 +26,22 @@ export default function App() {
             <div className="row my-3">
               <div className="col d-flex">
                 <button onClick={() => setIsOpen01(!isOpen01)} className="mx-1 btn btn-info">
-                  {isOpen01 ? "예제01 접기" : "예제01 펼치기"}
+                  {isOpen01 ? <>Exam01 <FaArrowUp /></> : <>Exam01 <FaArrowDown /></>}
                 </button>
                 <button onClick={() => setIsOpen02(!isOpen02)} className="mx-1 btn btn-info">
-                  {isOpen02 ? "예제02 접기" : "예제02 펼치기"}
+                  {isOpen02 ? <>Exam02 <FaArrowUp /></> : <>Exam02 <FaArrowDown /></>}
                 </button>
                 <button onClick={() => setIsOpen03(!isOpen03)} className="mx-1 btn btn-info">
-                  {isOpen03 ? "예제03 접기" : "예제03 펼치기"}
+                  {isOpen03 ? <>Exam03 <FaArrowUp /></> : <>Exam03 <FaArrowDown /></>}
                 </button>
                 <button onClick={() => setIsOpen04(!isOpen04)} className="mx-1 btn btn-info">
-                  {isOpen04 ? "예제04 접기" : "예제04 펼치기"}
+                  {isOpen04 ? <>Exam04 <FaArrowUp /></> : <>Exam04 <FaArrowDown /></>}
                 </button>
                 <button onClick={() => setIsOpen05(!isOpen05)} className="mx-1 btn btn-info">
-                  {isOpen05 ? "예제05 접기" : "예제05 펼치기"}
+                  {isOpen05 ? <>Exam05 <FaArrowUp /></> : <>Exam05 <FaArrowDown /></>}
                 </button>
                 <button onClick={() => setIsOpen06(!isOpen06)} className="mx-1 btn btn-info">
-                  {isOpen06 ? "예제06 접기" : "예제06 펼치기"}
+                  {isOpen06 ? <>Exam06 <FaArrowUp /></> : <>Exam06 <FaArrowDown /></> }
                 </button>
               </div>
             </div>
