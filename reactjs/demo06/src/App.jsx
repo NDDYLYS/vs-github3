@@ -69,7 +69,7 @@ export default function App() {
                 <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
                   <Exam05></Exam05>
                   <hr className="my-5" /> 
-                </div>
+                </div> // 23
               )}
 
             </div>
