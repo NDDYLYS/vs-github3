@@ -7,9 +7,20 @@ export default function Exam06(){
         bookTitle : "",
         bookAuthor : "",
         bookPublicationDate : "",
-        bookPrice : 0,
+        bookPrice : "",
         bookPublisher : "",
-        bookPageCount : 0,
+        bookPageCount : "",
+        bookTitle : "",
+        bookGenre : ""
+    });
+    
+    const[bookClass, setBookClass] = useState({
+        bookTitle : "",
+        bookAuthor : "",
+        bookPublicationDate : "",
+        bookPrice : "",
+        bookPublisher : "",
+        bookPageCount : "",
         bookTitle : "",
         bookGenre : ""
     });
@@ -30,6 +41,48 @@ export default function Exam06(){
             [e.target.name] : number
         });
     }, [book]);
+    const checkBookStr1 = useCallback(e=>{
+        const regex = /^[가-힣]{1,100}$/;
+        const isValid = regex.test(book.bookTitle);
+        setBookClass({
+            ...bookClass,
+            bookTitle : isValid ? "is-valid" : "is-invalid"
+        });
+    }, [book]);
+    const checkBookStr2 = useCallback(e=>{
+        const regex = /^[가-힣]{1,30}$/;
+        const isValid = regex.test([e.target.value]);
+        setBookClass({
+            ...bookClass,
+            [e.target.name] : isValid ? "is-valid" : "is-invalid"
+        });
+    }, [book]);
+    const checkBookStr3 = useCallback(e=>{
+        const regex = /^[가-힣]{1,10}$/;
+        const isValid = regex.test([e.target.value]);
+        setBookClass({
+            ...bookClass,
+            [e.target.name] : isValid ? "is-valid" : "is-invalid"
+        });
+    }, [book]);
+    const checkBookNumber1 = useCallback(e=>{
+        setBookClass({
+            ...bookClass,
+            [e.target.name] : (e.target.value >= 0) ? "is-valid" : "is-invalid"
+        });
+    }, [book]);
+    const checkBookNumber2 = useCallback(e=>{
+        setBookClass({
+            ...bookClass,
+            [e.target.name] : (e.target.value > 0) ? "is-valid" : "is-invalid"
+        });
+    }, [book]);
+    const checkBookAllOK = useCallback(e=>{
+        setBookClass({
+            ...bookClass,
+            [e.target.name] : "is-valid"
+        });
+    }, [book]);
 
     return (
         <>
@@ -38,68 +91,92 @@ export default function Exam06(){
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">도서명 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
-                    <input type="text" name="bookTitle" className="form-control" 
+                    <input type="text" name="bookTitle" 
+                    className={`form-control ${bookClass.bookTitle}`} 
                     value={book.bookTitle} 
-                    onChange={changeStrValue}>
+                    onChange={changeStrValue}
+                    onBlur={checkBookStr1}>
                     </input>
+                    <div className="valid-feedback">좋은 도서명입니다.</div>
+                    <div className="invalid-feedback">나쁜 도서명입니다.</div>
                 </div>
             </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">도서 저자</label>
                 <div className="col-sm-9">
-                    <input type="text" name="bookAuthor" className="form-control" 
+                    <input type="text" name="bookAuthor" 
+                    className={`form-control ${bookClass.bookAuthor}`}
                     value={book.bookAuthor} 
-                    onChange={changeStrValue}>
+                    onChange={changeStrValue}
+                    onBlur={checkBookStr2}>
                     </input>
+                    <div className="valid-feedback">좋은 저자입니다.</div>
+                    <div className="invalid-feedback">나쁜 저자입니다.</div>
                 </div>
             </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">출간일</label>
                 <div className="col-sm-9">
-                    <input type="text" name="bookPublicationDate" className="form-control" 
+                    <input type="date" name="bookPublicationDate" 
+                    className={`form-control ${bookClass.bookPublicationDate}`}
                     value={book.bookPublicationDate} 
-                    onChange={changeStrValue}>
+                    onChange={changeStrValue}                    
+                    onBlur={checkBookAllOK}>
                     </input>
+                    <div className="valid-feedback">좋은 출간일입니다.</div>
                 </div>
             </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">도서 금액 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
-                    <input type="text" name="bookPrice" className="form-control" 
+                    <input type="text" name="bookPrice" 
+                    className={`form-control ${bookClass.bookPrice}`}
                     value={book.bookPrice} 
-                    onChange={changeNumberValue} inputMode="numeric">
+                    onChange={changeNumberValue} inputMode="numeric" 
+                    onBlur={checkBookNumber1}>
                     </input>
+                    <div className="invalid-feedback">0원 이상이어야 합니다.</div>
                 </div>
             </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">출판사</label>
                 <div className="col-sm-9">
-                    <input type="text" name="bookPubliesher" className="form-control" 
-                    value={book.bookPubliesher} 
-                    onChange={changeStrValue}>
+                    <input type="text" name="bookPublisher" 
+                    className={`form-control ${bookClass.bookPublisher}`}
+                    value={book.bookPublisher} 
+                    onChange={changeStrValue}
+                    onBlur={checkBookStr2}>
                     </input>
+                    <div className="valid-feedback">좋은 출판사입니다.</div>
+                    <div className="invalid-feedback">나쁜 출판사입니다.</div>
                 </div>
             </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">도서 페이지 수 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
-                    <input type="text" name="bookPageCount" className="form-control" 
+                    <input type="text" name="bookPageCount" 
+                    className={`form-control ${bookClass.bookPageCount}`}
                     value={book.bookPageCount} 
-                    onChange={changeNumberValue} inputMode="numeric">
+                    onChange={changeNumberValue} inputMode="numeric"
+                    onBlur={checkBookNumber2}>
                     </input>
+                    <div className="invalid-feedback">1장 이상이어야 합니다.</div>
                 </div>
             </div>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">도서 장르 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
-                    <select name="bookGenre" className="form-select" 
-                    value={book.bookGenre} onChange={changeStrValue}>
+                    <select name="bookGenre" 
+                    className={`form-select ${bookClass.bookGenre}`}
+                    value={book.bookGenre} 
+                    onChange={changeStrValue}                     
+                    onBlur={checkBookStr3}>
                         <option value="">선택하세요</option>
                         <option>추리/미스터리</option>
                         <option>과학소설</option>
@@ -111,6 +188,7 @@ export default function Exam06(){
                         <option>성장 소설</option>
                         <option>자기 계발</option>
                     </select>
+                    <div className="invalid-feedback">옳지 않은 장르입니다.</div>
                 </div>
             </div>
         </>

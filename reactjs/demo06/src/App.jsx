@@ -24,22 +24,22 @@ export default function App() {
 
             <div className="row my-3">
               <div className="col d-flex">
-                <button onClick={() => setIsOpen01(!isOpen01)} className="mx-1 btn btn-info">
+                <button onClick={() => setIsOpen01(!isOpen01)} className="mx-1 btn btn-outline-info">
                   {isOpen01 ? <>Exam01 <FaArrowUp /></> : <>Exam01 <FaArrowDown /></>}
                 </button>
-                <button onClick={() => setIsOpen02(!isOpen02)} className="mx-1 btn btn-info">
+                <button onClick={() => setIsOpen02(!isOpen02)} className="mx-1 btn btn-outline-info">
                   {isOpen02 ? <>Exam02 <FaArrowUp /></> : <>Exam02 <FaArrowDown /></>}
                 </button>
-                <button onClick={() => setIsOpen03(!isOpen03)} className="mx-1 btn btn-info">
+                <button onClick={() => setIsOpen03(!isOpen03)} className="mx-1 btn btn-outline-info">
                   {isOpen03 ? <>Exam03 <FaArrowUp /></> : <>Exam03 <FaArrowDown /></>}
                 </button>
-                <button onClick={() => setIsOpen04(!isOpen04)} className="mx-1 btn btn-info">
+                <button onClick={() => setIsOpen04(!isOpen04)} className="mx-1 btn btn-outline-info">
                   {isOpen04 ? <>Exam04 <FaArrowUp /></> : <>Exam04 <FaArrowDown /></>}
                 </button>
-                <button onClick={() => setIsOpen05(!isOpen05)} className="mx-1 btn btn-info">
+                <button onClick={() => setIsOpen05(!isOpen05)} className="mx-1 btn btn-outline-info">
                   {isOpen05 ? <>Exam05 <FaArrowUp /></> : <>Exam05 <FaArrowDown /></>}
                 </button>
-                <button onClick={() => setIsOpen06(!isOpen06)} className="mx-1 btn btn-info">
+                <button onClick={() => setIsOpen06(!isOpen06)} className="mx-1 btn btn-outline-info">
                   {isOpen06 ? <>Exam06 <FaArrowUp /></> : <>Exam06 <FaArrowDown /></> }
                 </button>
               </div>

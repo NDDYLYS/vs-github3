@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import { useCallback } from "react";
 
@@ -63,6 +63,16 @@ export default function Exam05() {
     //memo
     //문법 : const 이름 = useMemo(함수, [연관항목]);
 
+    // 전송 가능 여부
+    const sendable = useMemo(()=>{
+        let count = 0;
+        if (studentClass.studentName === "is-valid") count++;
+        if (studentClass.studentKor === "is-valid") count++;
+        if (studentClass.studentEng === "is-valid") count++;
+        if (studentClass.studentMat === "is-valid") count++;
+        return count === 4;
+    }, [studentClass]);
+
     //render
     return (<>
         <Jumbotron subject="예제 5번" detail="학생 등록 화면에 feedback 추가"></Jumbotron>
@@ -121,5 +131,29 @@ export default function Exam05() {
                 <div className="invalid-feedback">부적합</div>
             </div>
         </div>
+
+        {/* {sendable === true ? (
+            <div className="row mt-4">
+                <div className="col">
+                    <button className="btn btn-outline-success w-100">등록</button>
+                </div>
+            </div>
+        ) : null} */}
+
+        {/* {sendable === true && (
+            <div className="row mt-4">
+                <div className="col">
+                    <button className="btn btn-outline-success w-100">등록</button>
+                </div>
+            </div>
+        )}
+
+        {sendable === false || (
+            <div className="row mt-4">
+                <div className="col">
+                    <button className="btn btn-outline-success w-100">등록</button>
+                </div>
+            </div>
+        )} */}
     </>)
 }
