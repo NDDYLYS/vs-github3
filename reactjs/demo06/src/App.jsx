@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { FaArrowDown } from "react-icons/fa";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import Exam01 from "./components/Exam01"
 import Exam02 from "./components/Exam02"
 import Exam03 from "./components/Exam03"
@@ -76,13 +75,13 @@ export default function App() {
                 <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
                   <Exam05></Exam05>
                   <hr className="my-5" /> 
-                </div> // 23
+                </div>
               )}              
               {isOpen06 && (
                 <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
                   <Exam06></Exam06>
                   <hr className="my-5" /> 
-                </div> // 23
+                </div>
               )}
 
             </div>

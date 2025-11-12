@@ -12,6 +12,12 @@ const [pokemon, setPokemon] = useState({
     pokemonName:"",
     pokemonType:""
 });
+// 객체의 검사 결과를 수동으로 관리하도록 state를 하나 더 만든다
+const [pokemonClass, setPokemonClass] = useState({
+    pokemonName:"", // "is-valid" or "is-invalid"
+    pokemonType:"" // "is-valid" or "is-invalid"
+});
+
 const pokemonNameValid = useMemo(()=>{
     const regex = /^[가-힣]{1,10}$/;
     return regex.test(pokemon.pokemonName);
@@ -23,6 +29,7 @@ const pokemonValid = useMemo(()=>{
     return pokemonNameValid && pokemonTypeValid;
 }, [pokemonNameValid, pokemonTypeValid]);
 
+
     return (
         <>
             <Jumbotron subject="예제 4번" detail="여러 state를 관리하는 방법을 알아본다"></Jumbotron>
@@ -30,26 +37,44 @@ const pokemonValid = useMemo(()=>{
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">포켓몬 이름</label>
                 <div className="col-sm-9">
-                    <input type="text" className="form-control" value={pokemon.pokemonName}
+                    <input type="text" className={"form-control " + pokemonClass.pokemonName} value={pokemon.pokemonName}
                     onChange={e=>{
                         setPokemon({
                         ...pokemon,
                         pokemonName:e.target.value
-                    })
-                    }}/>
+                        });
+                    }}
+                    onBlur={e=>{
+                        setPokemonClass({
+                            ...pokemonClass, 
+                            pokemonName : pokemonNameValid ? "is-valid" : "is-invalid"
+                        });
+                    }}
+                    />
+                    <div className="valid-feedback">좋은 이름</div>
+                    <div className="invalid-feedback">나쁜 이름</div>
                 </div>
             </div>
 
              <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">포켓몬 속성</label>
                 <div className="col-sm-9">
-                    <input type="text" className="form-control" value={pokemon.pokemonType}
+                    <input type="text" className={"form-control " + pokemonClass.pokemonType} value={pokemon.pokemonType}
                     onChange={e=>{
                         setPokemon({
                         ...pokemon,
                         pokemonType:e.target.value
-                    })
-                    }}/>
+                        });
+                    }}
+                    onBlur={e=>{
+                        setPokemonClass({
+                            ...pokemonClass, 
+                            pokemonType : pokemonTypeValid ? "is-valid" : "is-invalid"
+                        });
+                    }}
+                    />
+                    <div className="valid-feedback">좋은 속성</div>
+                    <div className="invalid-feedback">나쁜 속성</div>
                 </div>
             </div>
 
