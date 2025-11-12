@@ -31,7 +31,7 @@ export default function App() {
                   {isOpen03 ? "예제03 접기" : "예제03 펼치기"}
                 </button>
                 <button onClick={() => setIsOpen04(!isOpen04)} className="mx-1 btn btn-info">
-                  {isOpen04 ? "예제04 접기" : "예제04 펼치기"}
+                  {isOpen04 ? "예제04 접기3" : "예제04 펼치기"}
                 </button>
                 <button onClick={() => setIsOpen05(!isOpen05)} className="mx-1 btn btn-info">
                   {isOpen05 ? "예제05 접기" : "예제05 펼치기"}
