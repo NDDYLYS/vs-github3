@@ -52,6 +52,13 @@ const pokemonValid = useMemo(()=>{
                     }}/>
                 </div>
             </div>
+
+            <div className="row mt-4">
+                <div className="col">
+                    <button type="button" className="btn btn-success btn-lg w-100"
+                    disabled={pokemonValid == false}>등록</button>
+                </div>     
+            </div>
         </>
     )
 }

@@ -1,0 +1,102 @@
+import { useMemo } from "react";
+import { useState } from "react";
+import Jumbotron from "../templates/Jumbotron";
+
+export default function Exam05(){
+
+// 편하지만 작업양이 많고 서버와 형태가 다르다
+//const [pokemonName, setPokemonName] = useState("");
+//const [pokemonType, setPokemonType] = useState("");
+
+const [student, setStudent] = useState({
+    studentName:"",
+    studentKor:0,
+    studentEng:0,
+    studentMat:0
+});
+const studentNameValid = useMemo(()=>{
+    const regex = /^[가-힣]{1,7}$/;
+    return regex.test(student.studentName);
+}, [student.studentName]);
+const studentKorValid = useMemo(()=>{
+    return student.studentKor > 0 && student.studentKor <= 100;
+}, [student.studentKor]);
+const studentEngValid = useMemo(()=>{
+    return student.studentEng > 0 && student.studentEng <= 100;
+}, [student.studentEng]);
+const studentMatValid = useMemo(()=>{
+    return student.studentMat > 0 && student.studentMat <= 100;
+}, [student.studentMat]);
+const studentValid = useMemo(()=>{
+    return studentNameValid && studentKorValid && studentEngValid && studentMatValid;
+}, [studentNameValid, studentKorValid, studentEngValid, studentMatValid]);
+
+    return (
+        <>
+            <Jumbotron subject="예제 5번" detail="student-insert 구현"></Jumbotron>
+
+            <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">학생 이름</label>
+                <div className="col-sm-9">
+                    <input type="text" className="form-control" 
+                    value={student.studentName}
+                    onChange={e=>{
+                        setStudent({
+                        ...student,
+                        studentName:e.target.value
+                    })
+                    }}/>
+                </div>
+            </div>
+
+            <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">학생 국어</label>
+                <div className="col-sm-9">
+                    <input type="text" className="form-control" 
+                    value={student.studentKor}
+                    onChange={e=>{
+                        setStudent({
+                        ...student,
+                        studentKor:e.target.value
+                    })
+                    }}/>
+                </div>
+            </div>
+
+            <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">학생 영어</label>
+                <div className="col-sm-9">
+                    <input type="text" className="form-control" 
+                    value={student.studentEng}
+                    onChange={e=>{
+                        setStudent({
+                        ...student,
+                        studentEng:e.target.value
+                    })
+                    }}/>
+                </div>
+            </div>
+
+            <div className="row mt-4">
+                <label className="col-sm-3 col-form-label">학생 수학</label>
+                <div className="col-sm-9">
+                    <input type="text" className="form-control" 
+                    value={student.studentMat}
+                    onChange={e=>{
+                        setStudent({
+                        ...student,
+                        studentMat:e.target.value
+                    })
+                    }}/>
+                </div>
+            </div>
+
+            <div className="row mt-4">
+                <div className="col">
+                    <button type="button" className="btn btn-success btn-lg w-100"
+                    disabled={studentValid == false}>등록</button>
+                </div>     
+            </div>
+        </>
+    )
+}
