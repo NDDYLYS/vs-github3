@@ -1,113 +1,100 @@
-import { useMemo } from "react";
 import { useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
+import { useCallback } from "react";
 
-export default function Exam05(){
 
-const [student, setStudent] = useState({
-    studentName:"",
-    studentKor:0,
-    studentEng:0,
-    studentMat:0
-});
-const studentNameValid = useMemo(()=>{
-    const regex = /^[가-힣]{1,7}$/;
-    return regex.test(student.studentName);
-}, [student.studentName]);
-const studentKorValid = useMemo(()=>{
-    return student.studentKor > 0 && student.studentKor <= 100;
-}, [student.studentKor]);
-const studentEngValid = useMemo(()=>{
-    return student.studentEng > 0 && student.studentEng <= 100;
-}, [student.studentEng]);
-const studentMatValid = useMemo(()=>{
-    return student.studentMat > 0 && student.studentMat <= 100;
-}, [student.studentMat]);
-const studentValid = useMemo(()=>{
-    return studentNameValid && studentKorValid && studentEngValid && studentMatValid;
-}, [studentNameValid, studentKorValid, studentEngValid, studentMatValid]);
+export default function Exam05() {
+    //state - 객체 형태로 student 입력값을 관리
+    const [student, setStudent] = useState({
+        studentName : "",
+        studentKor : "",
+        studentEng : "",
+        studentMat : ""
+    });
 
-    return (
-        <>
-            <Jumbotron subject="예제 5번" detail="student-insert react로 구현"></Jumbotron>
+    //callback - 호출하여 사용 가능한 함수들을 보관하는 도구
+    //문법 : const 이름 = useCallback(함수, [연관항목]);
+    const changeStudentName = useCallback(e=>{
+        setStudent({//student를 변경하는데
+            ...student,//나머지는 유지하고
+            studentName : e.target.value//studentName만 입력값(e.target.value)으로 변경하세요!
+        })
+    } , [student]);
 
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">학생 이름</label>
-                <div className="col-sm-9">
-                    <input type="text" className="form-control" 
-                    value={student.studentName}
-                    onChange={e=>{
-                        setStudent({
-                        ...student, // asd
-                        studentName:e.target.value
-                    })
-                    }}/>
-                </div>
+    const changeStudentKor = useCallback(e=>{}, [student]);
+    const changeStudentEng = useCallback(e=>{}, [student]);
+    const changeStudentMat = useCallback(e=>{}, [student]);
+    
+    //memo
+    //문법 : const 이름 = useMemo(함수, [연관항목]);
+
+    //render
+    return (<>
+        <Jumbotron subject="예제5번" detail="학생 등록 화면 만들기"></Jumbotron>
+
+        <div className="row mt-4">
+            <label className="col-sm-3 col-form-label">학생이름 *</label>
+            <div className="col-sm-9">
+                <input type="text" name="studentName" className="form-control" placeholder="(ex) 홍길동"
+                        value={student.studentName} onChange={changeStudentName} />
             </div>
+        </div>
 
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">학생 국어</label>
-                <div className="col-sm-9">
-                    <input type="text" className="form-control" 
-                    value={student.studentKor} inputMode="numeric" 
-                    onChange={e=>{
-                        // 숫자 입력은 값을 정제
-                        const regex = /[^0-9]+/g;
-                        const replace = e.target.value.replace(regex, "");
-                        const number = (replace.length == 0) ? "" : parseInt(e.target.value);
+        <div className="row mt-4">
+            <label className="col-sm-3 col-form-label">국어점수 *</label>
+            <div className="col-sm-9">
+                <input type="text" name="studentKor" className="form-control" placeholder="0 ~ 100"
+                        inputMode="numeric" value={student.studentKor} 
+                        onChange={ e=>{
+                            //숫자 입력은 미리 값을 정제할 필요가 있다
+                            const regex = /[^0-9]+/g;
+                            const replacement = e.target.value.replace(regex, "");
+                            const number = replacement.length == 0 ? "" : parseInt(replacement);
 
-                        setStudent({
-                        ...student,
-                        studentKor:number
-                    })
-                    }}/>
-                </div>
+                            setStudent({
+                                ...student,
+                                studentKor : number
+                            })
+                        } } />
             </div>
+        </div>
 
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">학생 영어</label>
-                <div className="col-sm-9">
-                    <input type="text" className="form-control" 
-                    value={student.studentEng} inputMode="numeric" 
-                    onChange={e=>{
-                        // 숫자 입력은 값을 정제
-                        const regex = /[^0-9]+/g;
-                        const replace = e.target.value.replace(regex, "");
-                        const number = (replace.length == 0) ? "" : parseInt(e.target.value);
+        <div className="row mt-4">
+            <label className="col-sm-3 col-form-label">영어점수 *</label>
+            <div className="col-sm-9">
+                <input type="text" name="studentEng" className="form-control" placeholder="0 ~ 100"
+                        inputMode="numeric" value={student.studentEng} 
+                        onChange={ e=>{
+                            //숫자 입력은 미리 값을 정제할 필요가 있다
+                            const regex = /[^0-9]+/g;
+                            const replacement = e.target.value.replace(regex, "");
+                            const number = replacement.length == 0 ? "" : parseInt(replacement);
 
-                        setStudent({
-                        ...student,
-                        studentEng:number
-                    })
-                    }}/>
-                </div>
+                            setStudent({
+                                ...student,
+                                studentEng : number
+                            })
+                        } } />
             </div>
+        </div>
 
-            <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">학생 수학</label>
-                <div className="col-sm-9">
-                    <input type="text" className="form-control" 
-                    value={student.studentMat} inputMode="numeric" 
-                    onChange={e=>{
-                        // 숫자 입력은 값을 정제
-                        const regex = /[^0-9]+/g;
-                        const replace = e.target.value.replace(regex, "");
-                        const number = (replace.length == 0) ? "" : parseInt(e.target.value);
+        <div className="row mt-4">
+            <label className="col-sm-3 col-form-label">수학점수 *</label>
+            <div className="col-sm-9">
+                <input type="text" name="studentMat" className="form-control" placeholder="0 ~ 100"
+                        inputMode="numeric" value={student.studentMat} 
+                        onChange={ e=>{
+                            //숫자 입력은 미리 값을 정제할 필요가 있다
+                            const regex = /[^0-9]+/g;
+                            const replacement = e.target.value.replace(regex, "");
+                            const number = replacement.length == 0 ? "" : parseInt(replacement);
 
-                        setStudent({
-                        ...student,
-                        studentMat:number
-                    })
-                    }}/>
-                </div>
+                            setStudent({
+                                ...student,
+                                studentMat : number
+                            })
+                        } } />
             </div>
-
-            <div className="row mt-4">
-                <div className="col">
-                    <button type="button" className="btn btn-success btn-lg w-100"
-                    disabled={studentValid == false}>등록</button>
-                </div>     
-            </div>
-        </>
-    )
+        </div>
+    </>)
 }
