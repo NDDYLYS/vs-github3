@@ -4,10 +4,6 @@ import Jumbotron from "../templates/Jumbotron";
 
 export default function Exam05(){
 
-// 편하지만 작업양이 많고 서버와 형태가 다르다
-//const [pokemonName, setPokemonName] = useState("");
-//const [pokemonType, setPokemonType] = useState("");
-
 const [student, setStudent] = useState({
     studentName:"",
     studentKor:0,
@@ -33,7 +29,7 @@ const studentValid = useMemo(()=>{
 
     return (
         <>
-            <Jumbotron subject="예제 5번" detail="student-insert react로 구현 1"></Jumbotron>
+            <Jumbotron subject="예제 5번" detail="student-insert react로 구현"></Jumbotron>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">학생 이름</label>
@@ -53,11 +49,16 @@ const studentValid = useMemo(()=>{
                 <label className="col-sm-3 col-form-label">학생 국어</label>
                 <div className="col-sm-9">
                     <input type="text" className="form-control" 
-                    value={student.studentKor}
+                    value={student.studentKor} inputMode="numeric" 
                     onChange={e=>{
+                        // 숫자 입력은 값을 정제
+                        const regex = /[^0-9]+/g;
+                        const replace = e.target.value.replace(regex, "");
+                        const number = (replace.length == 0) ? "" : parseInt(e.target.value);
+
                         setStudent({
                         ...student,
-                        studentKor:e.target.value
+                        studentKor:number
                     })
                     }}/>
                 </div>
@@ -67,11 +68,16 @@ const studentValid = useMemo(()=>{
                 <label className="col-sm-3 col-form-label">학생 영어</label>
                 <div className="col-sm-9">
                     <input type="text" className="form-control" 
-                    value={student.studentEng}
+                    value={student.studentEng} inputMode="numeric" 
                     onChange={e=>{
+                        // 숫자 입력은 값을 정제
+                        const regex = /[^0-9]+/g;
+                        const replace = e.target.value.replace(regex, "");
+                        const number = (replace.length == 0) ? "" : parseInt(e.target.value);
+
                         setStudent({
                         ...student,
-                        studentEng:e.target.value
+                        studentEng:number
                     })
                     }}/>
                 </div>
@@ -81,11 +87,16 @@ const studentValid = useMemo(()=>{
                 <label className="col-sm-3 col-form-label">학생 수학</label>
                 <div className="col-sm-9">
                     <input type="text" className="form-control" 
-                    value={student.studentMat}
+                    value={student.studentMat} inputMode="numeric" 
                     onChange={e=>{
+                        // 숫자 입력은 값을 정제
+                        const regex = /[^0-9]+/g;
+                        const replace = e.target.value.replace(regex, "");
+                        const number = (replace.length == 0) ? "" : parseInt(e.target.value);
+
                         setStudent({
                         ...student,
-                        studentMat:e.target.value
+                        studentMat:number
                     })
                     }}/>
                 </div>
