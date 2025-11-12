@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
+import { FaAsterisk } from "react-icons/fa6";
 
 export default function Exam06(){
     const[book, setBook] = useState({
@@ -35,7 +36,7 @@ export default function Exam06(){
             <Jumbotron subject="예제6번" detail="도서 등록 화면 React로 만들기"></Jumbotron>
 
             <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서명 *</label>
+                <label className="col-sm-3 col-form-label">도서명 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
                     <input type="text" name="bookTitle" className="form-control" 
                     value={book.bookTitle} 
@@ -65,7 +66,7 @@ export default function Exam06(){
             </div>
 
             <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서 금액 *</label>
+                <label className="col-sm-3 col-form-label">도서 금액 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
                     <input type="text" name="bookPrice" className="form-control" 
                     value={book.bookPrice} 
@@ -85,7 +86,7 @@ export default function Exam06(){
             </div>
 
             <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서 페이지 수 *</label>
+                <label className="col-sm-3 col-form-label">도서 페이지 수 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
                     <input type="text" name="bookPageCount" className="form-control" 
                     value={book.bookPageCount} 
@@ -95,7 +96,7 @@ export default function Exam06(){
             </div>
 
             <div className="row mt-4">
-                <label className="col-sm-3 col-form-label">도서 장르 *</label>
+                <label className="col-sm-3 col-form-label">도서 장르 <FaAsterisk className="text-danger" /></label>
                 <div className="col-sm-9">
                     <select name="bookGenre" className="form-select" 
                     value={book.bookGenre} onChange={changeStrValue}>
