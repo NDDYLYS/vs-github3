@@ -33,7 +33,7 @@ const studentValid = useMemo(()=>{
 
     return (
         <>
-            <Jumbotron subject="예제 5번" detail="student-insert 구현"></Jumbotron>
+            <Jumbotron subject="예제 5번" detail="student-insert react로 구현"></Jumbotron>
 
             <div className="row mt-4">
                 <label className="col-sm-3 col-form-label">학생 이름</label>
