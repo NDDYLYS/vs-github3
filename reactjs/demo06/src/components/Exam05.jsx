@@ -42,7 +42,7 @@ const studentValid = useMemo(()=>{
                     value={student.studentName}
                     onChange={e=>{
                         setStudent({
-                        ...student,
+                        ...student, // asd
                         studentName:e.target.value
                     })
                     }}/>
