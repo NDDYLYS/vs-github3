@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Exam04(){
 
@@ -37,7 +38,8 @@ const sendData = useCallback(()=>{
         data:pokemon
     })
     .then(response=>{
-        console.log("포켓몬 등록 완료");
+        //console.log("포켓몬 등록 완료");
+        toast.success("포켓몬 등록 완료");
     });
 }, [pokemon]);
 

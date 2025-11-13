@@ -7,6 +7,7 @@ import Exam03 from "./components/Exam03"
 import Exam04 from "./components/Exam04"
 import Exam05 from "./components/Exam05"
 import Exam06 from "./components/Exam06"
+import { ToastContainer, Flip } from 'react-toastify';
 
 export default function App() {
   const [isOpen01, setIsOpen01] = useState(false);
@@ -86,6 +87,20 @@ export default function App() {
                 </div>
               )}
 
+              <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+                transition={Flip}
+                />
+
             </div>
           </div>
         </div>
@@ -93,18 +108,3 @@ export default function App() {
     </>
   )
 }
-
-// const [isOpen, setIsOpen] = useState(false);
-
-//   return (
-//     <div>
-//       <button onClick={() => setIsOpen(!isOpen)}>
-//         {isOpen ? "접기" : "펼치기"}
-//       </button>
-
-//       {isOpen && (
-//         <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
-//           여기에 접었다 펼칠 내용
-//         </div>
-//       )}
-//     </div>

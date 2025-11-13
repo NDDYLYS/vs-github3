@@ -1,6 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import { FaAsterisk } from "react-icons/fa6";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Exam06(){
     const[book, setBook] = useState({
@@ -83,6 +85,29 @@ export default function Exam06(){
             [e.target.name] : "is-valid"
         });
     }, [book]);
+
+    const sendable = useMemo(()=>{
+        let count = 0;
+        if (bookClass.bookTitle === "is-valid") count++;
+        if (bookClass.bookPrice === "is-valid") count++;
+        if (bookClass.bookPageCount === "is-valid") count++;
+        if (bookClass.bookGenre === "is-valid") count++;
+        if (bookClass.bookAuthor === "is-valid") count++;
+        if (bookClass.bookPublisher === "is-valid") count++;
+        if (bookClass.bookPublicationDate === "is-valid") count++;
+        return count === 7;
+    }, [bookClass]);
+
+    const sendData = useCallback(()=>{
+    axios({
+        url:"http://localhost:8080/book/",
+        method:"post",
+        data:book
+    })
+    .then(response=>{
+        toast.success("도서 등록 완료");
+    });
+}, [book]);
 
     return (
         <>
@@ -191,6 +216,13 @@ export default function Exam06(){
                     <div className="valid-feedback">좋은 출판사입니다.</div>
                     <div className="invalid-feedback">나쁜 출판사입니다.</div>
                 </div>
+            </div>
+
+            <div className="row mt-4">
+                <div className="col">
+                    <button type="button" className="btn btn-success btn-lg w-100"
+                    disabled={sendable == false} onClick={sendData}>등록</button>
+                </div>     
             </div>
         </>
     )

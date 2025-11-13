@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import { useCallback } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 
 export default function Exam05() {
@@ -73,6 +75,17 @@ export default function Exam05() {
         return count === 4;
     }, [studentClass]);
 
+    const sendData = useCallback(()=>{
+    axios({
+        url:"http://localhost:8080/student/",
+        method:"post",
+        data:student
+    })
+    .then(response=>{
+        toast.success("학생 등록 완료");
+    });
+}, [student]);
+
     //render
     return (<>
         <Jumbotron subject="예제 5번" detail="학생 등록 화면에 feedback 추가"></Jumbotron>
@@ -132,28 +145,11 @@ export default function Exam05() {
             </div>
         </div>
 
-        {/* {sendable === true ? (
-            <div className="row mt-4">
-                <div className="col">
-                    <button className="btn btn-outline-success w-100">등록</button>
-                </div>
-            </div>
-        ) : null} */}
-
-        {/* {sendable === true && (
-            <div className="row mt-4">
-                <div className="col">
-                    <button className="btn btn-outline-success w-100">등록</button>
-                </div>
-            </div>
-        )}
-
-        {sendable === false || (
-            <div className="row mt-4">
-                <div className="col">
-                    <button className="btn btn-outline-success w-100">등록</button>
-                </div>
-            </div>
-        )} */}
+        <div className="row mt-4">
+            <div className="col">
+                <button type="button" className="btn btn-success btn-lg w-100"
+                disabled={sendable == false} onClick={sendData}>등록</button>
+            </div>     
+        </div>
     </>)
 }
