@@ -6,6 +6,9 @@ export default function template(){
 
     return (
         <>
+
+            <Jumbotron subject="subject" detail="detail" ></Jumbotron>
+
         </>
     )
 }
