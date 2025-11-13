@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
+import axios from "axios";
 
 export default function Exam04(){
 
@@ -29,6 +30,16 @@ const pokemonValid = useMemo(()=>{
     return pokemonNameValid && pokemonTypeValid;
 }, [pokemonNameValid, pokemonTypeValid]);
 
+const sendData = useCallback(()=>{
+    axios({
+        url:"http://localhost:8080/pokemon/",
+        method:"post",
+        data:pokemon
+    })
+    .then(response=>{
+        console.log("포켓몬 등록 완료");
+    });
+}, [pokemon]);
 
     return (
         <>
@@ -81,7 +92,7 @@ const pokemonValid = useMemo(()=>{
             <div className="row mt-4">
                 <div className="col">
                     <button type="button" className="btn btn-success btn-lg w-100"
-                    disabled={pokemonValid == false}>등록</button>
+                    disabled={pokemonValid == false} onClick={sendData}>등록</button>
                 </div>     
             </div>
         </>
