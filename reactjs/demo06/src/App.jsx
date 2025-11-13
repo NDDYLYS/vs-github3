@@ -8,6 +8,7 @@ import Exam04 from "./components/Exam04"
 import Exam05 from "./components/Exam05"
 import Exam06 from "./components/Exam06"
 import Exam07 from "./components/Exam07"
+import Exam08 from "./components/Exam08"
 import { ToastContainer, Flip } from 'react-toastify';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
   const [isOpen05, setIsOpen05] = useState(false);
   const [isOpen06, setIsOpen06] = useState(false);
   const [isOpen07, setIsOpen07] = useState(false);
+  const [isOpen08, setIsOpen08] = useState(false);
 
   return (
     <>
@@ -48,7 +50,9 @@ export default function App() {
                 <button onClick={() => setIsOpen07(!isOpen07)} className="mx-1 btn btn-outline-info">
                   {isOpen07 ? <>Exam07 <FaArrowUp /></> : <>Exam07 <FaArrowDown /></> }
                 </button>
-                <button className="mx-1 btn btn-outline-info">Exam08</button>
+               <button onClick={() => setIsOpen08(!isOpen08)} className="mx-1 btn btn-outline-info">
+                  {isOpen08 ? <>Exam08 <FaArrowUp /></> : <>Exam08 <FaArrowDown /></> }
+                </button>
               </div>
             </div>
 
@@ -93,6 +97,12 @@ export default function App() {
               {isOpen07 && (
                 <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
                   <Exam07></Exam07>
+                  <hr className="my-5" /> 
+                </div>
+              )}
+              {isOpen08 && (
+                <div style={{ border: "1px solid gray", padding: "10px", marginTop: "5px" }}>
+                  <Exam08></Exam08>
                   <hr className="my-5" /> 
                 </div>
               )}
