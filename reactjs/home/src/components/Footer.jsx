@@ -4,9 +4,6 @@ export default function Footer (){
 
     return (
         <>
-        
-            <hr></hr>
-
             <div className="row">
                 <div className="col-md-10 offset-md-1">
 
@@ -23,19 +20,19 @@ export default function Footer (){
 
                                 <div className="row mt-4">
                                     <div className="col">
-                                        OO시 OO구 OO동 000-000번지
+                                        오산시 남촌동 성산새싹길 32 개나리맨숀 202호
                                     </div>
                                 </div>
 
                                 <div className="row mt-2">
                                     <div className="col">
-                                        대표자 - 피카츄
+                                        이윤석
                                     </div>
                                 </div>
 
                                 <div className="row mt-2">
                                     <div className="col">
-                                        고객센터 - (02) 1234-5678
+                                        경찰서 - 112
                                     </div>
                                 </div>
                             </div>

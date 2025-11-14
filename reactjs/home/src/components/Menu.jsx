@@ -8,7 +8,7 @@ export default function Menu() {
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">KH정보교육원</Link>
 
-                    <button N="navbar-toggler" type="button"
+                    <button className="navbar-toggler" type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#menu-body"
                         aria-controls="menu-body"
@@ -20,8 +20,13 @@ export default function Menu() {
                     <div className="collapse navbar-collapse" id="menu-body">
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/pokemon">
-                                    <span>포켓몬</span>
+                                <Link className="nav-link" to="/pokemon/spa">
+                                    <span>포켓몬(SPA)</span>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/pokemon/list">
+                                    <span>포켓몬 목록</span>
                                 </Link>
                             </li>
                              <li className="nav-item">
