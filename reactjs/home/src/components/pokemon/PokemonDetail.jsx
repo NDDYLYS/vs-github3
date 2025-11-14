@@ -76,7 +76,7 @@ export default function PokemonDetail() {
                 <div className="col">
                     <Link to="/pokemon/add" className="btn btn-success">신규 등록</Link>
                     <Link to="/pokemon/list" className="btn btn-secondary ms-2">목록으로</Link>
-                    <Link to="/pokemon/edit" className="btn btn-warning ms-2">전체 수정</Link>
+                    <Link to={`/pokemon/edit/${pokemonNo}`} className="btn btn-warning ms-2">전체 수정</Link>
                     <button className="btn btn-danger ms-2" onClick={deleteData}>삭제하기</button>
                 </div>
             </div>
