@@ -48,7 +48,11 @@ export default function PokemonList(){
                                 {pokemonList.map(pokemon=>(
                                     <tr key={pokemon.pokemonNo}>
                                         <td>{pokemon.pokemonNo}</td>
-                                        <td>{pokemon.pokemonName}</td>
+                                        <td>
+                                            <Link to={'/pokemon/detail/${pokemon.pokemonNo}'} className="link-underline link-underline-opacity-0">
+                                                {pokemon.pokemonName}
+                                            </Link>
+                                        </td>
                                         <td>{pokemon.pokemonType}</td>
                                         <td>{pokemon.pokemonLike}</td>
                                     </tr>)

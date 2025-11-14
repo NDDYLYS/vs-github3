@@ -25,7 +25,7 @@ export default function Content (){
                         <Route path="/pokemon/list" element={<PokemonList/>}></Route>
                         <Route path="/pokemon/add" element={<PokemonAdd/>}></Route>
                         <Route path="/pokemon/edit" element={<PokemonEdit/>}></Route>
-                        <Route path="/pokemon/detail" element={<PokemonDetail/>}></Route>
+                        <Route path="/pokemon/detail/:pokemonNo" element={<PokemonDetail/>}></Route>
 
                         <Route path="/student" element={<Student/>}></Route>
                     </Routes>
