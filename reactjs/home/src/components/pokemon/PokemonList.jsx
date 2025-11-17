@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from "axios";
-import Jumbotron from "../templates/jumbotron";
+import Jumbotron from "../templates/Jumbotron";
 import { Link } from "react-router-dom";
 
 export default function PokemonList(){
@@ -49,7 +49,11 @@ export default function PokemonList(){
                                     <tr key={pokemon.pokemonNo}>
                                         <td>{pokemon.pokemonNo}</td>
                                         <td>
-                                            <Link to={'/pokemon/detail/${pokemon.pokemonNo}'} className="link-underline link-underline-opacity-0">
+                                            <Link to={`/pokemon/detail/${pokemon.pokemonNo}`} className="link-underline link-underline-opacity-0 me-3">
+                                                {pokemon.pokemonName}
+                                            </Link>
+
+                                            <Link to={`/pokemon/detail2/${pokemon.pokemonNo}`} className="link-underline link-underline-opacity-0">
                                                 {pokemon.pokemonName}
                                             </Link>
                                         </td>

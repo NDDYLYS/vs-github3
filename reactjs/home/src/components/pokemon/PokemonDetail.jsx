@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, Link, useNavigate } from "react-router-dom"
-import Jumbotron from "../templates/jumbotron";
+import Jumbotron from "../templates/Jumbotron";
 import { toast } from "react-toastify";
 import { HashLoader } from "react-spinners";
 

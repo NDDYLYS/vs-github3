@@ -4,10 +4,10 @@ import Home from "./Home"
 
 import Pokemon from "./pokemon/Pokemon"
 import PokemonEdit from "./pokemon/PokemonEdit";
-
-import PokemonAdd from "./pokemon/pokemonAdd";
-import PokemonList from "./pokemon/pokemonList";
-import PokemonDetail from "./pokemon/pokemonDetail";
+import PokemonAdd from "./pokemon/PokemonAdd";
+import PokemonList from "./pokemon/PokemonList";
+import PokemonDetail from "./pokemon/PokemonDetail";
+import PokemonDetail2 from "./pokemon/PokemonDetail2";
 
 import Student from "./Student"
 
@@ -26,6 +26,7 @@ export default function Content (){
                         <Route path="/pokemon/add" element={<PokemonAdd/>}></Route>
                         <Route path="/pokemon/edit" element={<PokemonEdit/>}></Route>
                         <Route path="/pokemon/detail/:pokemonNo" element={<PokemonDetail/>}></Route>
+                        <Route path="/pokemon/detail2/:pokemonNo" element={<PokemonDetail2/>}></Route>
 
                         <Route path="/student" element={<Student/>}></Route>
                     </Routes>
