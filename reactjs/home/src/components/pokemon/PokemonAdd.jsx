@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import axios from "axios";
 import { toast } from "react-toastify";
-import Jumbotron from "../templates/jumbotron";
+import Jumbotron from "../templates/Jumbotron";
 
 export default function PokemonAdd() {
 
