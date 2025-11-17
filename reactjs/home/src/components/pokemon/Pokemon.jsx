@@ -3,7 +3,7 @@ import Jumbotron from "../templates/Jumbotron";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Modal } from "bootstrap";
-
+import { FaTrash } from "react-icons/fa6";
 
 export default function Pokemon() {
     const [pokemonList, setPokemonList] = useState([]);//목록
@@ -105,6 +105,15 @@ export default function Pokemon() {
         clearData();
     }, [modal]);
 
+    const deleteData = useCallback(async (pokemon)=>{
+        try{
+            const response = await axios.delete(`http://localhost:8080/pokemon/${pokemon.pokemonNo}`);
+            loadData();
+        } catch(err){
+            // try catch
+        }
+    }, []);
+
 
     //render
     return (<>
@@ -128,6 +137,7 @@ export default function Pokemon() {
                                 <th>이름</th>
                                 <th>속성</th>
                                 <th>좋아요</th>
+                                <th>관리</th>
                             </tr>
                         </thead>
                         <tbody className="text-center">
@@ -137,6 +147,7 @@ export default function Pokemon() {
                                     <td>{pokemon.pokemonName}</td>
                                     <td>{pokemon.pokemonType}</td>
                                     <td>{pokemon.pokemonLike}</td>
+                                    <td><FaTrash onClick={e=>{deleteData(pokemon);}}></FaTrash></td>
                                 </tr>
                             ))}
                         </tbody>
