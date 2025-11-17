@@ -109,9 +109,14 @@ export default function Pokemon() {
         try{
             const response = await axios.delete(`http://localhost:8080/pokemon/${pokemon.pokemonNo}`);
             loadData();
+            toast.success("포켓몬 삭제 완료!");
         } catch(err){
             // try catch
         }
+    }, []);
+    const editData = useCallback((pokemon)=>{
+        setPokemon(pokemon);
+        openModal();
     }, []);
 
 
@@ -137,7 +142,8 @@ export default function Pokemon() {
                                 <th>이름</th>
                                 <th>속성</th>
                                 <th>좋아요</th>
-                                <th>관리</th>
+                                <th>수정</th>
+                                <th>삭제</th>
                             </tr>
                         </thead>
                         <tbody className="text-center">
@@ -147,6 +153,7 @@ export default function Pokemon() {
                                     <td>{pokemon.pokemonName}</td>
                                     <td>{pokemon.pokemonType}</td>
                                     <td>{pokemon.pokemonLike}</td>
+                                    <td><FaTrash onClick={e=>{editData(pokemon);}}></FaTrash></td>
                                     <td><FaTrash onClick={e=>{deleteData(pokemon);}}></FaTrash></td>
                                 </tr>
                             ))}
@@ -160,7 +167,9 @@ export default function Pokemon() {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">포켓몬 신규 등록</h5>
+                        <h5 className="modal-title">
+                            {pokemon.pokemonNo === undefined ? "포켓몬 신규 등록" : pokemon.pokemonNo + "번 포켓몬 수정"}
+                        </h5>
                     </div>
                     <div className="modal-body">
                         <div className="row mt-4">
@@ -194,7 +203,9 @@ export default function Pokemon() {
                             <div className="col">
                                 <button type="button" className="btn btn-success"
                                     disabled={pokemonValid === false} onClick={sendData}>
-                                    <span>등록</span>
+                                    <span>
+                                         {pokemon.pokemonNo === undefined ? "등록" : "수정"}
+                                    </span>
                                 </button>
                             </div>
                         </div>
