@@ -1,4 +1,4 @@
-import Jumbotron from "./templates/jumbotron";
+import Jumbotron from "../templates/jumbotron";
 import { Link } from "react-router-dom";
 
 export default function Home() {

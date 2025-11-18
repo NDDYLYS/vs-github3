@@ -9,6 +9,7 @@ import PokemonList from "./pokemon/PokemonList";
 import PokemonDetail from "./pokemon/PokemonDetail";
 import PokemonDetail2 from "./pokemon/PokemonDetail2";
 import PokemonPagination from "./pokemon/PokemonPagination";
+import PokemonPagination2 from "./pokemon/PokemonPagination2";
 
 import Student from "./Student"
 
@@ -29,6 +30,7 @@ export default function Content (){
                         <Route path="/pokemon/detail/:pokemonNo" element={<PokemonDetail/>}></Route>
                         <Route path="/pokemon/detail2/:pokemonNo" element={<PokemonDetail2/>}></Route>
                         <Route path="/pokemon/pagination" element={<PokemonPagination/>}></Route>
+                        <Route path="/pokemon/pagination2" element={<PokemonPagination2/>}></Route>
 
                         <Route path="/student" element={<Student/>}></Route>
                     </Routes>
