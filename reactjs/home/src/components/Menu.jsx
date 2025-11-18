@@ -40,6 +40,11 @@ export default function Menu() {
                                 </Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/pokemon/pagination3">
+                                    <span>포켓몬 페이징3</span>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/student">
                                     <span>학생</span>
                                 </Link>
