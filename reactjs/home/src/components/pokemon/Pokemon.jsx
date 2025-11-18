@@ -3,7 +3,9 @@ import Jumbotron from "../templates/Jumbotron";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Modal } from "bootstrap";
-import { FaTrash } from "react-icons/fa6";
+import Swal from 'sweetalert2';
+import { FaAsterisk, FaPlus, FaTrash, FaXmark } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 
 export default function Pokemon() {
     const [pokemonList, setPokemonList] = useState([]);//목록
@@ -105,16 +107,30 @@ export default function Pokemon() {
         setTimeout(clearData, 100);
     }, [modal]);
 
-    const deleteData = useCallback(async (pokemon)=>{
-        try{
+    const deleteData = useCallback(async (pokemon) => {
+        try {
+            const choice = await Swal.fire({
+                title: "정말 삭제하시겠습니까?",
+                text: "삭제 이후에는 복구가 불가능합니다",
+                icon: "error",
+                showCancelButton: true,//취소 버튼 추가(확인창으로 변경)
+                confirmButtonColor: "#0984e3",
+                cancelButtonColor: "#d63031",
+                confirmButtonText: "예, 삭제합니다",
+                cancelButtonText: "아니오, 삭제하지 않겠습니다",
+                allowOutsideClick: false,//외부 클릭 금지
+            });
+            //console.log(choice);
+            if (choice.isConfirmed === false) return;
+
             const response = await axios.delete(`http://localhost:8080/pokemon/${pokemon.pokemonNo}`);
             loadData();
             toast.success("포켓몬 삭제 완료!");
-        } catch(err){
+        } catch (err) {
             // try catch
         }
     }, []);
-    const editData = useCallback((pokemon)=>{
+    const editData = useCallback((pokemon) => {
         setPokemon(pokemon);
         openModal();
     }, []);
@@ -133,6 +149,10 @@ export default function Pokemon() {
             //에러 발생 시 할 일
         }
     }, [pokemon, pokemonValid]);
+
+    const isEdit = useMemo(() => {
+        return pokemon.pokemonNo !== undefined;
+    }, [pokemon]);
 
 
     //render
@@ -168,8 +188,8 @@ export default function Pokemon() {
                                     <td>{pokemon.pokemonName}</td>
                                     <td>{pokemon.pokemonType}</td>
                                     <td>{pokemon.pokemonLike}</td>
-                                    <td><FaTrash onClick={e=>{editData(pokemon);}}></FaTrash></td>
-                                    <td><FaTrash onClick={e=>{deleteData(pokemon);}}></FaTrash></td>
+                                    <td><FaEdit onClick={e => { editData(pokemon); }}></FaEdit></td>
+                                    <td><FaTrash onClick={e => { deleteData(pokemon); }}></FaTrash></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -178,7 +198,7 @@ export default function Pokemon() {
             </div>
         </div>
 
-        <div className="modal fade" tabindex="-1" data-bs-backdrop="static" ref={modal} 
+        <div className="modal fade" tabindex="-1" data-bs-backdrop="static" ref={modal}
             data-bs-keyboard="false">
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -217,12 +237,18 @@ export default function Pokemon() {
                                 <button type="button" className="btn btn-primary" onClick={closenclear_Modal}>취소</button>
                             </div>
                             <div className="col">
-                                <button type="button" className="btn btn-success"
-                                    disabled={pokemonValid === false} onClick={pokemon.pokemonNo === undefined ? sendData : editConfirm}>
-                                    <span>
-                                         {pokemon.pokemonNo === undefined ? "등록" : "수정"}
-                                    </span>
-                                </button>
+                                {/* 등록과 수정 상태에 따라 처리 버튼을 다르게 구성 */}
+                                {isEdit ? (
+                                    <button type="button" className="btn btn-warning"
+                                        disabled={pokemonValid === false} onClick={editConfirmData}>
+                                        <span>수정</span>
+                                    </button>
+                                ) : (
+                                    <button type="button" className="btn btn-success"
+                                        disabled={pokemonValid === false} onClick={sendData}>
+                                        <span>등록</span>
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
