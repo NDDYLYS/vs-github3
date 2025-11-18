@@ -100,9 +100,9 @@ export default function Pokemon() {
         instance.hide();
     }, [modal]);
     const closenclear_Modal = useCallback(() => {
-        var instance = Modal.getInstance(modal.current);
-        instance.hide();
-        clearData();
+        closeModal();
+        //clearData();
+        setTimeout(clearData, 100);
     }, [modal]);
 
     const deleteData = useCallback(async (pokemon)=>{
@@ -118,6 +118,21 @@ export default function Pokemon() {
         setPokemon(pokemon);
         openModal();
     }, []);
+
+    const editConfirm = useCallback(async () => {
+        if (pokemonValid === false) return;
+
+        try {
+            const response = await axios.put(`http://localhost:8080/pokemon/${pokemon.pokemonNo}`, pokemon);
+            toast.success("수정 완료");
+            clearData();
+            loadData();
+            closenclear_Modal();
+        }
+        catch (err) {
+            //에러 발생 시 할 일
+        }
+    }, [pokemon, pokemonValid]);
 
 
     //render
@@ -163,7 +178,8 @@ export default function Pokemon() {
             </div>
         </div>
 
-        <div className="modal fade" tabindex="-1" data-bs-backdrop="static" ref={modal}>
+        <div className="modal fade" tabindex="-1" data-bs-backdrop="static" ref={modal} 
+            data-bs-keyboard="false">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -202,7 +218,7 @@ export default function Pokemon() {
                             </div>
                             <div className="col">
                                 <button type="button" className="btn btn-success"
-                                    disabled={pokemonValid === false} onClick={sendData}>
+                                    disabled={pokemonValid === false} onClick={pokemon.pokemonNo === undefined ? sendData : editConfirm}>
                                     <span>
                                          {pokemon.pokemonNo === undefined ? "등록" : "수정"}
                                     </span>
