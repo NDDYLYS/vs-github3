@@ -13,6 +13,8 @@ import PokemonPagination2 from "./pokemon/PokemonPagination2";
 import PokemonPagination3 from "./pokemon/PokemonPagination3";
 
 import Student from "./Student"
+import MemberJoin from "./member/memberJoin";
+
 
 export default function Content (){
 
@@ -35,6 +37,9 @@ export default function Content (){
                         <Route path="/pokemon/pagination3" element={<PokemonPagination3/>}></Route>
 
                         <Route path="/student" element={<Student/>}></Route>
+
+                    
+                        <Route path="/member/MemberJoin" element={<MemberJoin/>}></Route>
                     </Routes>
 
                 </div>
