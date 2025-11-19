@@ -50,7 +50,7 @@ export default function Menu() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/member/MemberJoin">
+                                <Link className="nav-link" to="/account/AccountJoin">
                                     <span>회원가입</span>
                                 </Link>
                             </li>

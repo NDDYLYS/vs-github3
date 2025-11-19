@@ -13,7 +13,7 @@ import PokemonPagination2 from "./pokemon/PokemonPagination2";
 import PokemonPagination3 from "./pokemon/PokemonPagination3";
 
 import Student from "./Student"
-import MemberJoin from "./member/memberJoin";
+import AccountJoin from "./account/AccountJoin";
 
 
 export default function Content (){
@@ -39,7 +39,7 @@ export default function Content (){
                         <Route path="/student" element={<Student/>}></Route>
 
                     
-                        <Route path="/member/MemberJoin" element={<MemberJoin/>}></Route>
+                        <Route path="/account/AccountJoin" element={<AccountJoin/>}></Route>
                     </Routes>
 
                 </div>
