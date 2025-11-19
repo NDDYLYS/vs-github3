@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
+import axios from "axios";
 
 export default function AccountJoin() {
 
@@ -29,19 +30,49 @@ export default function AccountJoin() {
         accountAddress2: ""
     });
 
+    const [accountIdFeedback, setAccountIdFeedback] = useState("");
+    const [accountNicknameFeedback, setAccountNicknameFeedback] = useState("");
+
     const changeStrValue = useCallback(e => {
         const { name, value } = e.target;
         setAccount(prev => ({ ...prev, [name]: value }));
     }, [account]);
 
-    const checkAccountId = useCallback(() => {
+    const checkAccountId = useCallback(async(e) => {
         // 형식 > 중복 > 결과
         const regex = /^[a-z][a-z0-9]{4,19}$/;
         const valid = regex.test(account.accountId);
         if (valid) {
-
+            const {data} = await axios.get(`http://localhost:8080/account/accountId/${account.accountId}`);
+            if (data === true){
+                setAccountClass(prev => ({ ...prev, accountId: "is-valid" }));
+            }
+            else {
+                setAccountClass(prev => ({ ...prev, accountId: "is-invalid" }));
+                setAccountIdFeedback("아이디가 중복되었습니다.");
+            }
         } else {
             setAccountClass(prev => ({ ...prev, accountId: "is-invalid" }));
+            setAccountIdFeedback("아이디가 부적절합니다.");
+        }
+    }, [account]);
+
+     const checkAccountNickname = useCallback(async(e) => {
+        // 형식 > 중복 > 결과
+        const regex = /^[가-힣0-9]{2,10}$/;
+        const valid = regex.test(account.accountNickname);
+        if (valid) {
+            const {data} = await axios.get(`http://localhost:8080/account/accountNickname/${account.accountNickname}`);
+            if (data === true){
+                setAccountClass(prev => ({ ...prev, accountNickname: "is-valid" }));
+            }
+            else {
+                setAccountClass(prev => ({ ...prev, accountNickname: "is-invalid" }));
+                setAccountNicknameFeedback("닉네임이 중복되었습니다.");
+            }
+        } else {
+            setAccountClass(prev => ({ ...prev, accountNickname: "is-invalid" }));
+            setAccountNicknameFeedback("닉네임이 부적절합니다.");
         }
     }, [account]);
 
@@ -57,7 +88,7 @@ export default function AccountJoin() {
                 <input type="text" name="accountId" value={account.accountId} onChange={changeStrValue}
                     className={`form-control ${accountClass.accountId}`} onBlur={checkAccountId} />
                 <div className="valid-feedback">적당한 아이디입니다.</div>
-                <div className="invalid-feedback">부적절한 아이디입니다.</div>
+                <div className="invalid-feedback">{accountIdFeedback}</div>
             </div>
         </div>
 
@@ -99,9 +130,11 @@ export default function AccountJoin() {
                 닉네임 *
             </div>
             <div className="col-sm-9">
-                <input type="email" name="accountNickname" value={account.accountNickname} onChange={changeStrValue} className="form-control" />
+                <input type="email" name="accountNickname" value={account.accountNickname} 
+                onChange={changeStrValue} onBlur={checkAccountNickname} 
+                className={`form-control ${accountClass.accountNickname}`} />
                 <div className="valid-feedback">적당한 닉네임입니다.</div>
-                <div className="invalid-feedback">부적절한 닉네임입니다.</div>
+                <div className="invalid-feedback">{accountNicknameFeedback}</div>
             </div>
         </div>
 
