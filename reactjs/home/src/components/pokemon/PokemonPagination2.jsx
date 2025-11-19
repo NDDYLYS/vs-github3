@@ -60,6 +60,12 @@ export default function PokemonPagination2() {
         // 스크롤 가능한 실제 최대 높이 (전체 높이 - 보이는 높이)
         const scrollableHeight = scrollHeight - clientHeight;
 
+        // 부동 소수점 오차 보정: 
+        // 스크롤 가능한 최대 높이와 현재 스크롤 위치의 차이가 1px 미만이면 100%로 간주
+        if (scrollableHeight - scrollTop < 1) {
+            return 100;
+        }
+
         // (현재 스크롤 위치 / 스크롤 가능한 최대 높이) * 100
         const percentage = (scrollTop / scrollableHeight) * 100;
 
@@ -69,7 +75,7 @@ export default function PokemonPagination2() {
     
     const listner = throttle(e => {
         const p = getScrollPercent();
-        //console.log("스크롤 감지", p);
+        console.log("스크롤 감지", p);
         if (p === 100 && loading.current === false)
             setPage(prev=>prev+1);
     }, 250);
