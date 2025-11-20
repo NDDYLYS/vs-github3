@@ -1,0 +1,16 @@
+/* 화면 애니메이션 */
+
+@keyframes custom-spin {
+    /* from, to, 0%, 20%, 100% */
+    from {/* 0% */
+        transform: rotate(0deg);
+    }
+    to {/* 100% */
+        transform: rotate(360deg);
+    }
+}
+
+.custom-spinner {
+    /* custom-spin를 2초미디 무한히 돌린다 */
+    animation: custom-spin 2s linear infinite;
+}

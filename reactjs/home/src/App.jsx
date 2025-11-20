@@ -5,6 +5,7 @@ import Footer from "./components/Footer"
 import Menu from "./components/menu";
 import { HashRouter, BrowserRouter } from "react-router-dom"
 import { ToastContainer, Flip } from "react-toastify";
+import "./App.css";
 
 export default function App() {
     const [size, SetSize] = useState(300)

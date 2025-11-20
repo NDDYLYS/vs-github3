@@ -173,7 +173,7 @@ export default function AccountJoin() {
                     onChange={changeStrValue} className="form-control w-auto flex-grow-1" />
                 <button type="button" className="btn btn-primary ms-2" onClick={sendCertEmail}
                     disabled={sending === true}>
-                    {sending === true ? <FaSpinner /> : <FaPaperPlane />}
+                    {sending === true ? <FaSpinner className="fa-spin custom-spinner" /> : <FaPaperPlane />}
                     <span className="ms-2 d-none d-sm-inline">
                         {sending === true ? "인증번호 발송 중" : "인증번호 발송"}
                     </span>
