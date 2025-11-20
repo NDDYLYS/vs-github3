@@ -43,7 +43,7 @@ export default function AccountJoin() {
         const regex = /^[a-z][a-z0-9]{4,19}$/;
         const valid = regex.test(account.accountId);
         if (valid) {
-            const {data} = await axios.get(`http://localhost:8080/account/accountId/${account.accountId}`);
+            const {data} = await axios.get(`/account/accountId/${account.accountId}`);
             if (data === true){
                 setAccountClass(prev => ({ ...prev, accountId: "is-valid" }));
             }
@@ -62,7 +62,7 @@ export default function AccountJoin() {
         const regex = /^[가-힣0-9]{2,10}$/;
         const valid = regex.test(account.accountNickname);
         if (valid) {
-            const {data} = await axios.get(`http://localhost:8080/account/accountNickname/${account.accountNickname}`);
+            const {data} = await axios.get(`/account/accountNickname/${account.accountNickname}`);
             if (data === true){
                 setAccountClass(prev => ({ ...prev, accountNickname: "is-valid" }));
             }
@@ -75,6 +75,7 @@ export default function AccountJoin() {
             setAccountNicknameFeedback("닉네임이 부적절합니다.");
         }
     }, [account]);
+    
 
     //render
     return (<>
@@ -97,7 +98,9 @@ export default function AccountJoin() {
                 비밀번호 *
             </div>
             <div className="col-sm-9">
-                <input type="password" name="accountPw" value={account.accountPw} onChange={changeStrValue} className="form-control" />
+                <input type="password" name="accountPw" value={account.accountPw} 
+                onChange={changeStrValue} className="form-control" 
+                onBlur={checkAccountPw} />
                 <div className="valid-feedback">적당한 비밀번호입니다.</div>
                 <div className="invalid-feedback">부적절한 비밀번호입니다.(대소문자, 숫자, 특수문자 1글자 이상씩 8~16글자)</div>
             </div>
@@ -108,7 +111,8 @@ export default function AccountJoin() {
                 비밀번호 확인 *
             </div>
             <div className="col-sm-9">
-                <input type="text" name="accountPw2" value={account.accountPw2} onChange={changeStrValue} className="form-control" />
+                <input type="text" name="accountPw2" value={account.accountPw2} 
+                onChange={changeStrValue} className="form-control" />
                 <div className="valid-feedback">비밀번호가 일치합니다.</div>
                 <div className="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
             </div>
@@ -119,7 +123,8 @@ export default function AccountJoin() {
                 이메일 *
             </div>
             <div className="col-sm-9">
-                <input type="email" name="accountEmail" value={account.accountEmail} onChange={changeStrValue} className="form-control" />
+                <input type="email" name="accountEmail" value={account.accountEmail} 
+                onChange={changeStrValue} className="form-control" />
                 <div className="valid-feedback">이메일 인증이 완료되었습니다.</div>
                 <div className="invalid-feedback">이메일 인증 오류가 발생했습니다.</div>
             </div>
@@ -143,7 +148,9 @@ export default function AccountJoin() {
                 생년월일
             </div>
             <div className="col-sm-9">
-                <input type="date" name="accountBirth" value={account.accountBirth} onChange={changeStrValue} className="form-control" />
+                <input type="date" name="accountBirth" value={account.accountBirth} 
+                onChange={changeStrValue} className="form-control" 
+                onBlur={checkAccountBirth} />
                 <div className="invalid-feedback">부적절한 생일입니다.</div>
             </div>
         </div>
@@ -153,7 +160,9 @@ export default function AccountJoin() {
                 연락처
             </div>
             <div className="col-sm-9">
-                <input type="tel" name="accountContact" value={account.accountContact} onChange={changeStrValue} className="form-control" />
+                <input type="tel" name="accountContact" value={account.accountContact} 
+                onChange={changeStrValue} className="form-control" 
+                onBlur={checkAccountContact} />
                 <div className="invalid-feedback">010으로 시작하는 11자리 전화번호(- 없음)</div>
             </div>
         </div>

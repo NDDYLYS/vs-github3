@@ -61,7 +61,7 @@ export default function PokemonPagination3() {
         //로딩 시작(flag on)
         loading.current = true;
 
-        const response = await axios.get(`http://localhost:8080/pokemon/page/${page}`);
+        const response = await axios.get(`/pokemon/page/${page}`);
         if(page === 1) {//첫페이지면
             setPokemonList(response.data.list);//덮어쓰기 수행
         }

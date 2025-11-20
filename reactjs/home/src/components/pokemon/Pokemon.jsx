@@ -23,7 +23,7 @@ export default function Pokemon() {
 
     const loadData = useCallback(async () => {
         try {
-            const response = await axios.get("http://localhost:8080/pokemon/");
+            const response = await axios.get("/pokemon/");
             setPokemonList(response.data);
         }
         catch (err) {
@@ -72,7 +72,7 @@ export default function Pokemon() {
         if (pokemonValid === false) return;
 
         try {
-            const response = await axios.post("http://localhost:8080/pokemon/", pokemon);
+            const response = await axios.post("/pokemon/", pokemon);
             toast.success("신규 등록 완료");
             clearData();
             loadData();
@@ -123,7 +123,7 @@ export default function Pokemon() {
             //console.log(choice);
             if (choice.isConfirmed === false) return;
 
-            const response = await axios.delete(`http://localhost:8080/pokemon/${pokemon.pokemonNo}`);
+            const response = await axios.delete(`/pokemon/${pokemon.pokemonNo}`);
             loadData();
             toast.success("포켓몬 삭제 완료!");
         } catch (err) {
@@ -139,7 +139,7 @@ export default function Pokemon() {
         if (pokemonValid === false) return;
 
         try {
-            const response = await axios.put(`http://localhost:8080/pokemon/${pokemon.pokemonNo}`, pokemon);
+            const response = await axios.put(`/pokemon/${pokemon.pokemonNo}`, pokemon);
             toast.success("수정 완료");
             clearData();
             loadData();

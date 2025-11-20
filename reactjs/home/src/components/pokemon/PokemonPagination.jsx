@@ -13,7 +13,7 @@ export default function PokemonPagination() {
 
     const loadData = useCallback(async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/pokemon/page/${page}`);
+            const response = await axios.get(`/pokemon/page/${page}`);
             if (page == 1)
                 setPokemonList(response.data.list);
             else {

@@ -26,7 +26,7 @@ export default function PokemonDetail2() {
     //시작하자마자 정보를 불러오는 코드
     useEffect(()=>{
         axios({
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            url: `/pokemon/${pokemonNo}`,
             method: "get"
         })
         .then(response=>{
@@ -45,7 +45,7 @@ export default function PokemonDetail2() {
         if(choice === false) return;
 
         axios({
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            url: `/pokemon/${pokemonNo}`,
             method: "delete"
         })
         .then(response=>{
@@ -103,8 +103,8 @@ export default function PokemonDetail2() {
     const savePokemonName = useCallback(()=>{
         //ajax로 PATCH매핑을 호출
         axios({
-            //url: "http://localhost:8080/pokemon/"+pokemonNo,
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            //url: "/pokemon/"+pokemonNo,
+            url: `/pokemon/${pokemonNo}`,
             method: "patch",
             //data: pokemon //이러면 다바뀜
             data : {pokemonName : pokemon.pokemonName}//바꿀 항목만 추출하여 전달
@@ -133,8 +133,8 @@ export default function PokemonDetail2() {
     const savePokemonType = useCallback(()=>{
         //ajax로 PATCH매핑을 호출
         axios({
-            //url: "http://localhost:8080/pokemon/"+pokemonNo,
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            //url: "/pokemon/"+pokemonNo,
+            url: `/pokemon/${pokemonNo}`,
             method: "patch",
             //data: pokemon //이러면 다바뀜
             data : {pokemonType : pokemon.pokemonType}//바꿀 항목만 추출하여 전달
@@ -171,8 +171,8 @@ export default function PokemonDetail2() {
     const savePokemonLike = useCallback(()=>{
         //ajax로 PATCH매핑을 호출
         axios({
-            //url: "http://localhost:8080/pokemon/"+pokemonNo,
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            //url: "/pokemon/"+pokemonNo,
+            url: `/pokemon/${pokemonNo}`,
             method: "patch",
             //data: pokemon //이러면 다바뀜
             data : {pokemonLike : pokemon.pokemonLike}//바꿀 항목만 추출하여 전달

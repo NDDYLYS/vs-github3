@@ -15,7 +15,7 @@ export default function PokemonDetail() {
 
     useEffect(() => {
         axios({
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            url: `/pokemon/${pokemonNo}`,
             method: "get"
         }).then(response => {
             setPokemon(response.data);
@@ -29,7 +29,7 @@ export default function PokemonDetail() {
             return;
 
         axios({
-            url: `http://localhost:8080/pokemon/${pokemonNo}`,
+            url: `/pokemon/${pokemonNo}`,
             method: "delete"
         }).then(response => {
             toast.error("포켓몬 삭제 완료");

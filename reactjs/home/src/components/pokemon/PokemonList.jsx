@@ -13,7 +13,7 @@ export default function PokemonList(){
         // 섭에 신호를 보내서 받아온 데이터를 pokemonList로 설정하는 코드
         // 2번 실행 방지 위해서는 main.jsx에 있는 <StrictMode> 지우기
         axios({
-            url:"http://localhost:8080/pokemon/",
+            url:"/pokemon/",
             method:"get",
         })
         .then(response=>{

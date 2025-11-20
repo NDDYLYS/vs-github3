@@ -30,7 +30,7 @@ export default function PokemonAdd() {
 
     const sendData = useCallback(() => {
         axios({
-            url: "http://localhost:8080/pokemon/",
+            url: "/pokemon/",
             method: "post",
             data: pokemon
         })
