@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import axios from "axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 export default function AccountJoin() {
 
@@ -32,6 +33,8 @@ export default function AccountJoin() {
 
     const [accountIdFeedback, setAccountIdFeedback] = useState("");
     const [accountNicknameFeedback, setAccountNicknameFeedback] = useState("");
+
+    const [showPassword, setShowPassword] = useState(true);
 
     const changeStrValue = useCallback(e => {
         const { name, value } = e.target;
@@ -75,6 +78,24 @@ export default function AccountJoin() {
             setAccountNicknameFeedback("닉네임이 부적절합니다.");
         }
     }, [account]);
+
+    const checkAccountPw = useCallback((e)=>{
+
+        const regex = /^(?=.*?[A-Z]+)(?=.*?[a-z]+)(?=.*?[0-9]+)(?=.*?[!@#$]+)[A-Za-z0-9!@#$]{8,16}$/;
+        const valid = regex.test(account.accountPw);
+        // if (valid === true){
+        //     setAccountClass(prev=>({...prev, accountPw : "is-valid"}));
+        // }
+        // else {
+        //     setAccountClass(prev=>({...prev, accountPw : "is-invalid"}));
+        // }
+
+        setAccountClass(prev=>({...prev, accountPw : valid ? "is-valid" : "is-invalid"}));
+
+        const valid2 = account.accountPw === account.accountPw2;        
+        setAccountClass(prev=>({...prev, accountPw2 : valid2 ? "is-valid" : "is-invalid"}));
+
+    }, [account, accountClass]);
     
 
     //render
@@ -96,10 +117,12 @@ export default function AccountJoin() {
         <div className="row mt-4">
             <div className="col-sm-3 col-form-label">
                 비밀번호 *
+                { showPassword === true ? <FaEye className="ms-2" onClick={()=>{setShowPassword(false)}} /> 
+                : <FaEyeSlash className="ms-2" onClick={()=>{setShowPassword(true)}}  />}
             </div>
             <div className="col-sm-9">
-                <input type="password" name="accountPw" value={account.accountPw} 
-                onChange={changeStrValue} className="form-control" 
+                <input type={showPassword === true ? "password" : "text"} name="accountPw" value={account.accountPw} 
+                onChange={changeStrValue} className={`form-control ${accountClass.accountPw}`}
                 onBlur={checkAccountPw} />
                 <div className="valid-feedback">적당한 비밀번호입니다.</div>
                 <div className="invalid-feedback">부적절한 비밀번호입니다.(대소문자, 숫자, 특수문자 1글자 이상씩 8~16글자)</div>
@@ -109,10 +132,13 @@ export default function AccountJoin() {
         <div className="row mt-4">
             <div className="col-sm-3 col-form-label">
                 비밀번호 확인 *
+                { showPassword === true ? <FaEye className="ms-2" onClick={()=>{setShowPassword(false)}}  /> 
+                : <FaEyeSlash className="ms-2" onClick={()=>{setShowPassword(true)}}  />}
             </div>
             <div className="col-sm-9">
-                <input type="text" name="accountPw2" value={account.accountPw2} 
-                onChange={changeStrValue} className="form-control" />
+                <input  type={showPassword === true ? "password" : "text"} name="accountPw2" value={account.accountPw2} 
+                onChange={changeStrValue} className={`form-control ${accountClass.accountPw2}`}
+                onBlur={checkAccountPw}/>
                 <div className="valid-feedback">비밀번호가 일치합니다.</div>
                 <div className="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
             </div>
@@ -149,8 +175,7 @@ export default function AccountJoin() {
             </div>
             <div className="col-sm-9">
                 <input type="date" name="accountBirth" value={account.accountBirth} 
-                onChange={changeStrValue} className="form-control" 
-                onBlur={checkAccountBirth} />
+                onChange={changeStrValue} className="form-control" />
                 <div className="invalid-feedback">부적절한 생일입니다.</div>
             </div>
         </div>
@@ -161,8 +186,7 @@ export default function AccountJoin() {
             </div>
             <div className="col-sm-9">
                 <input type="tel" name="accountContact" value={account.accountContact} 
-                onChange={changeStrValue} className="form-control" 
-                onBlur={checkAccountContact} />
+                onChange={changeStrValue} className="form-control" />
                 <div className="invalid-feedback">010으로 시작하는 11자리 전화번호(- 없음)</div>
             </div>
         </div>
