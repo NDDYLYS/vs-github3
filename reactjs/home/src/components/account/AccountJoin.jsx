@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
-import { FaAsterisk, FaEye, FaEyeSlash, FaKey, FaPaperPlane, FaSpinner, FaUser } from "react-icons/fa6";
+import { FaAsterisk, FaEye, FaEyeSlash, FaKey, FaMagnifyingGlass, FaPaperPlane, FaSpinner, FaUser, FaXmark } from "react-icons/fa6";
 import axios from "axios";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.min.css";
@@ -9,7 +9,8 @@ import { format, subDays, addDays, subWeeks, addWeeks } from "date-fns";
 import { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 registerLocale("ko", ko); // 옵션으로 선택 가능
-import { replace} from "lodash";
+import { replace } from "lodash";
+import { useDaumPostcodePopup } from "react-daum-postcode";
 
 //회원 가입 화면
 export default function AccountJoin() {
@@ -46,7 +47,7 @@ export default function AccountJoin() {
 
     const changeDateValue = useCallback(date => {
         const replacement = format(date, "yyyy-MM-dd");
-        setAccount(prev=>({...prev, accountBirth:replacement}));
+        setAccount(prev => ({ ...prev, accountBirth: replacement }));
     }, [account]);
 
     const checkAccountId = useCallback(async (e) => {
@@ -202,6 +203,34 @@ export default function AccountJoin() {
         }
     }, [account, accountClass, certNumber, certNumberClass]);
 
+    const checkAccountContact = useCallback(e => {
+        const regex = /^010[1-9][0-9]{7}$/;
+        const valid = account.accountContact.length === 0 || regex.test(account.accountContact);
+        setAccountClass(prev => ({ ...prev, accountContact: valid ? "is-valid" : "is-invalid" }));
+    }, [account, accountClass]);
+
+    // 주소 : react-daum-postcode를 사용한다
+    const open = useDaumPostcodePopup("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
+    const searchAddress = useCallback(() => {
+        open({
+            onComplete: (data) => {
+                let addr = "";
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                setAccount(prev=>({
+                    ...prev,
+                    accountPost:data.zonecode,
+                    accountAddress1:addr,
+                    accountAddress2:"",
+                }));
+            }
+        });
+    }, []);
+
     //render
     return (<>
         <Jumbotron subject="회원 가입" detail="가입에 필요한 정보를 입력하세요"></Jumbotron>
@@ -323,10 +352,10 @@ export default function AccountJoin() {
             <div className="col-sm-9">
                 {/* <input type="text" className="form-control"
                     name="accountBirth" value={account.accountBirth} onChange={changeStrValue} /> */}
-                <Datepicker name="accountBirth" className="form-control" selected={account.accountBirth} 
-                onChange={changeDateValue} dateFormat={"yyyy-MM-dd"} 
-                locale={"ko"} maxDate={new Date()}
-                monthsShown={1} 
+                <Datepicker name="accountBirth" className="form-control" selected={account.accountBirth}
+                    onChange={changeDateValue} dateFormat={"yyyy-MM-dd"}
+                    locale={"ko"} maxDate={new Date()}
+                    monthsShown={1}
                 //showYearDropdown 
                 //showMonthDropdown
                 />
@@ -340,14 +369,40 @@ export default function AccountJoin() {
                 연락처
             </label>
             <div className="col-sm-9">
-                <input type="text" inputMode="tel" className="form-control"
-                    name="accountContact" value={account.accountContact} onChange={changeStrValue} />
+                <input type="text" inputMode="tel" className={`form-control ${accountClass.accountContact}`}
+                    name="accountContact" value={account.accountContact} onChange={changeStrValue}
+                    onBlur={checkAccountContact} />
                 <div className="invalid-feedback">010으로 시작하는 11자리 휴대전화번호를 입력하세요 (대시 사용 불가)</div>
             </div>
         </div>
 
         {/* 주소(우편번호, 기본주소, 상세주소) */}
-
+        <div className="row mt-4">
+            <label className="col-sm-3">주소</label>
+            <div className="col-sm-9 d-flex align-items-center">
+                <input type="text" name="accountPost" className="form-control w-auto"
+                    placeholder="우편번호" value={account.accountPost} size={6}
+                    onChange={changeStrValue} />
+                <button type="button" className="btn btn-primary ms-2 w-auto" onClick={searchAddress}>
+                    <FaMagnifyingGlass />
+                    <span className="ms-2 d-none d-sm-inline">검색</span>
+                </button>
+                <button type="button" className="btn btn-danger ms-2 w-auto">
+                    <FaXmark />
+                    <span className="ms-2 d-none d-sm-inline">지우기</span>
+                </button>
+            </div>
+            <div className="col-sm-9 offset-sm-3 mt-2">
+                <input type="text" name="accountAddress2" className="form-control"
+                    placeholder="기본주소" value={account.accountAddress1}
+                    onChange={changeStrValue} />
+            </div>
+            <div className="col-sm-9 offset-sm-3 mt-2">
+                <input type="text" name="accountAddress2" className="form-control"
+                    placeholder="상세주소" value={account.accountAddress2}
+                    onChange={changeStrValue} />
+            </div>
+        </div>
 
         {/* 가입버튼 */}
         <div className="row mt-5">
