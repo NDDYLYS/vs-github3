@@ -8,7 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:8080";
-axios.defaults.timeout = 1000; // milli second
+axios.defaults.timeout = 10000; // milli second
 
 createRoot(document.getElementById('root')).render(
  <StrictMode>
