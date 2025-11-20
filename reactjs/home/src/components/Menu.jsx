@@ -49,11 +49,6 @@ export default function Menu() {
                                     <span>학생</span>
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/account/AccountJoin">
-                                    <span>회원가입</span>
-                                </Link>
-                            </li>
                             {/* <li className="nav-item">
                                 <Link className="nav-link" to="#">
                                     <span>게시판</span>
@@ -83,7 +78,7 @@ export default function Menu() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="#">
+                                <Link className="nav-link" to="/account/AccountJoin">
                                     <span>회원가입</span>
                                 </Link>
                             </li>
