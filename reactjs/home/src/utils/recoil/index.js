@@ -4,16 +4,44 @@
 // atom : recoil state 생성
 // selector : recoil memo 생성
 
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
-const loginIdStste = atom({
+// recoil-persist
+const { persistAtom } = recoilPersist();
+
+const loginIdState = atom({
     key: "loginIdState",
     default: null,
+    effects_UNSTABLE : [persistAtom],
 });
-export { loginIdStste };
+export { loginIdState };
 
-const loginLevelStste = atom({
+const loginLevelState = atom({
     key: "loginLevelStste",
     default: null,
+    effects_UNSTABLE : [persistAtom],
 });
-export { loginLevelStste };
+export { loginLevelState };
+
+const loginState = selector({
+    key:"loginState",
+    get:(state)=>{
+        const loginId = state.get(loginIdState);
+        const loginLevel = state.get(loginLevelState);
+
+        return loginId !== null && loginLevel !== "관리자";
+    }
+});
+export { loginState };
+
+const adminState = selector({
+    key:"adminState",
+    get:(state)=>{
+        const loginId = state.get(loginIdState);
+        const loginLevel = state.get(loginLevelState);
+
+        return loginId !== null && loginLevel === "관리자";
+    }
+});
+export { adminState };

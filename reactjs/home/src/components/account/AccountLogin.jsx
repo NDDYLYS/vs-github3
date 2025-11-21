@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Jumbotron from "../templates/Jumbotron";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
+import { loginIdState, loginLevelState } from "../../utils/recoil";
+
 
 export default function AccountLogin() {
 
-    const [loginId, setLoginId] = useRecoilState(loginIdState);
+    const navigate = useNavigate();
+
+    const [loginId, setLoginId] = useRecoilState(loginIdState)
     const [loginLevel, setLoginLevel] = useRecoilState(loginLevelState);
 
     const [account, setAccount] = useState({
@@ -26,14 +30,14 @@ export default function AccountLogin() {
             const { data } = await axios.post("/account/login", account);
             setResult(true);
 
-            setLoginId("data.loginId");
-            setLoginLevel("data.loginLevel");
+            setLoginId(data.loginId);
+            setLoginLevel(data.loginLevel);
+
+            navigate("/");
         }
         catch (err) {
             setResult(false);
         }
-
-        setLoginId(data.accountId);
     }, [account]);
 
     //render
@@ -47,7 +51,7 @@ export default function AccountLogin() {
                     아이디
                 </label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" name="accountId" onClick={changeStrValue} />
+                    <input type="text" className="form-control" name="accountId" onChange={changeStrValue} />
                 </div>
             </div>
 
@@ -56,7 +60,7 @@ export default function AccountLogin() {
                     비밀번호
                 </label>
                 <div className="col-sm-3">
-                    <input type="password" className="form-control" name="accountPw" onClick={changeStrValue} />
+                    <input type="password" className="form-control" name="accountPw" onChange={changeStrValue} />
                 </div>
             </div>
 

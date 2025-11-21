@@ -1,6 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { loginIdState, loginLevelState, loginState, adminState } from "../utils/recoil";
+import { useCallback } from "react";
 
 export default function Menu() {
+    const  navigate = useNavigate();
+
+    const [loginId, setLoginId] = useRecoilState(loginIdState);
+    const [loginLevel, setLoginLevel] = useRecoilState(loginLevelState);
+
+    const isLogin = useRecoilValue(loginState);
+    const isAdmin = useRecoilValue(adminState);
+
+    const logout = useCallback((e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+        
+        setLoginId(null);
+        setLoginLevel(null);
+        
+        navigate("/")
+    });
 
     return (
         <>
@@ -44,11 +64,14 @@ export default function Menu() {
                                     <span>포켓몬 페이징3</span>
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/student">
-                                    <span>학생</span>
-                                </Link>
-                            </li>
+                            {isLogin && (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/student">
+                                        <span>학생</span>
+                                    </Link>
+                                </li>
+                            )}
+
                             {/* <li className="nav-item">
                                 <Link className="nav-link" to="#">
                                     <span>게시판</span>
@@ -72,11 +95,26 @@ export default function Menu() {
                                     <span>충전</span>
                                 </Link>
                             </li>
+                            {isLogin === true? 
+                            (<>
+                             <li className="nav-item">
+                                <Link className="nav-link" onClick={logout}>
+                                    <span>로그아웃</span>
+                                </Link>
+                            </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="#">
+                                    <span>MyPage</span>
+                                </Link>
+                            </li>
+                            </>) : 
+                            (<>
+                                 <li className="nav-item">
+                                <Link className="nav-link" to="/account/AccountLogin">
                                     <span>로그인</span>
                                 </Link>
                             </li>
+                            </>)}
                             <li className="nav-item">
                                 <Link className="nav-link" to="/account/AccountJoin">
                                     <span>회원가입</span>
