@@ -242,10 +242,14 @@ export default function AccountJoin() {
     const accountAddress2Ref = useRef();
 
     const clearAccountAddress = useCallback(() => {
-        setAccount(prev => (({
+        setAccount(prev => ({
             ...prev,
             accountPost: "", accountAddress1: "", accountAddress2: ""
-        })))
+        }))
+        setAccountClass(prev => ({
+            ...prev,
+            accountPost: "", accountAddress1: "", accountAddress2: ""
+        }))
     }, []);
 
     const hasAnyCharacter = useMemo(() => {
@@ -269,20 +273,20 @@ export default function AccountJoin() {
         }));
     }, [account, accountClass]);
 
-   const accountValid = useMemo(()=>{
+    const accountValid = useMemo(() => {
         //필수 항목
-        if(accountClass.accountId !== "is-valid") return false;
-        if(accountClass.accountPw !== "is-valid") return false;
-        if(accountClass.accountPw2 !== "is-valid") return false;
-        if(accountClass.accountNickname !== "is-valid") return false;
-        if(accountClass.accountEmail !== "is-valid") return false;
-        if(certNumberClass !== "is-valid") return false;
+        if (accountClass.accountId !== "is-valid") return false;
+        if (accountClass.accountPw !== "is-valid") return false;
+        if (accountClass.accountPw2 !== "is-valid") return false;
+        if (accountClass.accountNickname !== "is-valid") return false;
+        if (accountClass.accountEmail !== "is-valid") return false;
+        if (certNumberClass !== "is-valid") return false;
         //선택 항목 (미입력은 괜찮지만 잘못된 입력은 문제가 됨)
-        if(accountClass.accountBirth === "is-invalid") return false;
-        if(accountClass.accountContact === "is-invalid") return false;
-        if(accountClass.accountPost === "is-invalid") return false;
-        if(accountClass.accountAddress1 === "is-invalid") return false;
-        if(accountClass.accountAddress2 === "is-invalid") return false;
+        if (accountClass.accountBirth === "is-invalid") return false;
+        if (accountClass.accountContact === "is-invalid") return false;
+        if (accountClass.accountPost === "is-invalid") return false;
+        if (accountClass.accountAddress1 === "is-invalid") return false;
+        if (accountClass.accountAddress2 === "is-invalid") return false;
         //모두 통과하면 성공
         return true;
     }, [accountClass, certNumberClass]);

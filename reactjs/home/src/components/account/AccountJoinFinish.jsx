@@ -9,7 +9,7 @@ export default function AccountJoinFinish() {
 
         <div className="row mt-4">
             <div className="col fs-2">
-                <Link to="/account/login">Login</Link>하기
+                <Link to="/account/Login">Login</Link>하기
             </div>
         </div>
     </>)
