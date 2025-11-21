@@ -14,6 +14,7 @@ import PokemonPagination3 from "./pokemon/PokemonPagination3";
 
 import Student from "./Student"
 import AccountJoin from "./account/AccountJoin";
+import AccountJoinFinish from "./account/AccountJoinFinish";
 
 
 export default function Content (){
@@ -40,6 +41,7 @@ export default function Content (){
 
                     
                         <Route path="/account/AccountJoin" element={<AccountJoin/>}></Route>
+                        <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish/>}></Route>
                     </Routes>
 
                 </div>

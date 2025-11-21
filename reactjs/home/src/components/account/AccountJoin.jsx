@@ -1,4 +1,5 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Jumbotron from "../templates/Jumbotron";
 import { FaAsterisk, FaEye, FaEyeSlash, FaKey, FaMagnifyingGlass, FaPaperPlane, FaSpinner, FaUser, FaXmark } from "react-icons/fa6";
 import axios from "axios";
@@ -11,9 +12,13 @@ import ko from "date-fns/locale/ko";
 registerLocale("ko", ko); // 옵션으로 선택 가능
 import { replace } from "lodash";
 import { useDaumPostcodePopup } from "react-daum-postcode";
+import { useMemo } from "react";
+import { toast } from "react-toastify";
 
 //회원 가입 화면
 export default function AccountJoin() {
+
+    const navigate = useNavigate();
 
     //state
     const [account, setAccount] = useState({
@@ -221,19 +226,78 @@ export default function AccountJoin() {
                     addr = data.jibunAddress;
                 }
 
-                setAccount(prev=>({
+                setAccount(prev => ({
                     ...prev,
-                    accountPost:data.zonecode,
-                    accountAddress1:addr,
-                    accountAddress2:"",
+                    accountPost: data.zonecode,
+                    accountAddress1: addr,
+                    accountAddress2: "",
                 }));
+
+                // 상세주소창으로 포커스 이동
+                accountAddress2Ref.current.focus();
             }
         });
     }, []);
 
+    const accountAddress2Ref = useRef();
+
+    const clearAccountAddress = useCallback(() => {
+        setAccount(prev => (({
+            ...prev,
+            accountPost: "", accountAddress1: "", accountAddress2: ""
+        })))
+    }, []);
+
+    const hasAnyCharacter = useMemo(() => {
+        if (account.accountPost.length > 0) return true;
+        if (account.accountAddress1.length > 0) return true;
+        if (account.accountAddress2.length > 0) return true;
+        return false;
+    });
+
+    const checkAccountAddress = useCallback(e => {
+        const { accountPost, accountAddress1, accountAddress2 } = account;
+        const fill = accountPost.length > 0 && accountAddress1.length > 0 && accountAddress2.length > 0;
+        const empty = accountPost.length === 0 && accountAddress1.length === 0 && accountAddress2.length === 0;
+        const valid = fill || empty;
+
+        setAccountClass(prev => ({
+            ...prev,
+            accountPost: (valid) ? "is-valid" : "is-invalid",
+            accountAddress1: (valid) ? "is-valid" : "is-invalid",
+            accountAddress2: (valid) ? "is-valid" : "is-invalid"
+        }));
+    }, [account, accountClass]);
+
+   const accountValid = useMemo(()=>{
+        //필수 항목
+        if(accountClass.accountId !== "is-valid") return false;
+        if(accountClass.accountPw !== "is-valid") return false;
+        if(accountClass.accountPw2 !== "is-valid") return false;
+        if(accountClass.accountNickname !== "is-valid") return false;
+        if(accountClass.accountEmail !== "is-valid") return false;
+        if(certNumberClass !== "is-valid") return false;
+        //선택 항목 (미입력은 괜찮지만 잘못된 입력은 문제가 됨)
+        if(accountClass.accountBirth === "is-invalid") return false;
+        if(accountClass.accountContact === "is-invalid") return false;
+        if(accountClass.accountPost === "is-invalid") return false;
+        if(accountClass.accountAddress1 === "is-invalid") return false;
+        if(accountClass.accountAddress2 === "is-invalid") return false;
+        //모두 통과하면 성공
+        return true;
+    }, [accountClass, certNumberClass]);
+    const sendData = useCallback(async () => {
+        if (accountValid === false) return;
+
+        const response = await axios.post("/account/", account);
+        //toast.success("회원 가입");
+        //다른 페이지로 이동(완료페이지 or 메인페이지 or 로그인페이지)
+        navigate("/account/AccountJoinFinish");//메인페이지
+    }, [account, accountValid]);
+
     //render
     return (<>
-        <Jumbotron subject="회원 가입" detail="가입에 필요한 정보를 입력하세요"></Jumbotron>
+        <Jumbotron subject="account-join" detail="가입에 필요한 정보를 입력하세요"></Jumbotron>
 
         {/* 아이디 */}
         <div className="row mt-4">
@@ -352,7 +416,7 @@ export default function AccountJoin() {
             <div className="col-sm-9">
                 {/* <input type="text" className="form-control"
                     name="accountBirth" value={account.accountBirth} onChange={changeStrValue} /> */}
-                <Datepicker name="accountBirth" className="form-control" selected={account.accountBirth}
+                <Datepicker name="accountBirth" className={`form control ${accountClass.accountBirth}`} selected={account.accountBirth}
                     onChange={changeDateValue} dateFormat={"yyyy-MM-dd"}
                     locale={"ko"} maxDate={new Date()}
                     monthsShown={1}
@@ -380,36 +444,41 @@ export default function AccountJoin() {
         <div className="row mt-4">
             <label className="col-sm-3">주소</label>
             <div className="col-sm-9 d-flex align-items-center">
-                <input type="text" name="accountPost" className="form-control w-auto"
+                <input type="text" name="accountPost" className={`form-control ${accountClass.accountPost}`}
                     placeholder="우편번호" value={account.accountPost} size={6}
-                    onChange={changeStrValue} />
+                    onChange={changeStrValue} readOnly onClick={searchAddress} onBlur={checkAccountAddress} />
                 <button type="button" className="btn btn-primary ms-2 w-auto" onClick={searchAddress}>
                     <FaMagnifyingGlass />
                     <span className="ms-2 d-none d-sm-inline">검색</span>
                 </button>
-                <button type="button" className="btn btn-danger ms-2 w-auto">
-                    <FaXmark />
-                    <span className="ms-2 d-none d-sm-inline">지우기</span>
-                </button>
+
+                {hasAnyCharacter === true && (
+                    <button type="button" className="btn btn-danger ms-2 w-auto" onClick={clearAccountAddress}>
+                        <FaXmark />
+                        <span className="ms-2 d-none d-sm-inline">지우기</span>
+                    </button>
+                )}
             </div>
             <div className="col-sm-9 offset-sm-3 mt-2">
-                <input type="text" name="accountAddress2" className="form-control"
+                <input type="text" name="accountAddress2" className={`form-control ${accountClass.accountAddress1}`}
                     placeholder="기본주소" value={account.accountAddress1}
-                    onChange={changeStrValue} />
+                    onChange={changeStrValue} readOnly onClick={searchAddress} onBlur={checkAccountAddress} />
             </div>
             <div className="col-sm-9 offset-sm-3 mt-2">
-                <input type="text" name="accountAddress2" className="form-control"
+                <input type="text" name="accountAddress2" className={`form-control ${accountClass.accountAddress2}`}
                     placeholder="상세주소" value={account.accountAddress2}
-                    onChange={changeStrValue} />
+                    onChange={changeStrValue} ref={accountAddress2Ref} onBlur={checkAccountAddress} />
+                <div className="invalid-feedback">주소는 모두 입력해야 함</div>
             </div>
         </div>
 
         {/* 가입버튼 */}
         <div className="row mt-5">
             <div className="col text-end">
-                <button type="button" className="btn btn-lg btn-success">
+                <button type="button" className="btn btn-lg btn-success"
+                    disabled={accountValid === false} onClick={sendData}>
                     <FaUser className="me-2" />
-                    <span>회원 가입하기</span>
+                    <span>{accountValid === true ? "회원 가입" : "항목 작성 후 가입 가능"}</span>
                 </button>
             </div>
         </div>
