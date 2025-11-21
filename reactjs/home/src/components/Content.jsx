@@ -12,9 +12,10 @@ import PokemonPagination from "./pokemon/PokemonPagination";
 import PokemonPagination2 from "./pokemon/PokemonPagination2";
 import PokemonPagination3 from "./pokemon/PokemonPagination3";
 
-import Student from "./Student"
+import Student from "./student/Student"
 import AccountJoin from "./account/AccountJoin";
 import AccountJoinFinish from "./account/AccountJoinFinish";
+import AccountLogin from "./account/AccountLogin";
 
 
 export default function Content (){
@@ -38,10 +39,10 @@ export default function Content (){
                         <Route path="/pokemon/pagination3" element={<PokemonPagination3/>}></Route>
 
                         <Route path="/student" element={<Student/>}></Route>
-
                     
                         <Route path="/account/AccountJoin" element={<AccountJoin/>}></Route>
-                        <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish/>}></Route>
+                        <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish/>}></Route>                        
+                        <Route path="/account/AccountLogin" element={<AccountLogin/>}></Route>
                     </Routes>
 
                 </div>

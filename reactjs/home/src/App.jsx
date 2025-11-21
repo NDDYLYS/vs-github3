@@ -6,24 +6,29 @@ import Menu from "./components/menu";
 import { HashRouter, BrowserRouter } from "react-router-dom"
 import { ToastContainer, Flip } from "react-toastify";
 import "./App.css";
+import { RecoilRoot } from "recoil";
 
 export default function App() {
     const [size, SetSize] = useState(300)
 
     return (
         <>
+
             <BrowserRouter>
-                <Menu />
-                
-                <div className="container-fluid my-5 pt-5">
-                    <Content />
-                    <hr></hr>
-                    <Footer />
-                </div>
+                <RecoilRoot>
+
+                    <Menu />
+
+                    <div className="container-fluid my-5 pt-5">
+                        <Content />
+                        <hr></hr>
+                        <Footer />
+                    </div>
+
+                </RecoilRoot >
             </BrowserRouter>
 
-            <ToastContainer
-                position="bottom-right"
+            <ToastContainer position="bottom-right"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
@@ -33,8 +38,7 @@ export default function App() {
                 draggable
                 pauseOnHover
                 theme="colored"
-                transition={Flip}
-            />
+                transition={Flip} />
         </>
     )
 }
