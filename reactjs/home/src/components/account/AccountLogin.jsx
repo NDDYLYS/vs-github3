@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import Jumbotron from "../templates/Jumbotron";
 import { useCallback, useState } from "react";
 import axios from "axios";
+import { useRecoilState } from "recoil";
 
 export default function AccountLogin() {
+
+    const [loginId, setLoginId] = useRecoilState(loginIdState);
+    const [loginLevel, setLoginLevel] = useRecoilState(loginLevelState);
 
     const [account, setAccount] = useState({
         accountId: "",
@@ -17,10 +21,19 @@ export default function AccountLogin() {
 
     const [result, setResult] = useState(null);
 
-    const login = useCallback(async ()=>{
-        const {data} = await axios.post("/account/login", account);
-        console.log("data", data);
-        setResult(data);
+    const login = useCallback(async () => {
+        try {
+            const { data } = await axios.post("/account/login", account);
+            setResult(true);
+
+            setLoginId("data.loginId");
+            setLoginLevel("data.loginLevel");
+        }
+        catch (err) {
+            setResult(false);
+        }
+
+        setLoginId(data.accountId);
     }, [account]);
 
     //render
@@ -34,7 +47,7 @@ export default function AccountLogin() {
                     아이디
                 </label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" name="accountId" onClick={changeStrValue}/>
+                    <input type="text" className="form-control" name="accountId" onClick={changeStrValue} />
                 </div>
             </div>
 
@@ -47,12 +60,12 @@ export default function AccountLogin() {
                 </div>
             </div>
 
-            { result === false && (
-            <div className="row mt-4">
-                <div className="col text-center text-danger">
-                    정보가 올바르지 않습니다.
+            {result === false && (
+                <div className="row mt-4">
+                    <div className="col text-center text-danger">
+                        정보가 올바르지 않습니다.
+                    </div>
                 </div>
-            </div>
             )}
 
             <div className="row mt-5">

@@ -4,10 +4,16 @@
 // atom : recoil state 생성
 // selector : recoil memo 생성
 
-import {atom} from "recoil";
+import { atom } from "recoil";
 
-const loginIdStste = atom({});
-export {loginIdStste};
+const loginIdStste = atom({
+    key: "loginIdState",
+    default: null,
+});
+export { loginIdStste };
 
-const loginLevelStste = atom({});
-export {loginLevelStste};
+const loginLevelStste = atom({
+    key: "loginLevelStste",
+    default: null,
+});
+export { loginLevelStste };
