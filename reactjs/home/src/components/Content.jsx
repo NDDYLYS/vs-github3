@@ -16,7 +16,11 @@ import Student from "./student/Student"
 import AccountJoin from "./account/AccountJoin";
 import AccountJoinFinish from "./account/AccountJoinFinish";
 import AccountLogin from "./account/AccountLogin";
+import Private from "./guard/Private.jsx";
+import Admin from "./guard/Admin.jsx";
 
+import TargetNotFound from "./error/TargetNotFound.jsx";
+import NeedPermission from "./error/NeedPermission.jsx";
 
 export default function Content (){
 
@@ -38,11 +42,15 @@ export default function Content (){
                         <Route path="/pokemon/pagination2" element={<PokemonPagination2/>}></Route>
                         <Route path="/pokemon/pagination3" element={<PokemonPagination3/>}></Route>
 
-                        <Route path="/student" element={<Student/>}></Route>
+                        <Route path="/student" element={<Private> <Student /> </Private>} />
                     
                         <Route path="/account/AccountJoin" element={<AccountJoin/>}></Route>
                         <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish/>}></Route>                        
                         <Route path="/account/AccountLogin" element={<AccountLogin/>}></Route>
+
+                        
+                        <Route path="/error/403" element={<NeedPermission/>}></Route>                        
+                        <Route path="*" element={<TargetNotFound/>}></Route>
                     </Routes>
 
                 </div>

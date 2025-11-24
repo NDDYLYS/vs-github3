@@ -33,8 +33,11 @@ export const clearLoginState = atom(null, (get, set) =>{
 
 export const accessTokenState = atomWithStorage("accessTokenState", "", sessionStorage);
 
+export const loginCompleteState = atom(false);
+
 loginIdState.debugLabel = "loginIdState";
 loginLevelState.debugLabel = "loginLevelState";
 loginState.debugLabel = "loginState";
 adminState.debugLabel = "adminState";
 accessTokenState.debugLabel = "accessTokenState";
+loginCompleteState.debugLabel = "loginCompleteState";
