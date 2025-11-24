@@ -10,22 +10,28 @@ atom(함수) : selector
 import {  atom } from "jotai";
 import {  atomWithStorage } from "jotai/utils";
 
-export const loginIdState = atomWithStorage("loginIdState", null, sessionStorage);
-export const loginLevelState = atomWithStorage("loginLevelState", null, sessionStorage);
+export const loginIdState = atomWithStorage("loginIdState", "", sessionStorage);
+export const loginLevelState = atomWithStorage("loginLevelState", "", sessionStorage);
 
 export const loginState = atom(get => {
     const loginId = get(loginIdState);
     const loginLevel = get(loginLevelState);
-    return loginId !== null && loginLevel !== null;
+    return loginId !== "" && loginLevel !== "";
 });
 
 export const adminState = atom(get => {
     const loginId = get(loginIdState);
     const loginLevel = get(loginLevelState);
-    return loginId !== null && loginLevel === "관리자";
+    return loginId !== "" && loginLevel === "관리자";
 });
 
-export const accessTokenState = atomWithStorage("accessTokenState", null, sessionStorage);
+export const clearLoginState = atom(null, (get, set) =>{
+    set(loginIdState, "");
+    set(loginLevelState, "");
+    set(accessTokenState, "");
+});
+
+export const accessTokenState = atomWithStorage("accessTokenState", "", sessionStorage);
 
 loginIdState.debugLabel = "loginIdState";
 loginLevelState.debugLabel = "loginLevelState";

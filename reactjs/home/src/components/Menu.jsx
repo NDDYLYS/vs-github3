@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
-import { adminState, loginIdState, loginLevelState, loginState, accessTokenState } from "../utils/jotai";
+import { adminState, loginIdState, loginLevelState, loginState, accessTokenState, clearLoginState } from "../utils/jotai";
 import axios from "axios";
 
 export default function Menu() {
@@ -13,14 +13,17 @@ export default function Menu() {
 
     const isLogin = useAtomValue(loginState);
     const isAdmin = useAtomValue(adminState);
+    const [, clearLogin] = useAtom(clearLoginState);
+    // const clearLogin = useSetAtom(clearLoginState);
 
     const logout = useCallback((e)=>{
         e.stopPropagation();
         e.preventDefault();
         
-        setLoginId(null);
-        setLoginLevel(null);
-        setAccessToken(null);
+        //setLoginId("");
+        //setLoginLevel("");
+        //setAccessToken("");
+       clearLogin();
         
         delete axios.defaults.headers.common["Authorization"];
         
