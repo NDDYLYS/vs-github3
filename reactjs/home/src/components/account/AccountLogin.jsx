@@ -3,7 +3,7 @@ import Jumbotron from "../templates/Jumbotron";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { loginIdState, loginLevelState } from "../../utils/jotai";
+import { loginIdState, loginLevelState,accessTokenState } from "../../utils/jotai";
 
 
 export default function AccountLogin() {
@@ -12,6 +12,7 @@ export default function AccountLogin() {
 
     const [loginId, setLoginId] = useAtom(loginIdState)
     const [loginLevel, setLoginLevel] = useAtom(loginLevelState);
+    const [accessToken, setAccessToken] = useAtom(accessTokenState);
 
     const [account, setAccount] = useState({
         accountId: "",
@@ -34,6 +35,13 @@ export default function AccountLogin() {
             setLoginLevel(data.loginLevel);
             // console.log("data.accessToken:", data.accessToken);
             axios.defaults.headers.common["Authorization"] = `Bearer ${data.accessToken}`;
+
+            // 새로고침에 대응
+            // jotai state 간단하지만 보안상 문제 존재
+
+            // 서버에서 서버전용 쿠키 설정
+
+            setAccessToken(data.accessToken);
 
             navigate("/");
         }

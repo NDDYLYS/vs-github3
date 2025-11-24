@@ -25,7 +25,10 @@ export const adminState = atom(get => {
     return loginId !== null && loginLevel === "관리자";
 });
 
+export const accessTokenState = atomWithStorage("accessTokenState", null, sessionStorage);
+
 loginIdState.debugLabel = "loginIdState";
 loginLevelState.debugLabel = "loginLevelState";
 loginState.debugLabel = "loginState";
 adminState.debugLabel = "adminState";
+accessTokenState.debugLabel = "accessTokenState";

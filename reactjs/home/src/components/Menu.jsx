@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
-import { adminState, loginIdState, loginLevelState, loginState } from "../utils/jotai";
+import { adminState, loginIdState, loginLevelState, loginState, accessTokenState } from "../utils/jotai";
 import axios from "axios";
 
 export default function Menu() {
@@ -9,6 +9,7 @@ export default function Menu() {
 
     const [loginId, setLoginId] = useAtom(loginIdState);
     const [loginLevel, setLoginLevel] = useAtom(loginLevelState);
+    const [accessToken, setAccessToken] = useAtom(accessTokenState);
 
     const isLogin = useAtomValue(loginState);
     const isAdmin = useAtomValue(adminState);
@@ -19,8 +20,9 @@ export default function Menu() {
         
         setLoginId(null);
         setLoginLevel(null);
+        setAccessToken(null);
         
-        axios.defaults.headers.common["Authorization"];
+        delete axios.defaults.headers.common["Authorization"];
         
         navigate("/");
 
@@ -48,6 +50,13 @@ export default function Menu() {
             window.removeEventListener("mousedown", listener);
         };
     }, [open]);
+
+    useEffect(()=>{
+        if (accessToken === null)
+            return;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+
+    }, [accessToken]);
 
     return (
         <>
