@@ -24,3 +24,8 @@ export const adminState = atom(get => {
     const loginLevel = get(loginLevelState);
     return loginId !== null && loginLevel === "관리자";
 });
+
+loginIdState.debugLabel = "loginIdState";
+loginLevelState.debugLabel = "loginLevelState";
+loginState.debugLabel = "loginState";
+adminState.debugLabel = "adminState";

@@ -32,6 +32,8 @@ export default function AccountLogin() {
 
             setLoginId(data.loginId);
             setLoginLevel(data.loginLevel);
+            // console.log("data.accessToken:", data.accessToken);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${data.accessToken}`;
 
             navigate("/");
         }

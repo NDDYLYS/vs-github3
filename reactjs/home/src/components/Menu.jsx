@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { adminState, loginIdState, loginLevelState, loginState } from "../utils/jotai";
+import axios from "axios";
 
 export default function Menu() {
     const  navigate = useNavigate();
@@ -19,7 +20,11 @@ export default function Menu() {
         setLoginId(null);
         setLoginLevel(null);
         
-        navigate("/")
+        axios.defaults.headers.common["Authorization"];
+        
+        navigate("/");
+
+        closeMenu();
     });
 
     const [open, setOpen] = useState(false);
@@ -56,11 +61,11 @@ export default function Menu() {
                         aria-controls="menu-body"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
-                        onClick={closeMenu}>
+                        onClick={toggleMenu}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="collapse navbar-collapse" id="menu-body">
+                    <div className={`collapse navbar-collapse ${open && 'show'}`} id="menu-body">
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item" onClick={closeMenu}>
                                 <Link className="nav-link" to="/pokemon/spa">
