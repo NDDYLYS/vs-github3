@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jotai": "^2.15.1",
+    "jotai-utils": "^0.0.0"
+  }
+}

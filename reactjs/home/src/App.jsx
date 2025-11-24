@@ -6,7 +6,7 @@ import Menu from "./components/menu";
 import { HashRouter, BrowserRouter } from "react-router-dom"
 import { ToastContainer, Flip } from "react-toastify";
 import "./App.css";
-import { RecoilRoot } from "recoil";
+import { Provider } from "jotai";
 
 export default function App() {
     const [size, SetSize] = useState(300)
@@ -15,7 +15,8 @@ export default function App() {
         <>
 
             <BrowserRouter>
-                <RecoilRoot>
+            {/* 생략 가능 */}
+                <Provider>
 
                     <Menu />
 
@@ -25,7 +26,7 @@ export default function App() {
                         <Footer />
                     </div>
 
-                </RecoilRoot >
+                </Provider>
             </BrowserRouter>
 
             <ToastContainer position="bottom-right"

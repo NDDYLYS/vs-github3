@@ -2,16 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Jumbotron from "../templates/Jumbotron";
 import { useCallback, useState } from "react";
 import axios from "axios";
-import { useRecoilState } from "recoil";
-import { loginIdState, loginLevelState } from "../../utils/recoil";
+import { useAtom } from "jotai";
+import { loginIdState, loginLevelState } from "../../utils/jotai";
 
 
 export default function AccountLogin() {
 
     const navigate = useNavigate();
 
-    const [loginId, setLoginId] = useRecoilState(loginIdState)
-    const [loginLevel, setLoginLevel] = useRecoilState(loginLevelState);
+    const [loginId, setLoginId] = useAtom(loginIdState)
+    const [loginLevel, setLoginLevel] = useAtom(loginLevelState);
 
     const [account, setAccount] = useState({
         accountId: "",
