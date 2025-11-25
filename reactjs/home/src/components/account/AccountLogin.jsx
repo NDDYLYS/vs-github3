@@ -3,7 +3,7 @@ import Jumbotron from "../templates/Jumbotron";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { loginIdState, loginLevelState,accessTokenState } from "../../utils/jotai";
+import { loginIdState, loginLevelState, accessTokenState, refreshTokenState } from "../../utils/jotai";
 
 
 export default function AccountLogin() {
@@ -13,6 +13,7 @@ export default function AccountLogin() {
     const [loginId, setLoginId] = useAtom(loginIdState)
     const [loginLevel, setLoginLevel] = useAtom(loginLevelState);
     const [accessToken, setAccessToken] = useAtom(accessTokenState);
+    const [refreshToken, setRefreshToken] = useAtom(refreshTokenState);
 
     const [account, setAccount] = useState({
         accountId: "",
@@ -42,6 +43,7 @@ export default function AccountLogin() {
             // 서버에서 서버전용 쿠키 설정
 
             setAccessToken(data.accessToken);
+            setRefreshToken(data.refreshToken);
 
             navigate("/");
         }

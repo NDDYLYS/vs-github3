@@ -55,10 +55,9 @@ export default function Menu() {
     }, [open]);
 
     useEffect(()=>{
-        if (accessToken === null)
-            return;
-        axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-
+        if (accessToken?.length > 0) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+        }
     }, [accessToken]);
 
     return (

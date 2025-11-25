@@ -227,7 +227,7 @@ export default function PokemonDetail2() {
     }, [pokemon]);
 
     //대기화면 효과 (초기값이 null일 경우만 의미가 있음, 빈 객체면 생략)
-    if(pokemon === null) {
+    if(pokemon?.length > 0) {
         return (
             <div className="row mt-4">
                 <div className="col d-flex justify-content-center">

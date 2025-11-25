@@ -28,10 +28,13 @@ export const adminState = atom(get => {
 export const clearLoginState = atom(null, (get, set) =>{
     set(loginIdState, "");
     set(loginLevelState, "");
-    set(accessTokenState, "");
+    set(accessTokenState, ""); 
+    set(refreshTokenState, "");
 });
 
 export const accessTokenState = atomWithStorage("accessTokenState", "", sessionStorage);
+export const refreshTokenState = atomWithStorage("refreshTokenState", "", sessionStorage);
+
 
 export const loginCompleteState = atom(false);
 
@@ -40,4 +43,5 @@ loginLevelState.debugLabel = "loginLevelState";
 loginState.debugLabel = "loginState";
 adminState.debugLabel = "adminState";
 accessTokenState.debugLabel = "accessTokenState";
+refreshTokenState.debugLabel = "refreshTokenState";
 loginCompleteState.debugLabel = "loginCompleteState";

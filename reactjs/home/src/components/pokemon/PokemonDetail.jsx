@@ -37,7 +37,7 @@ export default function PokemonDetail() {
         })
     }, [pokemonNo]);
 
-    if (pokemon === null) {
+    if (pokemon?.length > 0) {
         return (
             <div className="row mt-4">
                 <div className="col d-flex justify-content-center">
