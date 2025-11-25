@@ -16,13 +16,15 @@ export const loginLevelState = atomWithStorage("loginLevelState", "", sessionSto
 export const loginState = atom(get => {
     const loginId = get(loginIdState);
     const loginLevel = get(loginLevelState);
-    return loginId !== "" && loginLevel !== "";
+    //return loginId !== "" && loginLevel !== "";
+    return loginId?.length > 0 && loginLevel?.length > 0;
 });
 
 export const adminState = atom(get => {
     const loginId = get(loginIdState);
     const loginLevel = get(loginLevelState);
-    return loginId !== "" && loginLevel === "관리자";
+    // return loginId !== "" && loginLevel === "관리자";
+    return loginId?.length > 0 && loginLevel === "관리자";
 });
 
 export const clearLoginState = atom(null, (get, set) =>{
