@@ -16,7 +16,7 @@ export default function Menu() {
     const [, clearLogin] = useAtom(clearLoginState);
     // const clearLogin = useSetAtom(clearLoginState);
 
-    const logout = useCallback((e)=>{
+    const logout = useCallback(async(e)=>{
         e.stopPropagation();
         e.preventDefault();
         
@@ -30,6 +30,9 @@ export default function Menu() {
         navigate("/");
 
         closeMenu();
+
+
+        //await axios.delete("/account/logout", account);
     });
 
     const [open, setOpen] = useState(false);

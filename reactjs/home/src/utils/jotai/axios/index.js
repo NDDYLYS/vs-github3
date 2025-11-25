@@ -1,0 +1,40 @@
+import { accessTokenState, refreshTokenState } from "..";
+
+axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.timeout = 10000; // milli second
+
+axios.interceptors.response.use((response) => {
+    const newAccessToken = response.headers["access-token"];
+    if (newAccessToken?.length > 0) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
+        //setAccessToken(newAccessToken);
+        store.set(accessTokenState, newAccessToken);
+    }
+    return response;
+}, async (error) => {
+    try {
+        const data = error.response.data;
+        if (data?.status === "401" && data?.message === "TOKEN_EXPIRED") {
+            const refreshToken = store.get(refrashTokenState);
+            const response = await axios.post("/account/refresh", { refreshToken: `Bearer ${refreshToken}` });
+
+            axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.accessToken}`;
+
+            //setAccessToken(response.data.accessToken);
+            //setRefreshToken(response.data.refreshToken);
+             store.set(accessTokenState, response.data.accessToken);
+              store.set(refreshTokenState, response.data.refreshToken);
+
+            const originalR = error.config;
+            //originalR._retry = true;
+            originalR.headers["Authorization"] = `Bearer ${response.data.accessToken}`;
+            return axios(originalR);
+        }
+    }
+    catch (ex) {
+        //clearLogin();
+        //navigate("/account/login");
+        //location.href = "/account/login";
+    }
+    return Promise.reject(error);
+});
