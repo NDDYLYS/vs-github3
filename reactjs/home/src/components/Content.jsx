@@ -42,7 +42,7 @@ export default function Content (){
                         <Route path="/pokemon/pagination2" element={<PokemonPagination2/>}></Route>
                         <Route path="/pokemon/pagination3" element={<PokemonPagination3/>}></Route>
 
-                        <Route path="/student" element={<Private> <Student /> </Private>} />
+                        <Route path="/student/spa" element={<Student />} />
                     
                         <Route path="/account/AccountJoin" element={<AccountJoin/>}></Route>
                         <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish/>}></Route>                        

@@ -106,7 +106,7 @@ export default function Menu() {
                             </li>
                             {isLogin && (
                                 <li className="nav-item" onClick={closeMenu}>
-                                    <Link className="nav-link" to="/student">
+                                    <Link className="nav-link" to="/student/spa">
                                         <span>학생</span>
                                     </Link>
                                 </li>
