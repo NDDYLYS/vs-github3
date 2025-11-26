@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Jumbotron from "../templates/Jumbotron";
 import { useCallback, useState } from "react";
+import axios from "axios";
 
 export default function AdminManager() {
 
@@ -12,8 +13,8 @@ export default function AdminManager() {
         accountBirth: "",
         minAccountPoint: "", maxAccountPoint: "",
         beginAccountJoin: "", endAccountJoin: "",
-        accountAddress:"",
-        accountLevelList:[],
+        accountAddress: "",
+        accountLevelList: [],
     });
 
     const [accountList, setAccountList] = useState([]);
@@ -27,10 +28,27 @@ export default function AdminManager() {
         }));
     }, []);
 
+    const changeAccountLevelList = useCallback(e => {
+        const value = e.target.value;
+
+        if (input.accountLevelList.includes(value)) {
+            setInput(prev => ({
+                ...prev,
+                accountLevelList: prev.accountLevelList.filter(level => level !== value)
+            }));
+        }
+        else {
+            setInput(prev => ({
+                ...prev,
+                accountLevelList: [...prev.accountLevelList, value]
+            }));
+        }
+    }, [input]);
+
     const sendData = useCallback(async () => {
         const { data } = await axios.post("/account/search", input);
         setAccountList(data);
-    });
+    }, [input]);
 
     //render
     return (
@@ -105,21 +123,24 @@ export default function AdminManager() {
                 </div>
             </div>
 
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="" />
+            <div className="form-check">
+                <label className="form-check-label">
+                    <input className="form-check-input" type="checkbox" value="일반회원"
+                        checked={input.accountLevelList.includes("일반회원")} onChange={changeAccountLevelList} />
                     <span>일반회원</span>
                 </label>
             </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="" />
+            <div className="form-check">
+                <label className="form-check-label">
+                    <input className="form-check-input" type="checkbox" value="우수회원"
+                        checked={input.accountLevelList.includes("우수회원")} onChange={changeAccountLevelList} />
                     <span>우수회원</span>
                 </label>
             </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="" />
+            <div className="form-check">
+                <label className="form-check-label">
+                    <input className="form-check-input" type="checkbox" value="관리자"
+                        checked={input.accountLevelList.includes("관리자")} onChange={changeAccountLevelList} />
                     <span>관리자</span>
                 </label>
             </div>
@@ -132,27 +153,25 @@ export default function AdminManager() {
                 </div>
             </div>
 
-            {accountList.map(account => {
+            {accountList.map(account => (
                 <div className="row mt-4" key={account.accountId}>
                     <div className="col">
                         <div className="shadow p-4 rounded">
-                            <h2>{account.accountId}님의 정보</h2>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">{account.accountId}</li>
-                                <li className="list-group-item">{account.accountNickname}</li>
-                                <li className="list-group-item">{account.accountEmail}</li>
-                                <li className="list-group-item">{account.accountContact}</li>
-                                <li className="list-group-item">{account.accountBirth}</li>
-                                <li className="list-group-item">{account.minAccountPoint}</li>
-                                <li className="list-group-item">{account.maxAccountPoint}</li>
-                                <li className="list-group-item">{account.beginAccountJoin}</li>
-                                <li className="list-group-item">{account.endAccountJoin}</li>
+                            <h2>{account.accountId} 님의 정보</h2>
+                            <ul className="list-group list-group-flush mt-4">
+                                <li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">닉네임</span> {account.accountNickname}</li>
+                                <li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">이메일</span> {account.accountEmail}</li>
+                                {account.accountContact !== null && (<li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">연락처</span> {account.accountContact}</li>)}
+                                {account.accountBirth !== null && (<li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">생년월일</span> {account.accountBirth}</li>)}
+                                <li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">포인트</span> {account.accountPoint} point</li>
+                                {account.accountAddress1 !== null && (<li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">주소</span> {account.accountAddress1} {account.accountAddress2}</li>)}
+                                <li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">가입일</span> {account.accountJoin}</li>
+                                <li className="list-group-item d-flex align-items-center"><span className="badge text-bg-primary me-4">등급</span>{account.accountLevel}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                return;
-            })}
+            ))}
 
         </>)
 }
