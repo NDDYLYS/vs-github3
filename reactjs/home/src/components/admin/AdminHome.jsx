@@ -10,7 +10,7 @@ export default function AdminHome() {
         <div className="row mt-4">
             <div className="col fs-2 ">
                 <Link to="/admin/AdminManager">AdminManager</Link>
-                -
+                ---
                 <Link to="/admin/DashBoard">DashBoard</Link>
             </div>
         </div>

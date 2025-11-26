@@ -19,7 +19,7 @@ axios.interceptors.response.use((response) => {
 }, async (error) => {
     console.log("request fail");
     try {
-        const data = error.response.data;
+        const data = error.response?.data;
         if (data?.status === "401" && data?.message === "TOKEN_EXPIRED") {
             const response = await axios.post("/account/refresh", { refreshToken: `Bearer ${refreshToken}` });
 
