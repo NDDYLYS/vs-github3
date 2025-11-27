@@ -134,8 +134,13 @@ export default function Menu() {
                         </ul>
                         <ul className="navbar-nav">
                             <li className="nav-item" onClick={closeMenu}>
+                                <Link className="nav-link" to="/kakaopay/v1">
+                                    <span>결제(v1)</span>
+                                </Link>
+                            </li>
+                             <li className="nav-item" onClick={closeMenu}>
                                 <Link className="nav-link" to="#">
-                                    <span>충전</span>
+                                    <span>결제(v2)</span>
                                 </Link>
                             </li>
                             {isLogin === true ?
