@@ -139,7 +139,7 @@ export default function Menu() {
                                 </Link>
                             </li>
                              <li className="nav-item" onClick={closeMenu}>
-                                <Link className="nav-link" to="#">
+                                <Link className="nav-link" to="/kakaopay/v2">
                                     <span>결제(v2)</span>
                                 </Link>
                             </li>

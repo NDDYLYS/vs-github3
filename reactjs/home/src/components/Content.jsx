@@ -25,7 +25,12 @@ import DashBoard from "./admin/DashBoard.jsx";
 
 import TargetNotFound from "./error/TargetNotFound.jsx";
 import NeedPermission from "./error/NeedPermission.jsx";
+
 import KakaoPayVersion1 from "./pay/KakaoPayVersion1.jsx";
+import KakaoPayVersion1Success from "./pay/KakaoPayVersion1Success.jsx";
+import KakaoPayVersion1Cancel from "./pay/KakaoPayVersion1Cancel.jsx";
+import KakaoPayVersion1Fail from "./pay/KakaoPayVersion1Fail.jsx";
+import KakaoPayVersion2 from "./pay/KakaoPayVersion2.jsx";
 
 export default function Content() {
 
@@ -57,14 +62,19 @@ export default function Content() {
                         <Route path="/admin" element={<Admin><AdminHome /></Admin>}>
                             {/* 중첩 라우트 : 최종주소는 /admin/accounts */}
                             {/* <Route path="accounts" element={<Admin><AccountManager/></Admin>}></Route> */}
-                            <Route path="/admin/AdminManager" element={<Admin><AdminManager /></Admin>}></Route>
+                            <Route path="AdminManager" element={<Admin><AdminManager /></Admin>}></Route>
                             {/* 중첩 라우트 : 최종주소는 /admin/dashboard */}
                             {/* <Route path="dashboard" element={<Admin><Dashboard/></Admin>}></Route> */}
-                            <Route path="/admin/DashBoard" element={<Admin><DashBoard /></Admin>}></Route>
+                            <Route path="DashBoard" element={<Admin><DashBoard /></Admin>}></Route>
                         </Route>
 
-                        <Route path="/kakaopay/v1" element={<KakaoPayVersion1/>}> </Route>
+                        <Route path="/kakaopay/v1" element={<KakaoPayVersion1 />}> </Route>
+                        <Route path="/kakaopay/v1/Success" element={<KakaoPayVersion1Success />}> </Route>
+                        <Route path="/kakaopay/v1/Cancel" element={<KakaoPayVersion1Cancel />}> </Route>
+                        <Route path="/kakaopay/v1/Fail" element={<KakaoPayVersion1Fail />}> </Route>
 
+
+                        <Route path="/kakaopay/v2" element={<KakaoPayVersion2 />}> </Route>
 
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>

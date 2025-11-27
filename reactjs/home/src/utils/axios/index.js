@@ -7,6 +7,12 @@ const store = getDefaultStore();
 axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.timeout = 10000; // milli second
 
+axios.interceptors.request.use((config)=>{
+    config.headers["Frontend-URL"] = window.location.href;
+    
+    return config;
+})
+
 axios.interceptors.response.use((response) => {
     console.log("request success");
     const newAccessToken = response.headers["access-token"];
