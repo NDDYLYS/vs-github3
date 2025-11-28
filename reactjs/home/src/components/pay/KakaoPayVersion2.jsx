@@ -1,15 +1,50 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function KakaoPayVersion2() {
     //state
     const [giftcardList, setGiftcardList] = useState([]);
+    const [checkAll, setCheckAll] = useState(false);
 
     //effect
     useEffect(()=>{
         loadData();
     }, []);
+    useEffect(()=>{//checkAll이 변할때마다 무언가 할거야!
+        setGiftcardList(prev=>//기존의 giftcardList를 불러와서
+            prev.map(//모든값을 변경할 것이다!
+                giftcard=>({
+                    ...giftcard,//다른거 다 그대로 두고
+                    check: checkAll,//check를 checkAll로 바꿔
+                })
+            )
+        );
+    }, [checkAll]);
+
+    //memo
+    //- 체크된 상품 목록
+    const checkedGiftcardList = useMemo(()=>{
+        return giftcardList.filter(giftcard=>giftcard.check === true);
+    }, [giftcardList]);
+
+    //- 체크된 상품 목록 금액 합계
+    const checkedTotal = useMemo(()=>{
+        // 클래식하게
+        // let total = 0;
+        // for(let i=0; i < checkedGiftcardList.length; i++) {
+        //     total += checkedGiftcardList[i].giftcardPrice * checkedGiftcardList[i].qty;//가격 x 수량
+        // }
+        // return total;
+
+        // 모던하게
+        return checkedGiftcardList.reduce(
+            (total, giftcard)=> total + (giftcard.giftcardPrice * giftcard.qty), //합치기 위한 작업
+            0 //초기값
+        );
+    }, [checkedGiftcardList]);
+
 
     //callback
     const loadData = useCallback(async ()=>{
@@ -36,7 +71,13 @@ export default function KakaoPayVersion2() {
             return giftcard;//그냥 반환
         });
 
+        //체크된 갯수 카운트
+        const count = convert.filter(giftcard=>giftcard.check===true).length;
+
         setGiftcardList(convert);
+        //전체선택 체크여부를 설정 
+        //setCheckAll(giftcardList.length === checkedGiftcardList.length);//시간차로 정상작동을 안함
+        setCheckAll(convert.length === count);
     }, [giftcardList]);
 
     const changeGiftcardQty = useCallback(e=>{
@@ -64,28 +105,19 @@ export default function KakaoPayVersion2() {
         setGiftcardList(convert);
     }, [giftcardList]);
 
-    //memo
-    //- 체크된 상품 목록
-    const checkedGiftcardList = useMemo(()=>{
-        return giftcardList.filter(giftcard=>giftcard.check === true);
-    }, [giftcardList]);
-
-    //- 체크된 상품 목록 금액 합계
-    const checkedTotal = useMemo(()=>{
-        // 클래식하게
-        // let total = 0;
-        // for(let i=0; i < checkedGiftcardList.length; i++) {
-        //     total += checkedGiftcardList[i].giftcardPrice * checkedGiftcardList[i].qty;//가격 x 수량
-        // }
-        // return total;
-
-        // 모던하게
-        return checkedGiftcardList.reduce(
-            (total, giftcard)=> total + (giftcard.giftcardPrice * giftcard.qty), //합치기 위한 작업
-            0 //초기값
-        );
+    //구매요청
+    // - 중요한 것은 "상품권 번호"와 "수량"을 전달하는 것
+    const navigate = useNavigate();
+    const purchase = useCallback(async ()=>{
+        //확인창 추가(sweetalert2) 필요
+        const convertList = checkedGiftcardList.map(giftcard=>({//2개 항목만 추출
+            no : giftcard.giftcardNo , 
+            qty : giftcard.qty
+        }));
+        const {data} = await axios.post("/kakaopay/v2/buy", convertList);
+        navigate(data.next_redirect_pc_url);//결제페이지로 안내
     }, [checkedGiftcardList]);
-
+    
     //render
     return (<>
         <Jumbotron subject="카카오페이 결제 버전2" detail="실제 상품 결제(포인트 충전권)" />
@@ -99,7 +131,8 @@ export default function KakaoPayVersion2() {
                             <tr>
                                 <th>
                                     {/* 전체선택 체크박스 */}
-                                    <input type="checkbox"/>
+                                    <input type="checkbox" checked={checkAll}
+                                            onChange={e=>setCheckAll(e.target.checked)}/>
                                 </th>
                                 <th>이름</th>
                                 <th>금액</th>
@@ -151,7 +184,7 @@ export default function KakaoPayVersion2() {
         {/* 구매 버튼 */}
         <div className="row mt-4">
             <div className="col text-end">
-                <button className="btn btn-lg btn-success">구매하기</button>
+                <button className="btn btn-lg btn-success" onClick={purchase}>구매하기</button>
             </div>
         </div>
 
