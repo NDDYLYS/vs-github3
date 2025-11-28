@@ -14,7 +14,6 @@ axios.interceptors.request.use((config)=>{
 })
 
 axios.interceptors.response.use((response) => {
-    console.log("request success");
     const newAccessToken = response.headers["access-token"];
     if (newAccessToken?.length > 0) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
@@ -23,7 +22,6 @@ axios.interceptors.response.use((response) => {
     }
     return response;
 }, async (error) => {
-    console.log("request fail");
     try {
         const data = error.response?.data;
         if (data?.status === "401" && data?.message === "TOKEN_EXPIRED") {

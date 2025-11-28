@@ -31,6 +31,9 @@ import KakaoPayVersion1Success from "./pay/KakaoPayVersion1Success.jsx";
 import KakaoPayVersion1Cancel from "./pay/KakaoPayVersion1Cancel.jsx";
 import KakaoPayVersion1Fail from "./pay/KakaoPayVersion1Fail.jsx";
 import KakaoPayVersion2 from "./pay/KakaoPayVersion2.jsx";
+import KakaoPayVersion2Success from "./pay/KakaoPayVersion2Success.jsx";
+import KakaoPayVersion2Cancel from "./pay/KakaoPayVersion2Cancel.jsx";
+import KakaoPayVersion2Fail from "./pay/KakaoPayVersion2Fail.jsx";
 
 export default function Content() {
 
@@ -73,8 +76,10 @@ export default function Content() {
                         <Route path="/kakaopay/v1/Cancel" element={<KakaoPayVersion1Cancel />}> </Route>
                         <Route path="/kakaopay/v1/Fail" element={<KakaoPayVersion1Fail />}> </Route>
 
-
                         <Route path="/kakaopay/v2" element={<KakaoPayVersion2 />}> </Route>
+                        <Route path="/kakaopay/v2/Success" element={<KakaoPayVersion2Success />}> </Route>
+                        <Route path="/kakaopay/v2/Cancel" element={<KakaoPayVersion2Cancel />}> </Route>
+                        <Route path="/kakaopay/v2/Fail" element={<KakaoPayVersion2Fail />}> </Route>
 
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>
