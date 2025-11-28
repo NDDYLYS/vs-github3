@@ -35,6 +35,9 @@ import KakaoPayVersion2Success from "./pay/KakaoPayVersion2Success.jsx";
 import KakaoPayVersion2Cancel from "./pay/KakaoPayVersion2Cancel.jsx";
 import KakaoPayVersion2Fail from "./pay/KakaoPayVersion2Fail.jsx";
 
+import AccountInfomation from "./account/AccountInfomation.jsx";
+import AccountPayInfomation from "./account/AccountPayInfomation.jsx";
+
 export default function Content() {
 
     return (
@@ -60,6 +63,11 @@ export default function Content() {
                         <Route path="/account/AccountJoin" element={<AccountJoin />}></Route>
                         <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish />}></Route>
                         <Route path="/account/AccountLogin" element={<AccountLogin />}></Route>
+                        
+                        <Route path="/account/info" element={<AccountInfomation />}>
+                            <Route path="/account/info/pay" element={<AccountPayInfomation />}></Route>
+                        </Route>
+
 
 
                         <Route path="/admin" element={<Admin><AdminHome /></Admin>}>

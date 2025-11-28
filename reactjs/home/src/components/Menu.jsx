@@ -151,7 +151,7 @@ export default function Menu() {
                                         </Link>
                                     </li>
                                     <li className="nav-item" onClick={closeMenu}>
-                                        <Link className="nav-link" to="#">
+                                        <Link className="nav-link" to="/account/info">
                                             <span>MyPage</span>
                                         </Link>
                                     </li>
