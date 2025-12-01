@@ -82,7 +82,14 @@ export default function Menu() {
 
                     <div className={`collapse navbar-collapse ${open && 'show'}`} id="menu-body">
                         <ul className="navbar-nav me-auto">
-                            <li className="nav-item" onClick={closeMenu}>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pokemon</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/pokemon/spa">포켓몬(SPA)</a>
+                                    <a class="dropdown-item" href="/pokemon/list">포켓몬 목록</a>
+                                </div>
+                            </li>
+                            {/* <li className="nav-item" onClick={closeMenu}>
                                 <Link className="nav-link" to="/pokemon/spa">
                                     <span>포켓몬(SPA)</span>
                                 </Link>
@@ -91,8 +98,8 @@ export default function Menu() {
                                 <Link className="nav-link" to="/pokemon/list">
                                     <span>포켓몬 목록</span>
                                 </Link>
-                            </li>
-                            <li className="nav-item" onClick={closeMenu}>
+                            </li> */}
+                            {/* <li className="nav-item" onClick={closeMenu}>
                                 <Link className="nav-link" to="/pokemon/pagination">
                                     <span>포켓몬 페이징</span>
                                 </Link>
@@ -106,7 +113,17 @@ export default function Menu() {
                                 <Link className="nav-link" to="/pokemon/pagination3">
                                     <span>포켓몬 페이징3</span>
                                 </Link>
+                            </li> */}
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">페이징</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/pokemon/pagination">포켓몬 페이징1</a>
+                                    <a class="dropdown-item" href="/pokemon/pagination2">포켓몬 페이징2</a>
+                                    <a class="dropdown-item" href="/pokemon/pagination3">포켓몬 페이징3</a>
+                                </div>
                             </li>
+
                             {isLogin && (
                                 <li className="nav-item" onClick={closeMenu}>
                                     <Link className="nav-link" to="/student/spa">
@@ -133,7 +150,7 @@ export default function Menu() {
                             </li> */}
                         </ul>
                         <ul className="navbar-nav">
-                            <li className="nav-item" onClick={closeMenu}>
+                            {/* <li className="nav-item" onClick={closeMenu}>
                                 <Link className="nav-link" to="/kakaopay/v1">
                                     <span>결제(v1)</span>
                                 </Link>
@@ -142,7 +159,16 @@ export default function Menu() {
                                 <Link className="nav-link" to="/kakaopay/v2">
                                     <span>결제(v2)</span>
                                 </Link>
+                            </li> */}
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">결제</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/kakaopay/v1">카카오결제1</a>
+                                    <a class="dropdown-item" href="/kakaopay/v2">카카오결제2</a>
+                                </div>
                             </li>
+
                             {isLogin === true ?
                                 (<>
                                     <li className="nav-item" onClick={closeMenu}>
