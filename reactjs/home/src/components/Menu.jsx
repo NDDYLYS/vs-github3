@@ -162,6 +162,14 @@ export default function Menu() {
                             </li> */}
 
                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">채팅</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/websocket/basic">기본</a>
+                                    <a class="dropdown-item" href="#">웹소켓</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">결제</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/kakaopay/v1">카카오결제1</a>
