@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Jumbotron from "../templates/Jumbotron";
+import Jumbotron from "../templates/jumbotron";
 
 export default function AccountJoinFinish() {
 

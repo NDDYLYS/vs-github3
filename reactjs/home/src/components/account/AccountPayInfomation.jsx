@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import Jumbotron from "../../templates/jumbotron";
+import Jumbotron from "../templates/jumbotron";
 
 
 export default function AccountPayInfomation() {
@@ -27,7 +27,7 @@ export default function AccountPayInfomation() {
     return (
 
         <>
-            {/* <Jumbotron subject="결제내역" detail="AccountPayInfomation"></Jumbotron> */}
+            <Jumbotron subject="결제내역" detail="AccountPayInfomation"></Jumbotron>
 
            {paymentList.map(payment=>{
                 <div className="row mt-4">
@@ -38,7 +38,8 @@ export default function AccountPayInfomation() {
                         <div>일시:{payment.paymentTime}</div>
                         <div>상태:{calculateStatus}</div>
                         <div className="mt-2">
-                            <Link className="btn btn-lg btn-primary" to="#">상세보기</Link>
+                            <Link className="btn btn-lg btn-primary" 
+                            to={`/account/info/pay/${payment.paymentNo}`}>상세보기</Link>
                         </div>
                     </div>
                 </div>

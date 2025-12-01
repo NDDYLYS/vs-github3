@@ -37,6 +37,7 @@ import KakaoPayVersion2Fail from "./pay/KakaoPayVersion2Fail.jsx";
 
 import AccountInfomation from "./account/AccountInfomation.jsx";
 import AccountPayInfomation from "./account/AccountPayInfomation.jsx";
+import AccountPayDetail from "./account/AccountPayDetail.jsx";
 
 export default function Content() {
 
@@ -66,6 +67,7 @@ export default function Content() {
                         
                         <Route path="/account/info" element={<AccountInfomation />}>
                             <Route path="/account/info/pay" element={<AccountPayInfomation />}></Route>
+                            <Route path="/account/info/pay" element={<AccountPayDetail />}></Route>
                         </Route>
 
 
@@ -85,10 +87,10 @@ export default function Content() {
                         <Route path="/kakaopay/v1/Fail" element={<KakaoPayVersion1Fail />}> </Route>
 
                         <Route path="/kakaopay/v2" element={<KakaoPayVersion2 />}> </Route>
-                        <Route path="/kakaopay/v2/Success" element={<KakaoPayVersion2Success />}> </Route>
-                        <Route path="/kakaopay/v2/Cancel" element={<KakaoPayVersion2Cancel />}> </Route>
-                        <Route path="/kakaopay/v2/Fail" element={<KakaoPayVersion2Fail />}> </Route>
-
+                        <Route path="/kakaopay/v2/buy/success" element={<KakaoPayVersion2Success />}> </Route>
+                        <Route path="/kakaopay/v2/buy/cancel" element={<KakaoPayVersion2Cancel />}> </Route>
+                        <Route path="/kakaopay/v2/buy/fail" element={<KakaoPayVersion2Fail />}> </Route>
+                        
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>
                     </Routes>
