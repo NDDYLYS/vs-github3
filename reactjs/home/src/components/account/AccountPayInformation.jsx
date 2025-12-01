@@ -1,51 +1,50 @@
-import { useCallback, useEffect } from "react";
-import Jumbotron from "../templates/Jumbotron";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react"
+import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 
 export default function AccountPayInformation() {
-
+    //state
     const [paymentList, setPaymentList] = useState([]);
 
+    //effect
     useEffect(()=>{
         loadData();
-    });
+    }, []);
 
-    const loadData = useCallback(async()=>{
+    //callback
+    const loadData = useCallback(async ()=>{
         const {data} = await axios.get("/payment/account");
         setPaymentList(data);
     }, []);
 
     const calculateStatus = useCallback(payment=>{
-        const [paymentTotal, paymentRemain] = payment;
-        if (paymentTotal === paymentRemain) 
-            return "결제완료";
-        if (paymentRemain === 0) 
-            return "결제전체취소";
-        return "결제취소";
+        const {paymentTotal, paymentRemain} = payment;
+        if(paymentTotal === paymentRemain) return "결제 완료";
+        if(paymentRemain === 0) return "결제 전체 취소";
+        return "결제 부분 취소";
     }, []);
 
-    return (
-
-        <>
-            <Jumbotron subject="결제내역" detail="AccountPayInfomation"></Jumbotron>
-
-           {paymentList.map(payment=>{
-                <div className="row mt-4">
-                    <div className="col">
-                        <div>{payment.paymentName}</div>
-                        <div>금액:{payment.paymentTotal}</div>
-                        <div>번호:{payment.paymentTid}</div>
-                        <div>일시:{payment.paymentTime}</div>
-                        <div>상태:{calculateStatus}</div>
-                        <div className="mt-2">
-                            <Link className="btn btn-lg btn-primary" 
-                            to={`/account/info/pay/${payment.paymentNo}`}>상세보기</Link>
-                        </div>
+    //render
+    return (<>
+        <h1>내 결제 내역</h1>
+        <hr/>
+        {paymentList.map(payment=>(
+        <div className="row mb-4" key={payment.paymentNo}>
+            <div className="col">
+                <div className="p-4 shadow rounded">
+                    <h2>{payment.paymentName}</h2>
+                    <div>거래금액 : 총 {payment.paymentTotal} 원</div>
+                    <div>거래번호 : {payment.paymentTid}</div>
+                    <div>거래일시 : {payment.paymentTime}</div>
+                    <div>상태 : {calculateStatus(payment)}</div>
+                    <div className="mt-2 text-end">
+                        <Link to={`/account/info/pay/${payment.paymentNo}`} className="btn btn-info">자세히 보기 <FaArrowRight/></Link>
                     </div>
                 </div>
-           })}
-        </>
-
-    )
-
+            </div>
+        </div>
+        ))}
+    </>)
 }

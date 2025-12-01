@@ -90,7 +90,28 @@ export default function AccountPayDetail() {
 
     //부분 취소
     const cancelUnit = useCallback(async (paymentDetail)=>{
+        //알림창(confirm or sweetalert2)
+        //const choice = window.confirm("정말 취소하시겠습니까?\n취소 후에는 되돌릴 수 없습니다");
+        //if(choice === false) return;
+
+        const choice = await Swal.fire({
+            title : "해당 상품에 대한 결제를 취소하시겠습니까?",
+            text : "취소 이후에는 되돌릴 수 없습니다", 
+            icon : "error",
+            showCancelButton: true,//취소 버튼 추가(확인창으로 변경)
+            confirmButtonColor : "#0984e3",
+            cancelButtonColor : "#d63031",
+            confirmButtonText : "예, 전체 취소합니다",
+            cancelButtonText : "아니오, 취소하지 않겠습니다",
+            allowOutsideClick: false,//외부 클릭 금지
+        });
+        //console.log(choice);
+        if(choice.isConfirmed === false) return;
+
         await axios.delete(`/payment/detail/${paymentDetail.paymentDetailNo}`);
+
+        toast.success("결제 취소가 완료되었습니다");
+        loadData();//화면 갱신
     }, []);
 
     //return
