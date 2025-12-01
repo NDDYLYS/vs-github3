@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { loginIdState, loginLevelState, accessTokenState, refreshTokenState } from "../../utils/jotai";
-import Jumbotron from "../templates/jumbotron";
+import Jumbotron from "../templates/Jumbotron";
 
 
 export default function AccountLogin() {

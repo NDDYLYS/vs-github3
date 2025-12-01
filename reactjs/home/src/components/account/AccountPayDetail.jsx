@@ -1,4 +1,5 @@
-import Jumbotron from "../templates/jumbotron";
+import Jumbotron from "../templates/Jumbotron";
+
 
 
 
