@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import Jumbotron from "../templates/Jumbotron";
 
 
-export default function AccountPayInfomation() {
+export default function AccountPayInformation() {
 
     const [paymentList, setPaymentList] = useState([]);
 

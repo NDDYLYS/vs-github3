@@ -36,7 +36,9 @@ import KakaoPayVersion2Cancel from "./pay/KakaoPayVersion2Cancel.jsx";
 import KakaoPayVersion2Fail from "./pay/KakaoPayVersion2Fail.jsx";
 
 import AccountInfomation from "./account/AccountInfomation.jsx";
-import AccountPayInfomation from "./account/AccountPayInfomation.jsx";
+import AccountPayInformation from "./account/AccountPayInformation.jsx";
+import AccountMyInformation from "./account/AccountMyInformation.jsx";
+import AccountPayDetail from "./account/AccountPayDetail.jsx";
 
 export default function Content() {
 
@@ -69,7 +71,6 @@ export default function Content() {
                             <Route path="/account/info/pay" element={<Private><AccountPayInformation /></Private>}></Route>
                             <Route path="/account/info/pay/:paymentNo" element={<Private><AccountPayDetail /></Private>}></Route>
                         </Route>
-
 
                         <Route path="/admin" element={<Admin><AdminHome /></Admin>}>
                             {/* 중첩 라우트 : 최종주소는 /admin/accounts */}
