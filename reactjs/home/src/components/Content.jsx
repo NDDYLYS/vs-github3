@@ -37,7 +37,6 @@ import KakaoPayVersion2Fail from "./pay/KakaoPayVersion2Fail.jsx";
 
 import AccountInfomation from "./account/AccountInfomation.jsx";
 import AccountPayInfomation from "./account/AccountPayInfomation.jsx";
-import AccountPayDetail from "./account/AccountPayDetail.jsx";
 
 export default function Content() {
 
@@ -64,12 +63,12 @@ export default function Content() {
                         <Route path="/account/AccountJoin" element={<AccountJoin />}></Route>
                         <Route path="/account/AccountJoinFinish" element={<AccountJoinFinish />}></Route>
                         <Route path="/account/AccountLogin" element={<AccountLogin />}></Route>
-                        
-                        <Route path="/account/info" element={<AccountInfomation />}>
-                            <Route path="/account/info/pay" element={<AccountPayInfomation />}></Route>
-                            <Route path="/account/info/pay" element={<AccountPayDetail />}></Route>
-                        </Route>
 
+                        <Route path="/account/info" element={<Private><AccountInfomation /></Private>}>
+                            <Route index element={<Private><AccountMyInformation /></Private>}></Route>
+                            <Route path="/account/info/pay" element={<Private><AccountPayInformation /></Private>}></Route>
+                            <Route path="/account/info/pay/:paymentNo" element={<Private><AccountPayDetail /></Private>}></Route>
+                        </Route>
 
 
                         <Route path="/admin" element={<Admin><AdminHome /></Admin>}>
@@ -90,7 +89,7 @@ export default function Content() {
                         <Route path="/kakaopay/v2/buy/success" element={<KakaoPayVersion2Success />}> </Route>
                         <Route path="/kakaopay/v2/buy/cancel" element={<KakaoPayVersion2Cancel />}> </Route>
                         <Route path="/kakaopay/v2/buy/fail" element={<KakaoPayVersion2Fail />}> </Route>
-                        
+
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>
                     </Routes>
