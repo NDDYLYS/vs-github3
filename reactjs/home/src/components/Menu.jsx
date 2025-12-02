@@ -82,11 +82,11 @@ export default function Menu() {
 
                     <div className={`collapse navbar-collapse ${open && 'show'}`} id="menu-body">
                         <ul className="navbar-nav me-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pokemon</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/pokemon/spa">포켓몬(SPA)</a>
-                                    <a class="dropdown-item" href="/pokemon/list">포켓몬 목록</a>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false">Pokemon</Link>
+                                <div className="dropdown-menu">
+                                    <Link className="dropdown-item" to="/pokemon/spa">포켓몬(SPA)</Link>
+                                    <Link className="dropdown-item" to="/pokemon/list">포켓몬 목록</Link>
                                 </div>
                             </li>
                             {/* <li className="nav-item" onClick={closeMenu}>
@@ -115,12 +115,12 @@ export default function Menu() {
                                 </Link>
                             </li> */}
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">페이징</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/pokemon/pagination">포켓몬 페이징1</a>
-                                    <a class="dropdown-item" href="/pokemon/pagination2">포켓몬 페이징2</a>
-                                    <a class="dropdown-item" href="/pokemon/pagination3">포켓몬 페이징3</a>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false">페이징</Link>
+                                <div className="dropdown-menu">
+                                    <Link className="dropdown-item" to="/pokemon/pagination">포켓몬 페이징1</Link>
+                                    <Link className="dropdown-item" to="/pokemon/pagination2">포켓몬 페이징2</Link>
+                                    <Link className="dropdown-item" to="/pokemon/pagination3">포켓몬 페이징3</Link>
                                 </div>
                             </li>
 
@@ -161,20 +161,20 @@ export default function Menu() {
                                 </Link>
                             </li> */}
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">채팅</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/websocket/basic">기본</a>
-                                    <a class="dropdown-item" href="/websocket/advance">웹소켓</a>
-                                    <a class="dropdown-item" href="/websocket/member">회원전용</a>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false">채팅</Link>
+                                <div className="dropdown-menu">
+                                    <Link className="dropdown-item" to="/websocket/basic">기본</Link>
+                                    <Link className="dropdown-item" to="/websocket/advance">웹소켓</Link>
+                                    <Link className="dropdown-item" to="/websocket/member">회원전용</Link>
                                 </div>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">결제</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/kakaopay/v1">카카오결제1</a>
-                                    <a class="dropdown-item" href="/kakaopay/v2">카카오결제2</a>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">결제</Link>
+                                <div className="dropdown-menu">
+                                    <Link className="dropdown-item" to="/kakaopay/v1">카카오결제1</Link>
+                                    <Link className="dropdown-item" to="/kakaopay/v2">카카오결제2</Link>
                                 </div>
                             </li>
 

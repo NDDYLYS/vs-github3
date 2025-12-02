@@ -28,6 +28,7 @@ export default function WebsocketMemberEx() {
     //- [2] 화면을 나가면 연결 종료
     useEffect(()=>{
         //로그인 처리가 완료되지 않았다면 연결을 하지 않도록 조건 설정
+        console.log("loginComplete:"+loginComplete);
         if(loginComplete === false) return;
 
         //[1]
@@ -63,7 +64,11 @@ export default function WebsocketMemberEx() {
 
                 //(+추가) 회원일 경우만 개인메세지 채널을 구독
                 if(isLogin) {
-                    client.subscribe(`/private/token/${loginId}`, (message)=>{});
+                    client.subscribe(`/private/token/${loginId}`, (message)=>{
+                        const json = JSON.parse(message.body);//해석
+                        setAccessToken(json.accessToken);//accessToken 갱신
+                        setRefreshToken(json.refreshToken);//refreshToken 갱신
+                    });
                     client.subscribe(`/private/warning/${loginId}`, (message)=>{});
                 }
             },
@@ -75,8 +80,8 @@ export default function WebsocketMemberEx() {
         //(+추가) client에 `회원인 경우`만 connectHeaders를 추가
         if(isLogin) {
             client.connectHeaders = {
-                accessToken : accessToken, 
-                refreshToken : refreshToken
+                accessToken : `Bearer ${accessToken}`, 
+                refreshToken : `Bearer ${refreshToken}`
             };
         }
 
@@ -93,7 +98,6 @@ export default function WebsocketMemberEx() {
 
     //메세지 전송
     const sendMessage = useCallback(()=>{
-        //전송을 하면 안되는 상황부터 체크
         if(client === null) return;//setClient()가 실행되어야 null이 아님
         if(client.connected === false) return;//연결중이어야 true가 되는 값
         if(client.active === false) return;//activate()를 실행해야 true가 되는 값
@@ -107,8 +111,8 @@ export default function WebsocketMemberEx() {
         const stompMessage = {
             destination: "/app/member",//목적지 (서버가 설정한 어딘가)
             headers:{
-                accessToken : accessToken,
-                refreshToken : refreshToken
+                accessToken : `Bearer ${accessToken}`, 
+                refreshToken : `Bearer ${refreshToken}`
             },
             body: JSON.stringify(json),//전송할 내용(직렬화, JSON.stringify 함수)
         };
@@ -131,6 +135,22 @@ export default function WebsocketMemberEx() {
         });
 
         return fmt.format(d);
+    }, []);
+
+    //특정 메세지의 시간이 출력되어야 하는지 판정하는 함수
+    // - 언제 안나와요? : 다음 메세지가 같은 사용자가 보낸 경우 + 같은 시간인 경우
+    const isTimeVisible = useCallback((cur, next)=>{
+        if(!next) return true;//마지막 메세지면 시간 나와야돼!
+        if(cur.loginId !== next.loginId) return true;//작성자가 다르면 나와야돼!
+        if(formatTime(cur.time) !== formatTime(next.time)) return true;//시간이 다르면 나와야돼!
+        return false;//아니면 나오지 않아야돼!
+    }, []);
+
+    //특정 메세지의 아이디와 등급이 출력되어야 하는지 판정하는 함수
+    const isSenderVisible = useCallback((cur, prev)=>{
+        if(!prev) return true;//첫 메세지면 무조건 출력!
+        if(cur.loginId !== prev.loginId) return true;//작성자가 다르면 나와야돼!
+        return false;//아니면 안나와도돼!
     }, []);
 
     //render
@@ -169,12 +189,19 @@ export default function WebsocketMemberEx() {
                 {history.map((m,index)=>{//여기는 함수
                     if(m.type === "chat") {//일반 채팅일 경우 보여줄 화면
                         return (
-                        <div className={`message-block`} key={index}>
+                        <div className={`message-block ${loginId === m.loginId ? 'my' : ''}`} key={index}>
+                            {/* 발신자 */}
+                            {isSenderVisible(m, history[index-1]) === true && (
+                            <h5 className="text-primary">{m.loginId} ({m.loginLevel})</h5>
+                            )}
+
                             {/* 메세지 내용 */}
                             {m.content}
 
                             {/* 시간 추가 */}
+                            {isTimeVisible(m, history[index+1]) === true && (
                             <div className="time">{formatTime(m.time)}</div>
+                            )}
                         </div>    
                         );
                     }
