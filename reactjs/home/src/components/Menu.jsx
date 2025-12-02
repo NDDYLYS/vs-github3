@@ -166,6 +166,7 @@ export default function Menu() {
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/websocket/basic">기본</a>
                                     <a class="dropdown-item" href="/websocket/advance">웹소켓</a>
+                                    <a class="dropdown-item" href="/websocket/member">회원전용</a>
                                 </div>
                             </li>
 

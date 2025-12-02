@@ -42,6 +42,8 @@ import AccountPayDetail from "./account/AccountPayDetail.jsx";
 
 import WebsocketBasicEx from "./websocket/websocketBasicEx.jsx";
 import WebsocketAdvanceEx from "./websocket/WebsocketAdvanceEx.jsx";
+import WebsocketMemberEx from "./websocket/WebsocketMemberEx.jsx";
+
 
 
 export default function Content() {
@@ -97,7 +99,7 @@ export default function Content() {
 
                         <Route path="/websocket/basic" element={<WebsocketBasicEx />}> </Route>
                         <Route path="/websocket/advance" element={<WebsocketAdvanceEx />}> </Route>
-
+                        <Route path="/websocket/member" element={<WebsocketMemberEx />}> </Route>
 
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>
