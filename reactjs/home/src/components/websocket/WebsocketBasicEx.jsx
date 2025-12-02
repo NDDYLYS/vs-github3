@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, use } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
@@ -7,6 +7,8 @@ import { Client } from "@stomp/stompjs";
 export default function WebsocketBasicEx(){
 
     const [client, setClient] = useState(null);
+    const [input, setInput] = useState("");
+    const [history, setHistory] = useState([]);
 
     useEffect(() => {
         const client = conectToServer();
@@ -47,10 +49,42 @@ export default function WebsocketBasicEx(){
             client.deactivate();
     }, []);
 
+    const sendMessage = useCallback(()=>{
+        if (client === null)
+            return;
+        if (client.connected === false)
+            return;
+        if (client.activate === false)
+            return;
+
+        if (input.trim().length === 0)
+            return;
+        const json = { content: input }
+
+        const stompMessage = {
+            destination: "/app/basic",
+            body: JSON.stringify(json),
+        };
+
+        client.publish(stompMessage);
+        setInput("");
+
+    }, [client, input]);
+
     return (
 
         <>
             <Jumbotron subject="웹소켓 basic" detail="웹소켓을 이용한 채팅 테스트 페이지입니다." />
+        
+            <div className="row mt-4">
+                <div className="col d-flex align-items-center">
+                    <input text="text" className="form-control w-auto flex-grow-1"
+                    value = {input} onChange={e=>setInput(e.target.value)} />
+                    <button className="btn btn-primary ms-2" onClick={sendMessage}>전송</button>
+                    </div>
+            </div>
+        
+        
         </>
 
     )
