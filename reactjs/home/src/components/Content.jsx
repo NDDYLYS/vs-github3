@@ -39,8 +39,9 @@ import AccountInfomation from "./account/AccountInfomation.jsx";
 import AccountPayInformation from "./account/AccountPayInformation.jsx";
 import AccountMyInformation from "./account/AccountMyInformation.jsx";
 import AccountPayDetail from "./account/AccountPayDetail.jsx";
-import WebsocketBasicEx from "./websocket/websocketBasicEx.jsx";
 
+import WebsocketBasicEx from "./websocket/websocketBasicEx.jsx";
+import WebsocketAdvanceEx from "./websocket/WebsocketAdvanceEx.jsx";
 
 
 export default function Content() {
@@ -95,6 +96,8 @@ export default function Content() {
                         <Route path="/kakaopay/v2/buy/fail" element={<KakaoPayVersion2Fail />}> </Route>
 
                         <Route path="/websocket/basic" element={<WebsocketBasicEx />}> </Route>
+                        <Route path="/websocket/advance" element={<WebsocketAdvanceEx />}> </Route>
+
 
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>

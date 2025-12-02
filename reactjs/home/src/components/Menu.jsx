@@ -165,7 +165,7 @@ export default function Menu() {
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">채팅</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/websocket/basic">기본</a>
-                                    <a class="dropdown-item" href="#">웹소켓</a>
+                                    <a class="dropdown-item" href="/websocket/advance">웹소켓</a>
                                 </div>
                             </li>
 
