@@ -1,0 +1,15 @@
+.message-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.message-wrapper > .message-block {
+    padding: 0.5rem;
+    background-color: #dee2e6;
+    /* border: 1px solid gray; */
+    border-radius: 0.25em;
+    margin: 0.5em 0;
+    max-width: 50%;
+    word-break: barak-all;
+    width:fit-content;
+}
