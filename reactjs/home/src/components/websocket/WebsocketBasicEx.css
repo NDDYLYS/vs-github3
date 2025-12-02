@@ -1,25 +1,44 @@
 .message-wrapper {
     display: flex;
     flex-direction: column-reverse;
+    background-color: rgb(186, 206, 224);
 }
-
+/* 일반메세지 디자인 */
 .message-wrapper > .message-block {
-    padding: 0.5rem;
-    background-color: #dee2e6;
+    padding: 0.5em;
+    background-color: white;
     /* border: 1px solid gray; */
     border-radius: 0.25em;
     margin: 0.5em 0;
     max-width: 50%;
-    word-break: barak-all;
-    width:fit-content;
+    word-break: break-all;
+    width: fit-content;
 
     position: relative;
 }
-
+.message-wrapper > .message-block.my {
+    background-color: rgb(255, 231, 51);
+    margin-left: auto;
+}
 .message-wrapper > .message-block > .time {
     position: absolute;
     bottom: 0;
     left: 100%;
     white-space: nowrap;
-    margin:0 0.5em;
+    margin: 0 0.5em;
+}
+.message-wrapper > .message-block.my > .time {
+    left: auto;
+    right: 100%;
+}
+
+/* 경고메세지 디자인 */
+.message-wrapper > .warning-block {
+    background-color: #d63031;
+    color: white;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: 0.25em 0;
+    text-align: center;
+    word-break: break-all;
 }
