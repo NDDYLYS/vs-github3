@@ -12,4 +12,14 @@
     max-width: 50%;
     word-break: barak-all;
     width:fit-content;
+
+    position: relative;
+}
+
+.message-wrapper > .message-block > .time {
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    white-space: nowrap;
+    margin:0 0.5em;
 }

@@ -73,6 +73,19 @@ export default function WebsocketAdvanceEx() {
 
     }, [client, input]);
 
+    const formatTime = useCallback((str) => {
+        // str yyyy-MM-dd'T'HH:mm:ss
+        const d = new Date(str);
+
+        const fmt = new Intl.DateTimeFormat("ko-KR", {
+            hour:'2-digit',
+            minute:'2-digit',
+            hour12:true,
+        });
+
+        return fmt.format(d);
+    }, []);
+
     return (
 
         <>
@@ -96,7 +109,11 @@ export default function WebsocketAdvanceEx() {
                     {history.map((m, index) => (
                         <div className="message-block" key={index}>
                             {m.content}
-                        </div> 
+                            
+                            <div className="time">
+                                {formatTime(m.time)}
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
