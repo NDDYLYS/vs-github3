@@ -44,6 +44,7 @@ import WebsocketBasicEx from "./websocket/websocketBasicEx.jsx";
 import WebsocketAdvanceEx from "./websocket/WebsocketAdvanceEx.jsx";
 import WebsocketMemberEx from "./websocket/WebsocketMemberEx.jsx";
 import WaitingRoom from "./websocket/WaitingRoom.jsx";
+import CheatRoom from "./websocket/CheatRoom.jsx";
 
 
 
@@ -102,6 +103,7 @@ export default function Content() {
                         <Route path="/websocket/advance" element={<WebsocketAdvanceEx />}> </Route>
                         <Route path="/websocket/member" element={<WebsocketMemberEx />}> </Route>
                         <Route path="/websocket/group" element={<WaitingRoom />}> </Route>
+                        <Route path="/websocket/cheat" element={<CheatRoom />}> </Route>
 
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>

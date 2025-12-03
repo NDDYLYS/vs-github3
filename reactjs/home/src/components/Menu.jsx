@@ -169,6 +169,7 @@ export default function Menu() {
                                     <Link className="dropdown-item" to="/websocket/member">회원전용</Link>
                                     <div className="dropdown-divider"></div>
                                     <Link className="dropdown-item" to="/websocket/group">그룹채팅</Link>
+                                    <Link className="dropdown-item" to="/websocket/cheat">CheatRoom</Link>
                                 </div>
                             </li>
 
