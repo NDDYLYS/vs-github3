@@ -10,8 +10,7 @@ import "./WebsocketBasicEx.css";
 
 // npm i sockjs-client @stomp/stompjs 설치 필요 
 export default function WebsocketMemberEx() {
-    //jotai state
-    const [loginId, setLoginId] = useAtom(loginIdState);//나의 아이디
+     const [loginId, setLoginId] = useAtom(loginIdState);//나의 아이디
     const [loginLevel, setLoginLevel] = useAtom(loginLevelState);//나의 등급
     const [accessToken, setAccessToken] = useAtom(accessTokenState);//나의 액세스 토큰
     const [refreshToken, setRefreshToken] = useAtom(refreshTokenState);//나의 리프레시 토큰
@@ -28,7 +27,6 @@ export default function WebsocketMemberEx() {
     //- [2] 화면을 나가면 연결 종료
     useEffect(()=>{
         //로그인 처리가 완료되지 않았다면 연결을 하지 않도록 조건 설정
-        console.log("loginComplete:"+loginComplete);
         if(loginComplete === false) return;
 
         //[1]
@@ -42,10 +40,25 @@ export default function WebsocketMemberEx() {
         };
     }, [loginComplete]);
 
-    //callback
+    //메세지 내역의 변화가 생길 때마다 스크롤의 위치를 상단으로 이동
     const messageWrapper = useRef();
+    useEffect(()=>{
+        if(messageWrapper.current) {//연결이 되어 있다면
+            //css에 flex-direction이 column인 경우와 column-reverse인 경우가 반대로 작동
+            //- column인 경우는 맨 위가 0이고 아래로 갈수록 scrollTop이 증가함
+            //- column-reverse인 경우는 맨 아래가 0이고 위로 갈수록 scrollTop이 감소함
+            //- 현재 상황은 column-reverse이다
+            
+            //messageWrapper.current.scrollTop = 0;//맨 아래로 고정(column-reverse)
+            const {scrollHeight, clientHeight} = messageWrapper.current;
+            const height = scrollHeight - clientHeight;
+            messageWrapper.current.scrollTop = -height;//맨 위로 고정(column-reverse)
+            //참고 : column이면 0이 맨 위 , 맨 아래는 height이다
+        }
+    }, [history]);
+    
 
-
+    //callback
 
     //서버 연결 함수
     //[1] 연결(socket) 생성
@@ -53,7 +66,7 @@ export default function WebsocketMemberEx() {
     // - 구독 등에 대한 설정을 미리 지정
     const connectToServer = useCallback(()=>{
         //[1]
-        const socket = new SockJS("http://192.168.20.30:8080/ws");
+        const socket = new SockJS("http://localhost:8080/ws");
         //[2] 
         const client = new Client({
             // socket 정보를 설정
@@ -67,12 +80,15 @@ export default function WebsocketMemberEx() {
 
                 //(+추가) 회원일 경우만 개인메세지 채널을 구독
                 if(isLogin) {
-                    client.subscribe(`/private/token/${loginId}`, (message)=>{
+                    client.subscribe(`/private/member/token/${loginId}`, (message)=>{
                         const json = JSON.parse(message.body);//해석
                         setAccessToken(json.accessToken);//accessToken 갱신
                         setRefreshToken(json.refreshToken);//refreshToken 갱신
                     });
-                    client.subscribe(`/private/warning/${loginId}`, (message)=>{});
+                    client.subscribe(`/private/member/warning/${loginId}`, (message)=>{
+                        const json = JSON.parse(message.body);
+                        setHistory(prev=>[...prev, json]);
+                    });
                 }
             },
             // (옵션) 디버그 설정
@@ -101,6 +117,7 @@ export default function WebsocketMemberEx() {
 
     //메세지 전송
     const sendMessage = useCallback(()=>{
+        //전송을 하면 안되는 상황부터 체크
         if(client === null) return;//setClient()가 실행되어야 null이 아님
         if(client.connected === false) return;//연결중이어야 true가 되는 값
         if(client.active === false) return;//activate()를 실행해야 true가 되는 값
@@ -188,11 +205,11 @@ export default function WebsocketMemberEx() {
 
         {/* 메세지 히스토리 출력 */}
         <div className="row mt-4">
-            <div className="col message-wrapper">
+            <div className="col message-wrapper" ref={messageWrapper}>
                 {history.map((m,index)=>{//여기는 함수
                     if(m.type === "chat") {//일반 채팅일 경우 보여줄 화면
                         return (
-                        <div className={`message-block ${loginId === m.loginId ? 'my' : ''}`} key={index} >
+                        <div className={`message-block ${loginId === m.loginId ? 'my' : ''}`} key={index}>
                             {/* 발신자 */}
                             {isSenderVisible(m, history[index-1]) === true && (
                             <h5 className="text-primary">{m.loginId} ({m.loginLevel})</h5>

@@ -103,7 +103,7 @@ export default function Content() {
                         <Route path="/websocket/advance" element={<WebsocketAdvanceEx />}> </Route>
                         <Route path="/websocket/member" element={<WebsocketMemberEx />}> </Route>
                         <Route path="/websocket/group" element={<WaitingRoom />}> </Route>
-                        <Route path="/websocket/cheat" element={<CheatRoom />}> </Route>
+                        <Route path="/websocket/group/:roomNo" element={<Private><CheatRoom/></Private>}></Route>
 
                         <Route path="/error/403" element={<NeedPermission />}></Route>
                         <Route path="*" element={<TargetNotFound />}></Route>

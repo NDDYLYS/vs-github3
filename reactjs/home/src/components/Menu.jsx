@@ -1,20 +1,32 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useAtom, useAtomValue } from "jotai";
-import { adminState, loginIdState, loginLevelState, loginState, accessTokenState, clearLoginState } from "../utils/jotai";
+import { accessTokenState, adminState, clearLoginState, loginCompleteState, loginIdState, loginLevelState, loginState } from "../utils/jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import axios from "axios";
+import { FaCogs } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
+
 
 export default function Menu() {
     const navigate = useNavigate();
 
-    const [loginId, setLoginId] = useAtom(loginIdState);
-    const [loginLevel, setLoginLevel] = useAtom(loginLevelState);
+    const [loginId, setLoginId] = useAtom(loginIdState); //읽기,쓰기 가능 (atom)
+    const [loginLevel, setLoginLevel] = useAtom(loginLevelState); //읽기,쓰기 가능 (atom)
     const [accessToken, setAccessToken] = useAtom(accessTokenState);
+    const [loginComplete, setLoginComplete] = useAtom(loginCompleteState);
+    const isLogin = useAtomValue(loginState); //읽기 전용 (selector)
+    const isAdmin = useAtomValue(adminState); //읽기 전용 (selector)
+    //const [, clearLogin] = useAtom(clearLoginState);//쓰기 전용
+    const clearLogin = useSetAtom(clearLoginState);//쓰기 전용
 
-    const isLogin = useAtomValue(loginState);
-    const isAdmin = useAtomValue(adminState);
-    const [, clearLogin] = useAtom(clearLoginState);
-    // const clearLogin = useSetAtom(clearLoginState);
+    //화면이 로딩될 때마다 accessToken이 있는 경우 axios에 설정하는 코드 구현
+    useEffect(() => {
+        if (accessToken?.length > 0) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+        }
+        //판정이 끝난 시점
+        setLoginComplete(true);
+    }, [accessToken]);
 
     const logout = useCallback(async (e) => {
         e.stopPropagation();
@@ -169,7 +181,7 @@ export default function Menu() {
                                     <Link className="dropdown-item" to="/websocket/member">회원전용</Link>
                                     <div className="dropdown-divider"></div>
                                     <Link className="dropdown-item" to="/websocket/group">그룹채팅</Link>
-                                    <Link className="dropdown-item" to="/websocket/cheat">CheatRoom</Link>
+                                    {/* <Link className="dropdown-item" to="/websocket/cheat">CheatRoom</Link> */}
                                 </div>
                             </li>
 
