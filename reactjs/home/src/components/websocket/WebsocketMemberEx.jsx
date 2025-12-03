@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Jumbotron from "../templates/Jumbotron";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
@@ -43,6 +43,9 @@ export default function WebsocketMemberEx() {
     }, [loginComplete]);
 
     //callback
+    const messageWrapper = useRef();
+
+
 
     //서버 연결 함수
     //[1] 연결(socket) 생성
@@ -189,7 +192,7 @@ export default function WebsocketMemberEx() {
                 {history.map((m,index)=>{//여기는 함수
                     if(m.type === "chat") {//일반 채팅일 경우 보여줄 화면
                         return (
-                        <div className={`message-block ${loginId === m.loginId ? 'my' : ''}`} key={index}>
+                        <div className={`message-block ${loginId === m.loginId ? 'my' : ''}`} key={index} >
                             {/* 발신자 */}
                             {isSenderVisible(m, history[index-1]) === true && (
                             <h5 className="text-primary">{m.loginId} ({m.loginLevel})</h5>
